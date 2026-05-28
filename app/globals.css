@@ -555,3 +555,43 @@ a {
     grid-template-columns: 1fr;
   }
 }
+.legalPage {
+  min-height: 100vh;
+  padding: 80px 22px;
+}
+
+.legalContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  padding: 50px;
+  box-shadow: var(--shadow);
+}
+
+.legalContainer h1 {
+  margin-top: 0;
+  font-size: 52px;
+  letter-spacing: -2px;
+}
+
+.legalContainer h2 {
+  margin-top: 40px;
+  margin-bottom: 12px;
+}
+
+.legalContainer h3 {
+  margin-top: 20px;
+}
+
+.legalContainer p,
+.legalContainer li {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 18px;
+}
+
+.legalContainer ul {
+  padding-left: 24px;
+}
