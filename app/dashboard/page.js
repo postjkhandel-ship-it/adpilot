@@ -11,6 +11,7 @@ export default function Dashboard() {
     offer: "",
     budget: "",
     goal: "Salg",
+    location: "",
   });
 
   const [result, setResult] = useState("");
@@ -19,10 +20,101 @@ export default function Dashboard() {
     setForm({ ...form, [field]: value });
   }
 
+  function getIndustryAngle(industry, product) {
+    const text = industry.toLowerCase();
+
+    if (text.includes("bil") || text.includes("solfilm") || text.includes("klargøring")) {
+      return {
+        problem: "Ser bilen træt, beskidt eller kedelig ud?",
+        result: "Få bilen til at se skarpere, renere og mere professionel ud.",
+        headline: `Professionel ${product}`,
+        hook: `"Jeg troede ikke min bil kunne se sådan ud igen."`,
+        cta: "Book tid",
+        creative: "Før/efter billede af bilen, filmet i ægte iPhone/UGC stil.",
+      };
+    }
+
+    if (text.includes("frisør") || text.includes("beauty") || text.includes("skønhed")) {
+      return {
+        problem: "Trænger du til et nyt look eller en behandling, der giver synligt resultat?",
+        result: "Få en professionel behandling, der får dig til at føle dig mere selvsikker.",
+        headline: `Book ${product} i dag`,
+        hook: `"Jeg skulle bare have gjort det her noget før."`,
+        cta: "Book nu",
+        creative: "Før/efter transformation med kunde i stolen.",
+      };
+    }
+
+    if (text.includes("håndværk") || text.includes("tømrer") || text.includes("murer") || text.includes("elektriker") || text.includes("vvs")) {
+      return {
+        problem: "Mangler du en pålidelig fagmand til opgaven?",
+        result: "Få professionel hjælp, tydelig aftale og et resultat der holder.",
+        headline: `Få tilbud på ${product}`,
+        hook: `"Vi fik løst opgaven hurtigt og professionelt."`,
+        cta: "Få tilbud",
+        creative: "Før/efter af udført arbejde + kort kundecase.",
+      };
+    }
+
+    if (text.includes("restaurant") || text.includes("café") || text.includes("mad")) {
+      return {
+        problem: "Leder du efter noget lækkert, nemt og velsmagende?",
+        result: "Få en god oplevelse med mad, service og stemning i fokus.",
+        headline: `Prøv ${product}`,
+        hook: `"Det her sted skal du prøve."`,
+        cta: "Bestil nu",
+        creative: "UGC video med mad tæt på kameraet og ægte reaktion.",
+      };
+    }
+
+    if (text.includes("webshop") || text.includes("ecommerce") || text.includes("shop")) {
+      return {
+        problem: "Leder du efter en nem løsning, der gør hverdagen bedre?",
+        result: "Få et produkt der løser problemet hurtigt, enkelt og effektivt.",
+        headline: `Køb ${product} i dag`,
+        hook: `"Jeg fortryder kun, at jeg ikke købte den før."`,
+        cta: "Shop nu",
+        creative: "Produktdemo + pris + trust badges + kundeanmeldelse.",
+      };
+    }
+
+    if (text.includes("klinik") || text.includes("tand") || text.includes("fysioterapi") || text.includes("behandling")) {
+      return {
+        problem: "Har du et problem, du gerne vil have professionel hjælp til?",
+        result: "Få en tryg behandling med fokus på kvalitet og resultater.",
+        headline: `Book ${product}`,
+        hook: `"Jeg følte mig tryg fra første minut."`,
+        cta: "Book tid",
+        creative: "Professionel behandler + kundeudtalelse + klinikmiljø.",
+      };
+    }
+
+    if (text.includes("bureau") || text.includes("marketing") || text.includes("ads") || text.includes("hjemmeside")) {
+      return {
+        problem: "Får din virksomhed ikke nok kunder online?",
+        result: "Få en løsning der hjælper dig med flere leads, bedre synlighed og mere salg.",
+        headline: `Få hjælp til ${product}`,
+        hook: `"Vi begyndte endelig at få henvendelser online."`,
+        cta: "Få tilbud",
+        creative: "Skærmoptagelse, før/efter website eller annonce-resultater.",
+      };
+    }
+
+    return {
+      problem: "Har du brug for en bedre løsning, der gør hverdagen nemmere?",
+      result: "Få en professionel løsning, der skaber værdi og gør det nemt at komme i gang.",
+      headline: `Prøv ${product}`,
+      hook: `"Det her gjorde en større forskel end forventet."`,
+      cta: form.goal === "Leads" ? "Få tilbud" : form.goal === "Bookinger" ? "Book nu" : "Læs mere",
+      creative: "UGC video, kundeudtalelse og tydelig før/efter-vinkel.",
+    };
+  }
+
   function generateCampaign() {
-    const priceText = form.offer
-      ? `Lige nu: ${form.offer} kr.`
-      : "Særligt tilbud i en begrænset periode.";
+    const angle = getIndustryAngle(form.industry, form.product);
+    const budget = Number(form.budget) || 150;
+    const offerText = form.offer ? `Lige nu: ${form.offer}` : "Aktuelt tilbud i en begrænset periode.";
+    const locationText = form.location ? ` i ${form.location}` : "";
 
     const campaign = `
 KAMPAGNESTRUKTUR
@@ -30,8 +122,8 @@ KAMPAGNESTRUKTUR
 Kampagnenavn:
 ${form.business} - ${form.product} - ${form.goal}
 
-Formål:
-${form.goal}
+Virksomhed:
+${form.business}
 
 Branche:
 ${form.industry}
@@ -42,259 +134,261 @@ ${form.product}
 Målgruppe:
 ${form.audience}
 
+Lokation:
+${form.location || "Ikke angivet"}
+
 Budget:
-${form.budget} kr/dag
+${budget} kr/dag
 
 Tilbud:
-${priceText}
+${offerText}
 
-ANBEFALET META STRUKTUR
+Mål:
+${form.goal}
+
+ANBEFALET STRUKTUR
 
 1. Cold kampagne
 - Broad målgruppe
-- 3-5 forskellige creatives
-- Fokus på problem, løsning og resultat
-- Budget: 70%
+- 3-5 creatives
+- Problem/løsning vinkel
+- Budget: ${Math.round(budget * 0.7)} kr/dag
 
-2. Retargeting kampagne
+2. Retargeting
 - Besøgende sidste 30 dage
-- Add to cart sidste 14 dage
 - Engagerede på Facebook/Instagram
-- Budget: 30%
+- Personer der har klikket på annonce
+- Budget: ${Math.round(budget * 0.3)} kr/dag
 
-3. Test creatives
+3. Creative test
 - UGC video
-- Før/efter statics
-- Produktbillede med pris
-- Kundeanmeldelse
-- Problem/løsning annonce
+- Før/efter
+- Trust/kundeanmeldelse
+- Direkte tilbud
+- Problem/løsning
 
 META ADS TEKSTER
 
 ANNONCE 1 - PROBLEM/LØSNING
 
 Primær tekst:
-Kender du følelsen af, at almindelig tandbørstning ikke renser helt nok?
+${angle.problem}
 
-Med ${form.product} får ${form.audience} en nem måde at rense mellem tænderne på derhjemme — hurtigt, behageligt og uden besvær.
+Med ${form.product} hjælper ${form.business} ${form.audience} med at få en nemmere og mere professionel løsning${locationText}.
 
-${priceText}
+${angle.result}
 
-Headline:
-Renere tænder på få minutter
-
-Beskrivelse:
-Nem tandpleje derhjemme.
-
-CTA:
-Shop nu
-
-ANNONCE 2 - DIREKTE SALG
-
-Primær tekst:
-Gør din daglige tandpleje nemmere med ${form.product}.
-
-Perfekt til dig, der vil have en friskere følelse, bedre mundhygiejne og en mere effektiv rutine end almindelig tandtråd.
-
-${priceText}
+${offerText}
 
 Headline:
-Opgrader din tandpleje i dag
+${angle.headline}
 
 Beskrivelse:
-Få en friskere følelse hver dag.
+En nem løsning til dig, der vil have et bedre resultat.
 
 CTA:
-Køb nu
+${angle.cta}
 
-ANNONCE 3 - UGC STYLE
+ANNONCE 2 - UGC STYLE
 
 Hook:
-"Jeg troede tandtråd var nok — indtil jeg prøvede den her."
+${angle.hook}
 
 Primær tekst:
-Mange glemmer, hvor svært det faktisk er at rense ordentligt mellem tænderne.
+Jeg havde brug for en løsning, der var nem, professionel og faktisk gav mening.
 
-${form.product} gør det nemt at få en renere og friskere følelse på få minutter.
+Derfor prøvede jeg ${form.product} fra ${form.business} — og det gjorde processen meget lettere.
 
-${priceText}
+${offerText}
 
 Headline:
-Derfor skifter flere til waterflosser
+Derfor vælger flere ${form.business}
 
 Beskrivelse:
-Let, hurtig og effektiv tandpleje.
+Professionel løsning gjort nemt.
 
 CTA:
-Shop nu
+${angle.cta}
+
+ANNONCE 3 - DIREKTE SALG / LEAD
+
+Primær tekst:
+Gør det nemt at komme i gang med ${form.product}.
+
+Hos ${form.business} får du en løsning, der er lavet til ${form.audience}, som gerne vil have et godt resultat uden besvær.
+
+${offerText}
+
+Headline:
+Kom i gang med ${form.product}
+
+Beskrivelse:
+Hurtigt, enkelt og professionelt.
+
+CTA:
+${angle.cta}
 
 ANNONCE 4 - RETARGETING
 
 Primær tekst:
 Du har allerede vist interesse for ${form.product}.
 
-Hvis du vil gøre din tandpleje nemmere og få en friskere følelse i hverdagen, er det her et godt tidspunkt at prøve den.
+Hvis du stadig overvejer det, er nu et godt tidspunkt at tage næste skridt.
 
-${priceText}
+${offerText}
 
 Headline:
 Stadig interesseret?
 
 Beskrivelse:
-Bestil i dag og kom i gang.
+Tag næste skridt i dag.
 
 CTA:
-Køb nu
+${angle.cta}
 
-ANNONCE 5 - TRUST/SOCIAL PROOF
+ANNONCE 5 - TRUST
 
 Primær tekst:
-Flere vælger ${form.business}, fordi de ønsker en nemmere og mere effektiv måde at passe på deres tænder.
+Flere vælger ${form.business}, fordi de vil have en løsning, der føles tryg, nem og professionel.
 
-Med ${form.product} får du en simpel løsning til daglig brug.
-
-${priceText}
+${form.product} er skabt til ${form.audience}, der ønsker et bedre resultat.
 
 Headline:
-Elsket af kunder
+Tryg og professionel løsning
 
 Beskrivelse:
-Gør tandpleje nemmere.
+Se hvorfor kunder vælger os.
 
 CTA:
-Shop nu
+${angle.cta}
 
 HOOKS
 
-1. Almindelig tandtråd er ikke altid nok
-2. Få en friskere følelse på få minutter
-3. Rens nemt mellem tænderne derhjemme
-4. Derfor skifter flere til waterflosser
-5. Gør tandpleje nemmere hver dag
-6. Stadig madrester mellem tænderne?
-7. En smartere måde at bruge tandtråd på
-8. Tandpleje behøver ikke være besværligt
+1. ${angle.problem}
+2. Derfor vælger flere ${form.product}
+3. En nemmere løsning til ${form.audience}
+4. Få et bedre resultat uden besvær
+5. Stop med at udskyde det
+6. Det her gør processen meget nemmere
+7. Klar til at tage næste skridt?
+8. Professionel hjælp gjort enkelt
+9. ${form.product} uden besvær
+10. Se hvorfor flere vælger ${form.business}
 
 HEADLINES
 
-1. Renere tænder på få minutter
-2. Opgrader din tandpleje
-3. Prøv waterflosser i dag
-4. Friskere følelse hver dag
-5. Effektiv tandpleje derhjemme
-6. Nem rens mellem tænderne
-7. Shop ${form.product} i dag
-8. Tandpleje gjort nemt
+1. ${angle.headline}
+2. Kom i gang i dag
+3. Professionel løsning
+4. Få hjælp hurtigt
+5. Bedre resultat uden besvær
+6. Prøv ${form.product}
+7. ${form.business} hjælper dig
+8. Klar til næste skridt?
 
 CREATIVE IDÉER
 
-1. iPhone UGC video:
-Person står ved badeværelsesspejl og siger:
-"Jeg hadede almindelig tandtråd — den her gør det meget nemmere."
+1. UGC video:
+${angle.creative}
 
-2. Før/efter static:
-Venstre: "Tandtråd hver dag?"
-Højre: "Waterflosser på få minutter"
+2. Før/efter annonce:
+Vis problemet før og resultatet efter.
 
-3. Produktbillede med pris:
-Stort produktbillede + teksten:
-"Kun ${form.offer || "299"} kr. i dag"
+3. Trust annonce:
+Brug kundeudtalelse + gule stjerner + kort tekst.
 
-4. Problem/løsning:
-Problem: Madrester mellem tænderne
-Løsning: ${form.product}
+4. Tilbudsannonce:
+Vis ${offerText} tydeligt sammen med ${form.product}.
 
-5. Trust creative:
-Gule stjerner + kundeudtalelse:
-"Virkelig nem at bruge — føles som professionel tandrensning derhjemme."
+5. Lokal annonce:
+Hvis relevant, skriv tydeligt:
+"${form.business}${locationText}"
 
 GOOGLE ADS
 
 Headlines:
-- Køb Waterflosser Online
-- Renere Tænder Derhjemme
-- Waterflosser Tilbud
-- Nem Tandpleje Hver Dag
-- Effektiv Rens Mellem Tænder
-- Startsmiling Waterflosser
-- Friskere Mund På Få Minutter
-- Tandtråd Er Ikke Nok
+- ${form.product} ${form.location || ""}
+- ${angle.headline}
+- Få Hjælp I Dag
+- Professionel Service
+- ${form.business}
+- Klar Til At Komme I Gang
+- Få Et Godt Tilbud
+- Bedre Resultat Nemt
 
 Descriptions:
-- Gør tandplejen nemmere med en effektiv waterflosser til daglig brug.
-- Få en friskere følelse og rens nemt mellem tænderne derhjemme.
-- Bestil ${form.product} hos ${form.business} i dag. ${priceText}
-- Opgrader din mundhygiejne med en nem og effektiv løsning.
+- Få en professionel løsning hos ${form.business}. Kom nemt i gang i dag.
+- ${form.product} til ${form.audience}. En tryg og enkel løsning.
+- ${offerText} Kontakt os eller bestil direkte i dag.
+- Gør det nemt at få et bedre resultat med ${form.business}.
 
 SITELINKS
 
-1. Waterflosser Pro
-Beskrivelse: Se tilbud på vores mest populære waterflosser.
+1. ${form.product}
+Beskrivelse: Se mere om løsningen og kom i gang.
 
 2. Kundeanmeldelser
-Beskrivelse: Læs hvad kunder siger om ${form.business}.
+Beskrivelse: Læs hvad andre kunder siger.
 
-3. Fri fragt
-Beskrivelse: Hurtig levering og nem bestilling.
+3. Kontakt
+Beskrivelse: Få svar på dine spørgsmål.
 
 4. Tilbud
-Beskrivelse: Se aktuelle kampagner og rabatter.
+Beskrivelse: Se aktuelle priser og kampagner.
 
 RETARGETING STRATEGI
 
-Målgruppe:
-- Besøgende sidste 30 dage
-- Produktvisninger sidste 14 dage
-- Add to cart sidste 7 dage
-- Instagram/Facebook engagement sidste 365 dage
+Målgrupper:
+- Website besøgende 30 dage
+- Klik på annonce 30 dage
+- Facebook/Instagram engagement 365 dage
+- Add to cart eller formularstart hvis relevant
 
 Retargeting tekst:
-Du kiggede på ${form.product} — men fik ikke bestilt.
+Du har allerede kigget på ${form.product}.
 
-Den er stadig på tilbud, og du kan komme i gang med en nemmere tandplejerutine allerede nu.
+Hvis du stadig overvejer det, kan ${form.business} hjælpe dig videre med en nem og professionel løsning.
+
+${offerText}
 
 CTA:
-Bestil nu
+${angle.cta}
 
-BUDGETFORDELING
+KPI MÅL
 
-Samlet budget:
-${form.budget || "150"} kr/dag
+Hvis målet er salg:
+- CTR: over 1,5%
+- CPC: under 4-6 kr.
+- ROAS: over 2,5x
+- CPA: afhænger af avance
 
-Cold:
-Ca. ${Math.round((Number(form.budget) || 150) * 0.7)} kr/dag
+Hvis målet er leads:
+- CTR: over 1,2%
+- CPC: under 5 kr.
+- Leadpris: afhænger af branche, men startmål 30-150 kr.
 
-Retargeting:
-Ca. ${Math.round((Number(form.budget) || 150) * 0.3)} kr/dag
+Hvis målet er bookinger:
+- Fokus på lokal målgruppe
+- Brug før/efter og trust
+- Test både leadformular og website booking
 
 TESTPLAN
 
 Dag 1-3:
-Test 3-5 creatives.
+Kør 3-5 creatives uden at ændre for meget.
 
 Dag 4-7:
-Sluk annoncer med høj CPC og lav CTR.
+Sluk de dårligste annoncer med høj CPC og lav CTR.
 
 Efter 7 dage:
-Skaler vinderen langsomt med 20-30%.
+Flyt budget mod vinderen.
 
-VIGTIGE KPI'ER
-
-God CTR:
-Over 1,5%
-
-Acceptabel CPC:
-Under 4 kr.
-
-God CPA:
-Afhænger af avance, men sigt efter under 100-150 kr.
-
-God ROAS:
-Over 2,5x
+Skalering:
+Skaler langsomt med 20-30% ad gangen.
 
 KONKLUSION
 
-Start med én stærk kampagne for ${form.product}, brug 3-5 creatives og lad Meta finde de bedste købere. Fokusér på problem/løsning, UGC og retargeting.
+Start med en simpel kampagnestruktur for ${form.product}. Brug problem/løsning, UGC og trust. Fokusér på én tydelig handling: ${angle.cta}.
 `;
 
     setResult(campaign);
@@ -318,7 +412,7 @@ Start med én stærk kampagne for ${form.product}, brug 3-5 creatives og lad Met
       <section className="main">
         <div className="card">
           <h2>Generer kampagne</h2>
-          <p>Udfyld felterne og få en salgsstærk annoncepakke.</p>
+          <p>Udfyld felterne og få en annoncepakke til næsten alle typer virksomheder.</p>
 
           <div className="grid">
             <label>
@@ -335,7 +429,7 @@ Start med én stærk kampagne for ${form.product}, brug 3-5 creatives og lad Met
               <input
                 value={form.industry}
                 onChange={(e) => updateField("industry", e.target.value)}
-                placeholder="Fx tandpleje produkter"
+                placeholder="Fx webshop, frisør, bilpleje, håndværker"
               />
             </label>
 
@@ -344,7 +438,7 @@ Start med én stærk kampagne for ${form.product}, brug 3-5 creatives og lad Met
               <input
                 value={form.product}
                 onChange={(e) => updateField("product", e.target.value)}
-                placeholder="Fx Waterflosser"
+                placeholder="Fx Waterflosser, solfilm, klipning"
               />
             </label>
 
@@ -353,7 +447,7 @@ Start med én stærk kampagne for ${form.product}, brug 3-5 creatives og lad Met
               <input
                 value={form.audience}
                 onChange={(e) => updateField("audience", e.target.value)}
-                placeholder="Fx mænd og kvinder"
+                placeholder="Fx mænd og kvinder, lokale bilejere"
               />
             </label>
 
@@ -362,7 +456,7 @@ Start med én stærk kampagne for ${form.product}, brug 3-5 creatives og lad Met
               <input
                 value={form.offer}
                 onChange={(e) => updateField("offer", e.target.value)}
-                placeholder="Fx 299"
+                placeholder="Fx 299 kr, gratis tilbud, 20% rabat"
               />
             </label>
 
@@ -374,20 +468,29 @@ Start med én stærk kampagne for ${form.product}, brug 3-5 creatives og lad Met
                 placeholder="Fx 150"
               />
             </label>
-          </div>
 
-          <label style={{ marginTop: "16px" }}>
-            Målsætning
-            <select
-              value={form.goal}
-              onChange={(e) => updateField("goal", e.target.value)}
-            >
-              <option>Salg</option>
-              <option>Leads</option>
-              <option>Bookinger</option>
-              <option>Trafik</option>
-            </select>
-          </label>
+            <label>
+              Lokation
+              <input
+                value={form.location}
+                onChange={(e) => updateField("location", e.target.value)}
+                placeholder="Fx Kalundborg, København, hele Danmark"
+              />
+            </label>
+
+            <label>
+              Målsætning
+              <select
+                value={form.goal}
+                onChange={(e) => updateField("goal", e.target.value)}
+              >
+                <option>Salg</option>
+                <option>Leads</option>
+                <option>Bookinger</option>
+                <option>Trafik</option>
+              </select>
+            </label>
+          </div>
 
           <button className="btn" onClick={generateCampaign}>
             Generer kampagne
