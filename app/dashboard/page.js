@@ -23,37 +23,57 @@ export default function Dashboard() {
 
   function generateCampaign() {
     const budget = Number(form.budget) || 150;
-    const offerText = form.offer || "Aktuelt tilbud";
     const cta =
       form.goal === "Leads" ? "Få tilbud" :
       form.goal === "Bookinger" ? "Book nu" :
-      form.goal === "Salg" ? "Køb nu" :
-      "Læs mere";
+      form.goal === "Trafik" ? "Læs mere" :
+      "Køb nu";
+
+    const offer = form.offer || "Aktuelt tilbud";
 
     const campaign = `
-KAMPAGNE FOR ${form.business}
+KAMPAGNEPAKKE FOR ${form.business}
 
-Branche: ${form.industry}
-Produkt/service: ${form.product}
-Målgruppe: ${form.audience}
-Lokation: ${form.location || "Ikke angivet"}
-Budget: ${budget} kr/dag
-Tilbud: ${offerText}
-Mål: ${form.goal}
+Branche:
+${form.industry}
 
-META ADS STRUKTUR
+Produkt/service:
+${form.product}
+
+Målgruppe:
+${form.audience}
+
+Lokation:
+${form.location || "Ikke angivet"}
+
+Budget:
+${budget} kr/dag
+
+Tilbud:
+${offer}
+
+Mål:
+${form.goal}
+
+--------------------------------
+
+ANBEFALET STRUKTUR
 
 1. Cold kampagne
 - Broad målgruppe
 - 3-5 creatives
-- Problem/løsning
+- Problem/løsning vinkel
 - Budget: ${Math.round(budget * 0.7)} kr/dag
 
-2. Retargeting
-- Besøgende sidste 30 dage
+2. Retargeting kampagne
+- Website besøgende 30 dage
 - Klik på annonce
 - Facebook/Instagram engagement
 - Budget: ${Math.round(budget * 0.3)} kr/dag
+
+--------------------------------
+
+META ADS
 
 ANNONCE 1 — PROBLEM/LØSNING
 
@@ -62,7 +82,7 @@ Har du brug for en nemmere og mere professionel løsning?
 
 Med ${form.product} hjælper ${form.business} ${form.audience} med at få et bedre resultat uden besvær.
 
-${offerText}
+${offer}
 
 Headline:
 Kom i gang med ${form.product}
@@ -91,13 +111,15 @@ Du har allerede vist interesse for ${form.product}.
 
 Hvis du stadig overvejer det, er nu et godt tidspunkt at tage næste skridt.
 
-${offerText}
+${offer}
 
 Headline:
 Stadig interesseret?
 
 CTA:
 ${cta}
+
+--------------------------------
 
 HOOKS
 
@@ -110,6 +132,8 @@ HOOKS
 7. Professionel hjælp uden besvær
 8. Kom i gang i dag
 
+--------------------------------
+
 GOOGLE ADS
 
 Headlines:
@@ -118,22 +142,26 @@ Headlines:
 - Få Hjælp I Dag
 - Professionel Løsning
 - Kom I Gang Nu
-- ${offerText}
+- ${offer}
 - Bedre Resultat Nemt
 - ${form.location || "Hele Danmark"}
 
 Descriptions:
 - Få en professionel løsning hos ${form.business}. Kom nemt i gang i dag.
 - ${form.product} til ${form.audience}. Klar til brug.
-- ${offerText}. Kontakt os eller bestil direkte i dag.
+- ${offer}. Kontakt os eller bestil direkte i dag.
+
+--------------------------------
 
 CREATIVE IDÉER
 
-1. UGC video med ejer/kunde der forklarer problemet
+1. UGC video med ejer eller kunde der forklarer problemet
 2. Før/efter annonce
 3. Produkt/service billede med tydeligt tilbud
 4. Kundeudtalelse med stjerner
 5. Lokal annonce med ${form.location || "lokation"}
+
+--------------------------------
 
 TESTPLAN
 
@@ -157,115 +185,109 @@ Skaler vinderen med 20-30%.
   }
 
   return (
-    <main className="new-dashboard">
-      <header className="new-topbar">
-        <a href="/" className="new-logo">AdPilot</a>
-        <div className="top-actions">
-          <span>Pro Demo</span>
-          <a href="/" className="small-btn">Forside</a>
+    <main className="app">
+      <header className="appNav">
+        <a href="/" className="brand dark">AdPilot</a>
+        <div>
+          <span className="plan">Pro Demo</span>
+          <a href="/" className="backBtn">Forside</a>
         </div>
       </header>
 
-      <section className="dash-hero-clean">
+      <section className="appHero">
         <div>
-          <span className="blue-label">AI Campaign Generator</span>
-          <h1>Generer en annoncepakke</h1>
+          <div className="badge light">AI Campaign Generator</div>
+          <h1>Generer en komplet annoncepakke</h1>
           <p>
             Udfyld briefen og få Meta Ads, Google Ads, hooks, retargeting og
-            kreative idéer klar til copy/paste.
+            creative idéer klar til copy/paste.
           </p>
         </div>
       </section>
 
-      <section className="generator-layout">
-        <div className="generator-card">
-          <div className="card-header">
-            <div>
-              <h2>Kampagnebrief</h2>
-              <p>Jo mere præcis brief, jo bedre output.</p>
-            </div>
-          </div>
+      <section className="generator">
+        <div className="formBox">
+          <h2>Kampagnebrief</h2>
+          <p>Jo mere præcis brief, jo bedre output.</p>
 
-          <div className="input-grid">
-            <Field label="Virksomhedsnavn">
+          <div className="formGrid">
+            <Input label="Virksomhedsnavn">
               <input value={form.business} onChange={(e) => updateField("business", e.target.value)} placeholder="Startsmiling" />
-            </Field>
+            </Input>
 
-            <Field label="Branche">
+            <Input label="Branche">
               <input value={form.industry} onChange={(e) => updateField("industry", e.target.value)} placeholder="Webshop, frisør, bilpleje..." />
-            </Field>
+            </Input>
 
-            <Field label="Produkt/service">
-              <input value={form.product} onChange={(e) => updateField("product", e.target.value)} placeholder="Waterflosser, solfilm, klipning..." />
-            </Field>
+            <Input label="Produkt/service">
+              <input value={form.product} onChange={(e) => updateField("product", e.target.value)} placeholder="Waterflosser, solfilm..." />
+            </Input>
 
-            <Field label="Målgruppe">
+            <Input label="Målgruppe">
               <input value={form.audience} onChange={(e) => updateField("audience", e.target.value)} placeholder="Mænd og kvinder 25-55" />
-            </Field>
+            </Input>
 
-            <Field label="Tilbud/pris">
-              <input value={form.offer} onChange={(e) => updateField("offer", e.target.value)} placeholder="299 kr / 20% rabat / gratis tilbud" />
-            </Field>
+            <Input label="Tilbud/pris">
+              <input value={form.offer} onChange={(e) => updateField("offer", e.target.value)} placeholder="299 kr / 20% rabat" />
+            </Input>
 
-            <Field label="Budget pr dag">
+            <Input label="Budget pr dag">
               <input value={form.budget} onChange={(e) => updateField("budget", e.target.value)} placeholder="150" />
-            </Field>
+            </Input>
 
-            <Field label="Lokation">
+            <Input label="Lokation">
               <input value={form.location} onChange={(e) => updateField("location", e.target.value)} placeholder="Kalundborg / hele Danmark" />
-            </Field>
+            </Input>
 
-            <Field label="Målsætning">
+            <Input label="Målsætning">
               <select value={form.goal} onChange={(e) => updateField("goal", e.target.value)}>
                 <option>Salg</option>
                 <option>Leads</option>
                 <option>Bookinger</option>
                 <option>Trafik</option>
               </select>
-            </Field>
+            </Input>
           </div>
 
-          <button className="big-generate" onClick={generateCampaign}>
+          <button className="generate" onClick={generateCampaign}>
             Generer kampagne
           </button>
         </div>
 
-        <aside className="side-clean">
+        <aside className="sideBox">
           <h3>Output inkluderer</h3>
-          <div className="check-list">
-            <span>✓ Meta Ads tekster</span>
-            <span>✓ Google Ads forslag</span>
-            <span>✓ Hooks</span>
-            <span>✓ Retargeting strategi</span>
-            <span>✓ Creative idéer</span>
-            <span>✓ Budgetfordeling</span>
-          </div>
+          <span>✓ Meta Ads tekster</span>
+          <span>✓ Google Ads forslag</span>
+          <span>✓ Hooks</span>
+          <span>✓ Retargeting strategi</span>
+          <span>✓ Creative idéer</span>
+          <span>✓ Budgetfordeling</span>
         </aside>
       </section>
 
       {result && (
-        <section className="output-section">
-          <div className="output-header">
+        <section className="resultWrap">
+          <div className="resultTop">
             <div>
-              <span className="blue-label">Færdig kampagne</span>
+              <div className="badge light">Færdig kampagne</div>
               <h2>Din annoncepakke</h2>
             </div>
 
-            <button className="copy-clean" onClick={copyCampaign}>
+            <button className="copy" onClick={copyCampaign}>
               {copied ? "Kopieret ✓" : "Kopiér kampagne"}
             </button>
           </div>
 
-          <pre className="output-box">{result}</pre>
+          <pre className="output">{result}</pre>
         </section>
       )}
     </main>
   );
 }
 
-function Field({ label, children }) {
+function Input({ label, children }) {
   return (
-    <label className="field-clean">
+    <label className="inputGroup">
       <span>{label}</span>
       {children}
     </label>
