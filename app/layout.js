@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "AdPilot",
-  description: "AI Ads Generator til små virksomheder",
+  title: "AdPilot - AI Ads Generator",
+  description: "Generer professionelle annoncekampagner på få minutter.",
 };
 
 export default function RootLayout({ children }) {
