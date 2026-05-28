@@ -16,18 +16,19 @@ export default function Dashboard() {
   const [result, setResult] = useState("");
 
   function updateField(field, value) {
-    setForm({
-      ...form,
-      [field]: value,
-    });
+    setForm({ ...form, [field]: value });
   }
 
   function generateCampaign() {
+    const priceText = form.offer
+      ? `Lige nu: ${form.offer} kr.`
+      : "Særligt tilbud i en begrænset periode.";
+
     const campaign = `
 KAMPAGNESTRUKTUR
 
 Kampagnenavn:
-${form.business} - ${form.goal} kampagne
+${form.business} - ${form.product} - ${form.goal}
 
 Formål:
 ${form.goal}
@@ -45,14 +46,14 @@ Budget:
 ${form.budget} kr/dag
 
 Tilbud:
-${form.offer}
+${priceText}
 
-ANBEFALET STRUKTUR
+ANBEFALET META STRUKTUR
 
-1. Cold Audience kampagne
+1. Cold kampagne
 - Broad målgruppe
-- 3-5 creatives
-- Fokus på problem/løsning
+- 3-5 forskellige creatives
+- Fokus på problem, løsning og resultat
 - Budget: 70%
 
 2. Retargeting kampagne
@@ -61,82 +62,239 @@ ANBEFALET STRUKTUR
 - Engagerede på Facebook/Instagram
 - Budget: 30%
 
+3. Test creatives
+- UGC video
+- Før/efter statics
+- Produktbillede med pris
+- Kundeanmeldelse
+- Problem/løsning annonce
+
 META ADS TEKSTER
 
 ANNONCE 1 - PROBLEM/LØSNING
 
 Primær tekst:
-Kæmper du med at få flere kunder fra dine annoncer?
+Kender du følelsen af, at almindelig tandbørstning ikke renser helt nok?
 
-Med ${form.product} får ${form.audience} en nemmere måde at skabe annoncer, der faktisk virker.
+Med ${form.product} får ${form.audience} en nem måde at rense mellem tænderne på derhjemme — hurtigt, behageligt og uden besvær.
 
-${form.offer ? "Lige nu: " + form.offer : ""}
+${priceText}
 
 Headline:
-Få bedre annoncer på få minutter
+Renere tænder på få minutter
 
 Beskrivelse:
-AI-genererede kampagner klar til brug.
+Nem tandpleje derhjemme.
 
 CTA:
-Læs mere
+Shop nu
 
-ANNONCE 2 - UGC STYLE
+ANNONCE 2 - DIREKTE SALG
+
+Primær tekst:
+Gør din daglige tandpleje nemmere med ${form.product}.
+
+Perfekt til dig, der vil have en friskere følelse, bedre mundhygiejne og en mere effektiv rutine end almindelig tandtråd.
+
+${priceText}
+
+Headline:
+Opgrader din tandpleje i dag
+
+Beskrivelse:
+Få en friskere følelse hver dag.
+
+CTA:
+Køb nu
+
+ANNONCE 3 - UGC STYLE
 
 Hook:
-"Jeg brugte alt for lang tid på annoncer — indtil jeg fandt den her løsning."
+"Jeg troede tandtråd var nok — indtil jeg prøvede den her."
 
 Primær tekst:
-Hvis du driver ${form.industry}, ved du hvor svært det kan være at lave gode annoncer.
+Mange glemmer, hvor svært det faktisk er at rense ordentligt mellem tænderne.
 
-${form.product} hjælper dig med hooks, tekster og kampagnestruktur på få minutter.
+${form.product} gør det nemt at få en renere og friskere følelse på få minutter.
+
+${priceText}
 
 Headline:
-Lav ads uden at gætte
+Derfor skifter flere til waterflosser
+
+Beskrivelse:
+Let, hurtig og effektiv tandpleje.
 
 CTA:
-Kom i gang
+Shop nu
 
-ANNONCE 3 - RETARGETING
+ANNONCE 4 - RETARGETING
 
 Primær tekst:
-Du har allerede vist interesse.
+Du har allerede vist interesse for ${form.product}.
 
-Hvis du vil gøre dine annoncer hurtigere og mere professionelle, er ${form.product} bygget til dig.
+Hvis du vil gøre din tandpleje nemmere og få en friskere følelse i hverdagen, er det her et godt tidspunkt at prøve den.
+
+${priceText}
 
 Headline:
-Klar til bedre annoncer?
+Stadig interesseret?
+
+Beskrivelse:
+Bestil i dag og kom i gang.
 
 CTA:
-Start nu
+Køb nu
+
+ANNONCE 5 - TRUST/SOCIAL PROOF
+
+Primær tekst:
+Flere vælger ${form.business}, fordi de ønsker en nemmere og mere effektiv måde at passe på deres tænder.
+
+Med ${form.product} får du en simpel løsning til daglig brug.
+
+${priceText}
+
+Headline:
+Elsket af kunder
+
+Beskrivelse:
+Gør tandpleje nemmere.
+
+CTA:
+Shop nu
 
 HOOKS
 
-1. Stop med at gætte på dine annoncer
-2. Lav Meta Ads på få minutter
-3. Få hooks og tekster klar med AI
-4. Perfekt til små virksomheder
-5. Din næste kampagne starter her
+1. Almindelig tandtråd er ikke altid nok
+2. Få en friskere følelse på få minutter
+3. Rens nemt mellem tænderne derhjemme
+4. Derfor skifter flere til waterflosser
+5. Gør tandpleje nemmere hver dag
+6. Stadig madrester mellem tænderne?
+7. En smartere måde at bruge tandtråd på
+8. Tandpleje behøver ikke være besværligt
+
+HEADLINES
+
+1. Renere tænder på få minutter
+2. Opgrader din tandpleje
+3. Prøv waterflosser i dag
+4. Friskere følelse hver dag
+5. Effektiv tandpleje derhjemme
+6. Nem rens mellem tænderne
+7. Shop ${form.product} i dag
+8. Tandpleje gjort nemt
 
 CREATIVE IDÉER
 
-1. iPhone UGC video
-2. Før/efter annonce setup
-3. Skærmoptagelse af AI generatoren
-4. Statisk billede med stærkt hook
-5. Testimonial-style ad
+1. iPhone UGC video:
+Person står ved badeværelsesspejl og siger:
+"Jeg hadede almindelig tandtråd — den her gør det meget nemmere."
+
+2. Før/efter static:
+Venstre: "Tandtråd hver dag?"
+Højre: "Waterflosser på få minutter"
+
+3. Produktbillede med pris:
+Stort produktbillede + teksten:
+"Kun ${form.offer || "299"} kr. i dag"
+
+4. Problem/løsning:
+Problem: Madrester mellem tænderne
+Løsning: ${form.product}
+
+5. Trust creative:
+Gule stjerner + kundeudtalelse:
+"Virkelig nem at bruge — føles som professionel tandrensning derhjemme."
 
 GOOGLE ADS
 
 Headlines:
-- AI Meta Ads Generator
-- Lav Ads På Få Minutter
-- Professionelle Annoncer
-- Få Bedre Annoncetekster
+- Køb Waterflosser Online
+- Renere Tænder Derhjemme
+- Waterflosser Tilbud
+- Nem Tandpleje Hver Dag
+- Effektiv Rens Mellem Tænder
+- Startsmiling Waterflosser
+- Friskere Mund På Få Minutter
+- Tandtråd Er Ikke Nok
 
 Descriptions:
-- Generer hooks, headlines og tekster på få minutter.
-- Stop med at gætte. Få en komplet annoncepakke med AI.
+- Gør tandplejen nemmere med en effektiv waterflosser til daglig brug.
+- Få en friskere følelse og rens nemt mellem tænderne derhjemme.
+- Bestil ${form.product} hos ${form.business} i dag. ${priceText}
+- Opgrader din mundhygiejne med en nem og effektiv løsning.
+
+SITELINKS
+
+1. Waterflosser Pro
+Beskrivelse: Se tilbud på vores mest populære waterflosser.
+
+2. Kundeanmeldelser
+Beskrivelse: Læs hvad kunder siger om ${form.business}.
+
+3. Fri fragt
+Beskrivelse: Hurtig levering og nem bestilling.
+
+4. Tilbud
+Beskrivelse: Se aktuelle kampagner og rabatter.
+
+RETARGETING STRATEGI
+
+Målgruppe:
+- Besøgende sidste 30 dage
+- Produktvisninger sidste 14 dage
+- Add to cart sidste 7 dage
+- Instagram/Facebook engagement sidste 365 dage
+
+Retargeting tekst:
+Du kiggede på ${form.product} — men fik ikke bestilt.
+
+Den er stadig på tilbud, og du kan komme i gang med en nemmere tandplejerutine allerede nu.
+
+CTA:
+Bestil nu
+
+BUDGETFORDELING
+
+Samlet budget:
+${form.budget || "150"} kr/dag
+
+Cold:
+Ca. ${Math.round((Number(form.budget) || 150) * 0.7)} kr/dag
+
+Retargeting:
+Ca. ${Math.round((Number(form.budget) || 150) * 0.3)} kr/dag
+
+TESTPLAN
+
+Dag 1-3:
+Test 3-5 creatives.
+
+Dag 4-7:
+Sluk annoncer med høj CPC og lav CTR.
+
+Efter 7 dage:
+Skaler vinderen langsomt med 20-30%.
+
+VIGTIGE KPI'ER
+
+God CTR:
+Over 1,5%
+
+Acceptabel CPC:
+Under 4 kr.
+
+God CPA:
+Afhænger af avance, men sigt efter under 100-150 kr.
+
+God ROAS:
+Over 2,5x
+
+KONKLUSION
+
+Start med én stærk kampagne for ${form.product}, brug 3-5 creatives og lad Meta finde de bedste købere. Fokusér på problem/løsning, UGC og retargeting.
 `;
 
     setResult(campaign);
@@ -160,16 +318,15 @@ Descriptions:
       <section className="main">
         <div className="card">
           <h2>Generer kampagne</h2>
-          <p>Udfyld felterne og få en komplet annoncepakke.</p>
+          <p>Udfyld felterne og få en salgsstærk annoncepakke.</p>
 
           <div className="grid">
             <label>
               Virksomhedsnavn
               <input
                 value={form.business}
-                onChange={(e) =>
-                  updateField("business", e.target.value)
-                }
+                onChange={(e) => updateField("business", e.target.value)}
+                placeholder="Fx Startsmiling"
               />
             </label>
 
@@ -177,9 +334,8 @@ Descriptions:
               Branche
               <input
                 value={form.industry}
-                onChange={(e) =>
-                  updateField("industry", e.target.value)
-                }
+                onChange={(e) => updateField("industry", e.target.value)}
+                placeholder="Fx tandpleje produkter"
               />
             </label>
 
@@ -187,9 +343,8 @@ Descriptions:
               Produkt/service
               <input
                 value={form.product}
-                onChange={(e) =>
-                  updateField("product", e.target.value)
-                }
+                onChange={(e) => updateField("product", e.target.value)}
+                placeholder="Fx Waterflosser"
               />
             </label>
 
@@ -197,19 +352,17 @@ Descriptions:
               Målgruppe
               <input
                 value={form.audience}
-                onChange={(e) =>
-                  updateField("audience", e.target.value)
-                }
+                onChange={(e) => updateField("audience", e.target.value)}
+                placeholder="Fx mænd og kvinder"
               />
             </label>
 
             <label>
-              Tilbud/rabat
+              Tilbud/pris
               <input
                 value={form.offer}
-                onChange={(e) =>
-                  updateField("offer", e.target.value)
-                }
+                onChange={(e) => updateField("offer", e.target.value)}
+                placeholder="Fx 299"
               />
             </label>
 
@@ -217,9 +370,8 @@ Descriptions:
               Budget pr dag
               <input
                 value={form.budget}
-                onChange={(e) =>
-                  updateField("budget", e.target.value)
-                }
+                onChange={(e) => updateField("budget", e.target.value)}
+                placeholder="Fx 150"
               />
             </label>
           </div>
@@ -228,9 +380,7 @@ Descriptions:
             Målsætning
             <select
               value={form.goal}
-              onChange={(e) =>
-                updateField("goal", e.target.value)
-              }
+              onChange={(e) => updateField("goal", e.target.value)}
             >
               <option>Salg</option>
               <option>Leads</option>
@@ -239,10 +389,7 @@ Descriptions:
             </select>
           </label>
 
-          <button
-            className="btn"
-            onClick={generateCampaign}
-          >
+          <button className="btn" onClick={generateCampaign}>
             Generer kampagne
           </button>
         </div>
