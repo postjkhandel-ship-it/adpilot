@@ -68,7 +68,7 @@ ANNONCE 1 - PROBLEM/LØSNING
 Primær tekst:
 Kæmper du med at få flere kunder fra dine annoncer?
 
-Med ${form.product} får ${form.audience} en nemmere måde at skabe annoncer, der faktisk fanger opmærksomhed og får folk til at tage action.
+Med ${form.product} får ${form.audience} en nemmere måde at skabe annoncer, der faktisk virker.
 
 ${form.offer ? "Lige nu: " + form.offer : ""}
 
@@ -89,13 +89,10 @@ Hook:
 Primær tekst:
 Hvis du driver ${form.industry}, ved du hvor svært det kan være at lave gode annoncer.
 
-${form.product} hjælper dig med hooks, tekster, headlines og kampagnestruktur på få minutter.
+${form.product} hjælper dig med hooks, tekster og kampagnestruktur på få minutter.
 
 Headline:
 Lav ads uden at gætte
-
-Beskrivelse:
-Klar kampagne på få minutter.
 
 CTA:
 Kom i gang
@@ -105,13 +102,10 @@ ANNONCE 3 - RETARGETING
 Primær tekst:
 Du har allerede vist interesse.
 
-Hvis du vil gøre dine annoncer nemmere, hurtigere og mere professionelle, er ${form.product} bygget til dig.
+Hvis du vil gøre dine annoncer hurtigere og mere professionelle, er ${form.product} bygget til dig.
 
 Headline:
 Klar til bedre annoncer?
-
-Beskrivelse:
-Start din næste kampagne i dag.
 
 CTA:
 Start nu
@@ -120,17 +114,17 @@ HOOKS
 
 1. Stop med at gætte på dine annoncer
 2. Lav Meta Ads på få minutter
-3. Få hooks, headlines og tekster klar med AI
+3. Få hooks og tekster klar med AI
 4. Perfekt til små virksomheder
 5. Din næste kampagne starter her
 
 CREATIVE IDÉER
 
-1. iPhone UGC video med ejer foran computer
-2. Før/efter: dårlig annonce vs professionel annonce
-3. Skærmoptagelse af kampagnen der bliver genereret
-4. Statisk billede med teksten: "Stop med at gætte på dine ads"
-5. Testimonial-style creative med kundeudtalelse
+1. iPhone UGC video
+2. Før/efter annonce setup
+3. Skærmoptagelse af AI generatoren
+4. Statisk billede med stærkt hook
+5. Testimonial-style ad
 
 GOOGLE ADS
 
@@ -139,13 +133,10 @@ Headlines:
 - Lav Ads På Få Minutter
 - Professionelle Annoncer
 - Få Bedre Annoncetekster
-- Meta Ads Til Virksomheder
-- Klar Kampagne Med AI
 
 Descriptions:
-- Generer hooks, headlines, tekster og kampagnestruktur på få minutter.
-- AdPilot hjælper små virksomheder med at lave bedre annoncer hurtigere.
-- Stop med at gætte. Få en komplet annoncepakke klar med AI.
+- Generer hooks, headlines og tekster på få minutter.
+- Stop med at gætte. Få en komplet annoncepakke med AI.
 `;
 
     setResult(campaign);
@@ -168,16 +159,17 @@ Descriptions:
 
       <section className="main">
         <div className="card">
-          <h2>Generer en kampagne</h2>
-          <p>Udfyld felterne og få en komplet annoncepakke klar.</p>
+          <h2>Generer kampagne</h2>
+          <p>Udfyld felterne og få en komplet annoncepakke.</p>
 
           <div className="grid">
             <label>
               Virksomhedsnavn
               <input
                 value={form.business}
-                onChange={(e) => updateField("business", e.target.value)}
-                placeholder="Fx Lunds Media"
+                onChange={(e) =>
+                  updateField("business", e.target.value)
+                }
               />
             </label>
 
@@ -185,8 +177,9 @@ Descriptions:
               Branche
               <input
                 value={form.industry}
-                onChange={(e) => updateField("industry", e.target.value)}
-                placeholder="Fx webdesign, webshop, bilpleje"
+                onChange={(e) =>
+                  updateField("industry", e.target.value)
+                }
               />
             </label>
 
@@ -194,8 +187,9 @@ Descriptions:
               Produkt/service
               <input
                 value={form.product}
-                onChange={(e) => updateField("product", e.target.value)}
-                placeholder="Fx Meta Ads pakke"
+                onChange={(e) =>
+                  updateField("product", e.target.value)
+                }
               />
             </label>
 
@@ -203,8 +197,9 @@ Descriptions:
               Målgruppe
               <input
                 value={form.audience}
-                onChange={(e) => updateField("audience", e.target.value)}
-                placeholder="Fx små virksomheder"
+                onChange={(e) =>
+                  updateField("audience", e.target.value)
+                }
               />
             </label>
 
@@ -212,8 +207,9 @@ Descriptions:
               Tilbud/rabat
               <input
                 value={form.offer}
-                onChange={(e) => updateField("offer", e.target.value)}
-                placeholder="Fx 20% rabat denne uge"
+                onChange={(e) =>
+                  updateField("offer", e.target.value)
+                }
               />
             </label>
 
@@ -221,8 +217,9 @@ Descriptions:
               Budget pr dag
               <input
                 value={form.budget}
-                onChange={(e) => updateField("budget", e.target.value)}
-                placeholder="Fx 300"
+                onChange={(e) =>
+                  updateField("budget", e.target.value)
+                }
               />
             </label>
           </div>
@@ -231,7 +228,9 @@ Descriptions:
             Målsætning
             <select
               value={form.goal}
-              onChange={(e) => updateField("goal", e.target.value)}
+              onChange={(e) =>
+                updateField("goal", e.target.value)
+              }
             >
               <option>Salg</option>
               <option>Leads</option>
@@ -240,7 +239,10 @@ Descriptions:
             </select>
           </label>
 
-          <button className="btn" onClick={generateCampaign}>
+          <button
+            className="btn"
+            onClick={generateCampaign}
+          >
             Generer kampagne
           </button>
         </div>
