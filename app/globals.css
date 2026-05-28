@@ -520,4 +520,38 @@ a {
     align-items: flex-start;
     padding: 18px 22px;
   }
+} .footer {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 46px 22px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 28px;
+  color: #475569;
+}
+
+.footer strong {
+  display: block;
+  font-size: 24px;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.footer h4 {
+  color: var(--text);
+  margin: 0 0 12px;
+}
+
+.footer a,
+.footer span {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+@media (max-width: 950px) {
+  .footer {
+    grid-template-columns: 1fr;
+  }
 }
