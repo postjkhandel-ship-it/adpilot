@@ -5,6 +5,7 @@ export default function Home() {
         <div className="clean-logo">AdPilot</div>
         <div className="clean-links">
           <a href="#features">Funktioner</a>
+          <a href="#trust">Trust</a>
           <a href="#pricing">Pris</a>
           <a href="/dashboard" className="nav-cta">Start gratis</a>
         </div>
@@ -13,21 +14,24 @@ export default function Home() {
       <section className="clean-hero">
         <div className="hero-textbox">
           <div className="label">AI Ads Generator</div>
-          <h1>Lav professionelle annoncer på få minutter.</h1>
+
+          <h1>Lav professionelle annoncekampagner på få minutter.</h1>
+
           <p>
-            AdPilot hjælper virksomheder med at generere Meta Ads, Google Ads,
-            hooks, headlines, retargeting og kreative idéer — klar til copy/paste.
+            AdPilot hjælper virksomheder med at lave Meta Ads, Google Ads,
+            hooks, headlines, retargeting og kreative idéer — klar til at
+            kopiere direkte ind i Ads Manager.
           </p>
 
           <div className="hero-cta-row">
             <a href="/dashboard" className="main-cta">Generer kampagne</a>
-            <a href="#features" className="ghost-cta">Se hvordan</a>
+            <a href="#pricing" className="ghost-cta">Se pris</a>
           </div>
 
           <div className="hero-points">
+            <span>✓ Ubegrænset generering</span>
             <span>✓ Dansk output</span>
-            <span>✓ Til alle brancher</span>
-            <span>✓ Klar på 60 sek.</span>
+            <span>✓ Alle brancher</span>
           </div>
         </div>
 
@@ -58,6 +62,23 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="trust" className="trust-section">
+        <div className="trust-card">
+          <strong>Bygget til små virksomheder</strong>
+          <p>Perfekt til webshops, lokale firmaer, klinikker, håndværkere og bureauer.</p>
+        </div>
+
+        <div className="trust-card">
+          <strong>Klar til copy/paste</strong>
+          <p>Få annoncepakker der kan bruges direkte i Meta Ads og Google Ads.</p>
+        </div>
+
+        <div className="trust-card">
+          <strong>Spar timer hver uge</strong>
+          <p>Stop med at starte fra nul hver gang du skal lave en kampagne.</p>
+        </div>
+      </section>
+
       <section className="logo-strip">
         <span>Webshops</span>
         <span>Bilpleje</span>
@@ -71,7 +92,10 @@ export default function Home() {
         <div className="section-title">
           <div className="label dark">Alt samlet ét sted</div>
           <h2>Fra idé til komplet annoncepakke</h2>
-          <p>Udfyld få felter og få en professionel kampagne, der kan bruges med det samme.</p>
+          <p>
+            Udfyld få felter og få en professionel kampagne med tekster,
+            hooks, strategi og kreative vinkler.
+          </p>
         </div>
 
         <div className="clean-grid">
@@ -79,14 +103,17 @@ export default function Home() {
             <h3>Meta Ads</h3>
             <p>Primær tekst, hooks, headlines, CTA’er og retargeting.</p>
           </div>
+
           <div className="clean-card">
             <h3>Google Ads</h3>
             <p>Headlines, descriptions og sitelinks til søgekampagner.</p>
           </div>
+
           <div className="clean-card">
             <h3>Creative idéer</h3>
             <p>UGC, før/efter, testimonials og tilbudsannoncer.</p>
           </div>
+
           <div className="clean-card">
             <h3>Branche-smart</h3>
             <p>Tilpasser tekster til webshops, lokale firmaer og services.</p>
@@ -94,20 +121,54 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="testimonial-section">
+        <div className="testimonial">
+          <div className="stars">★★★★★</div>
+          <p>
+            “AdPilot gør det nemt at lave annonceidéer hurtigt. Perfekt hvis man
+            arbejder med kunder eller driver webshop.”
+          </p>
+          <strong>Marketing setup til små virksomheder</strong>
+        </div>
+
+        <div className="testimonial">
+          <div className="stars">★★★★★</div>
+          <p>
+            “Det bedste er at man får både Meta Ads, Google Ads og retargeting
+            samlet ét sted.”
+          </p>
+          <strong>Kampagnegenerator på dansk</strong>
+        </div>
+      </section>
+
       <section id="pricing" className="pricing-clean">
         <div className="price-box">
-          <div className="label dark">Start nu</div>
-          <h2>149 kr/md</h2>
-          <p>Perfekt til små virksomheder og bureauer der vil lave annoncepakker hurtigere.</p>
+          <div className="label dark">Fast pris</div>
+
+          <h2>299 kr/md</h2>
+
+          <p>
+            Få ubegrænset kampagnegenerering til din virksomhed eller dine
+            kunder. Generer Meta Ads, Google Ads, hooks, retargeting og kreative
+            idéer på få minutter.
+          </p>
 
           <ul>
             <li>✓ Ubegrænset kampagnegenerering</li>
-            <li>✓ Meta Ads + Google Ads</li>
-            <li>✓ Retargeting strategi</li>
-            <li>✓ Creative idéer</li>
+            <li>✓ Meta Ads tekster</li>
+            <li>✓ Google Ads headlines & descriptions</li>
+            <li>✓ Retargeting strategier</li>
+            <li>✓ Hooks & headlines</li>
+            <li>✓ Creative idéer & UGC vinkler</li>
+            <li>✓ Virker til alle brancher</li>
+            <li>✓ Klar til copy/paste</li>
           </ul>
 
           <a href="/dashboard" className="main-cta full">Prøv gratis demo</a>
+
+          <div className="price-note">
+            Ingen binding i MVP-versionen. Start simpelt og opgrader senere med login og betaling.
+          </div>
         </div>
       </section>
     </main>
