@@ -407,3 +407,75 @@ select {
     letter-spacing: -2px;
   }
 }
+.trust-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 22px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.trust-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.06);
+}
+
+.trust-card strong {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.trust-card p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.testimonial-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px 22px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.testimonial {
+  background: #0f172a;
+  color: white;
+  border-radius: 26px;
+  padding: 30px;
+  box-shadow: 0 18px 55px rgba(15, 23, 42, 0.18);
+}
+
+.testimonial p {
+  color: #e2e8f0;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.stars {
+  color: #facc15;
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+.price-note {
+  margin-top: 18px;
+  color: #64748b;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+@media (max-width: 950px) {
+  .trust-section,
+  .testimonial-section {
+    grid-template-columns: 1fr;
+  }
+}
