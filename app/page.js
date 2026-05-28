@@ -135,6 +135,24 @@ export default function Home() {
           <button className="btn primary full" type="submit">Send besked</button>
         </form>
       </section>
-    </main>
+    <footer className="footer">
+  <div>
+    <strong>AdPilot</strong>
+    <p>AI annoncegenerator til virksomheder og bureauer.</p>
+  </div>
+
+  <div>
+    <h4>Juridisk</h4>
+    <a href="/handelsbetingelser">Handelsbetingelser</a>
+    <a href="/privatlivspolitik">Privatlivspolitik</a>
+    <a href="/cookiepolitik">Cookiepolitik</a>
+  </div>
+
+  <div>
+    <h4>Kontakt</h4>
+    <a href="mailto:kontakt@adpilot.dk">kontakt@adpilot.dk</a>
+    <span>Danmark</span>
+  </div>
+</footer></main>
   );
 }
