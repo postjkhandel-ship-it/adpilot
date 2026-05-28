@@ -4,136 +4,170 @@ export default function Home() {
       <nav className="topnav">
         <div className="logo-mark">AdPilot</div>
         <div className="navlinks">
+          <a href="#why">Hvorfor</a>
           <a href="#features">Funktioner</a>
-          <a href="#pricing">Priser</a>
+          <a href="#pricing">Pris</a>
           <a href="/dashboard" className="login-btn">Prøv gratis</a>
         </div>
       </nav>
 
-      <section className="hero-premium">
-        <div className="hero-left">
-          <div className="pill">AI platform til annoncering</div>
+      <section className="hero-sales">
+        <div className="hero-copy">
+          <div className="pill">AI Ads Generator til virksomheder & bureauer</div>
 
-          <h1>Lav kampagner der ligner de er lavet af et bureau.</h1>
+          <h1>Stop med at gætte på annoncer. Få en komplet kampagne på 60 sekunder.</h1>
 
-          <p className="hero-text">
-            AdPilot genererer Meta Ads, Google Ads, hooks, headlines,
-            retargeting, kreative idéer og kampagnestruktur til næsten alle
-            typer virksomheder.
+          <p className="hero-sub">
+            AdPilot laver salgsstærke Meta Ads, Google Ads, hooks, headlines,
+            retargeting og kreative vinkler ud fra virksomhed, branche,
+            produkt, målgruppe og budget.
           </p>
 
-          <div className="hero-buttons">
-            <a href="/dashboard" className="primary-btn">Generer kampagne</a>
-            <a href="#features" className="outline-btn">Se funktioner</a>
+          <div className="hero-actions">
+            <a href="/dashboard" className="primary-btn">Generer din første kampagne</a>
+            <a href="#pricing" className="secondary-btn">Se pris</a>
           </div>
 
-          <div className="proof">
-            <span>✓ Webshops</span>
-            <span>✓ Lokale firmaer</span>
-            <span>✓ Bureauer</span>
-            <span>✓ Klinikker</span>
+          <div className="trust-strip">
+            <span>✓ Til alle brancher</span>
+            <span>✓ Dansk output</span>
+            <span>✓ Klar til copy/paste</span>
+            <span>✓ Perfekt til kunder</span>
           </div>
         </div>
 
-        <div className="dashboard-preview">
-          <div className="preview-header">
-            <span></span><span></span><span></span>
+        <div className="offer-box">
+          <div className="offer-top">KAMPAGNE OUTPUT</div>
+
+          <div className="output-card highlight">
+            <strong>Meta Ads</strong>
+            <p>5 færdige annoncer med hook, tekst, headline og CTA.</p>
           </div>
 
-          <div className="preview-title">Kampagne genereret</div>
-
-          <div className="metric-row">
-            <div>
-              <strong>5</strong>
-              <small>Ad tekster</small>
-            </div>
-            <div>
-              <strong>10</strong>
-              <small>Hooks</small>
-            </div>
-            <div>
-              <strong>4</strong>
-              <small>Google Ads</small>
-            </div>
+          <div className="output-card">
+            <strong>Google Ads</strong>
+            <p>Headlines, descriptions og sitelinks klar til kampagneopsætning.</p>
           </div>
 
-          <div className="preview-card blue">
-            <b>Annonce 1 — Problem/løsning</b>
-            <p>Primær tekst, headline, CTA og beskrivelse klar til brug.</p>
+          <div className="output-card">
+            <strong>Retargeting</strong>
+            <p>Tekster og målgrupper til kunder der allerede har vist interesse.</p>
           </div>
 
-          <div className="preview-card">
-            <b>Retargeting strategi</b>
-            <p>Fang besøgende, klik og tidligere interesserede kunder.</p>
-          </div>
-
-          <div className="preview-card">
-            <b>Creative idéer</b>
-            <p>UGC, før/efter, testimonial og tilbudsannonce.</p>
+          <div className="mini-metrics">
+            <div><b>10+</b><span>Hooks</span></div>
+            <div><b>5</b><span>Ads</span></div>
+            <div><b>1</b><span>Plan</span></div>
           </div>
         </div>
       </section>
 
-      <section className="logos">
-        <span>Meta Ads</span>
-        <span>Google Ads</span>
-        <span>Retargeting</span>
-        <span>UGC Scripts</span>
-        <span>Creative Ideas</span>
-      </section>
-
-      <section id="features" className="section">
-        <div className="section-head">
-          <span className="pill">Alt samlet ét sted</span>
-          <h2>Fra tom side til komplet annoncepakke</h2>
+      <section id="why" className="problem-section">
+        <div className="section-head dark">
+          <span className="pill">Problemet</span>
+          <h2>De fleste annoncer fejler, fordi teksten er for svag.</h2>
           <p>
-            Udfyld få felter om virksomheden, og få en brugbar kampagne på få
-            sekunder.
+            Små virksomheder spilder penge på tilfældige tekster, dårlige hooks
+            og kampagner uden struktur. AdPilot giver dem en professionel start
+            — uden at betale et bureau flere tusinde kroner.
           </p>
+        </div>
+
+        <div className="before-after">
+          <div className="bad-box">
+            <h3>Uden AdPilot</h3>
+            <ul>
+              <li>Starter fra tom side</li>
+              <li>Ingen kampagnestruktur</li>
+              <li>Svage hooks</li>
+              <li>Bruger for lang tid</li>
+              <li>Dårligere annoncer</li>
+            </ul>
+          </div>
+
+          <div className="good-box">
+            <h3>Med AdPilot</h3>
+            <ul>
+              <li>Færdige annoncepakker</li>
+              <li>Meta + Google Ads</li>
+              <li>Retargeting tekster</li>
+              <li>Creative idéer</li>
+              <li>Klar til kunder</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" className="white-section">
+        <div className="section-head">
+          <span className="pill light">Hvad kunden får</span>
+          <h2>Alt en virksomhed skal bruge for at komme i gang med annoncer</h2>
         </div>
 
         <div className="feature-grid">
           <div className="pro-card">
-            <h3>Meta Ads</h3>
-            <p>Primær tekst, hooks, headlines, CTA’er og retargeting tekster.</p>
+            <h3>Meta Ads pakke</h3>
+            <p>Primær tekst, headlines, beskrivelser, CTA’er og hooks.</p>
           </div>
-
           <div className="pro-card">
-            <h3>Google Ads</h3>
+            <h3>Google Ads pakke</h3>
             <p>Headlines, descriptions og sitelinks til søgekampagner.</p>
           </div>
-
+          <div className="pro-card">
+            <h3>Retargeting</h3>
+            <p>Fang besøgende, klik og varme kunder med stærkere tekster.</p>
+          </div>
           <div className="pro-card">
             <h3>Creative idéer</h3>
-            <p>UGC vinkler, statics, før/efter idéer og testimonial annoncer.</p>
+            <p>UGC, før/efter, testimonial, tilbudsannoncer og lokale vinkler.</p>
           </div>
-
           <div className="pro-card">
             <h3>Branche-smart</h3>
-            <p>Tilpasser output til webshop, bilpleje, frisør, klinik, håndværker og mere.</p>
+            <p>Virker til webshop, frisør, bilpleje, klinik, håndværker og flere.</p>
           </div>
-
           <div className="pro-card">
-            <h3>Budgetplan</h3>
-            <p>Fordeler budget mellem cold audience, retargeting og creative tests.</p>
+            <h3>Kopiér direkte</h3>
+            <p>Hele kampagnen kan kopieres og bruges med det samme.</p>
           </div>
+        </div>
+      </section>
 
-          <div className="pro-card">
-            <h3>Kopiér klar</h3>
-            <p>Kunden kan kopiere hele kampagnen direkte og bruge den med det samme.</p>
-          </div>
+      <section className="usecases">
+        <div className="section-head dark">
+          <span className="pill">Perfekt til</span>
+          <h2>Bygget til dem der vil sælge mere — hurtigere</h2>
+        </div>
+
+        <div className="usecase-row">
+          <span>Webshops</span>
+          <span>Marketingbureauer</span>
+          <span>Lokale firmaer</span>
+          <span>Frisører</span>
+          <span>Bilpleje</span>
+          <span>Klinikker</span>
+          <span>Håndværkere</span>
+          <span>Restauranter</span>
         </div>
       </section>
 
       <section id="pricing" className="pricing-section">
         <div className="pricing-card">
-          <span className="pill">MVP prisidé</span>
-          <h2>Start med 149 kr/md</h2>
+          <div className="pill light">Start simpelt</div>
+          <h2>149 kr/md</h2>
           <p>
-            Perfekt som første betalte version. Senere kan du tilføje login,
-            Stripe, gemte kampagner og AI API.
+            En lav pris gør det nemt at få de første betalende brugere. Senere
+            kan du tilføje login, Stripe, AI API og gemte kampagner.
           </p>
-          <a href="/dashboard" className="primary-btn">Prøv demoen</a>
+
+          <ul className="price-list">
+            <li>✓ Ubegrænsede demo-genereringer</li>
+            <li>✓ Meta Ads tekster</li>
+            <li>✓ Google Ads forslag</li>
+            <li>✓ Retargeting strategi</li>
+            <li>✓ Creative idéer</li>
+          </ul>
+
+          <a href="/dashboard" className="primary-btn wide">Prøv AdPilot gratis</a>
         </div>
       </section>
     </main>
