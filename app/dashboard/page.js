@@ -417,73 +417,42 @@ Start med en simpel kampagnestruktur for ${form.product}. Brug problem/løsning,
           <div className="grid">
             <label>
               Virksomhedsnavn
-              <input
-                value={form.business}
-                onChange={(e) => updateField("business", e.target.value)}
-                placeholder="Fx Startsmiling"
-              />
+              <input value={form.business} onChange={(e) => updateField("business", e.target.value)} placeholder="Fx Startsmiling" />
             </label>
 
             <label>
               Branche
-              <input
-                value={form.industry}
-                onChange={(e) => updateField("industry", e.target.value)}
-                placeholder="Fx webshop, frisør, bilpleje, håndværker"
-              />
+              <input value={form.industry} onChange={(e) => updateField("industry", e.target.value)} placeholder="Fx webshop, frisør, bilpleje, håndværker" />
             </label>
 
             <label>
               Produkt/service
-              <input
-                value={form.product}
-                onChange={(e) => updateField("product", e.target.value)}
-                placeholder="Fx Waterflosser, solfilm, klipning"
-              />
+              <input value={form.product} onChange={(e) => updateField("product", e.target.value)} placeholder="Fx Waterflosser, solfilm, klipning" />
             </label>
 
             <label>
               Målgruppe
-              <input
-                value={form.audience}
-                onChange={(e) => updateField("audience", e.target.value)}
-                placeholder="Fx mænd og kvinder, lokale bilejere"
-              />
+              <input value={form.audience} onChange={(e) => updateField("audience", e.target.value)} placeholder="Fx mænd og kvinder, lokale bilejere" />
             </label>
 
             <label>
               Tilbud/pris
-              <input
-                value={form.offer}
-                onChange={(e) => updateField("offer", e.target.value)}
-                placeholder="Fx 299 kr, gratis tilbud, 20% rabat"
-              />
+              <input value={form.offer} onChange={(e) => updateField("offer", e.target.value)} placeholder="Fx 299 kr, gratis tilbud, 20% rabat" />
             </label>
 
             <label>
               Budget pr dag
-              <input
-                value={form.budget}
-                onChange={(e) => updateField("budget", e.target.value)}
-                placeholder="Fx 150"
-              />
+              <input value={form.budget} onChange={(e) => updateField("budget", e.target.value)} placeholder="Fx 150" />
             </label>
 
             <label>
               Lokation
-              <input
-                value={form.location}
-                onChange={(e) => updateField("location", e.target.value)}
-                placeholder="Fx Kalundborg, København, hele Danmark"
-              />
+              <input value={form.location} onChange={(e) => updateField("location", e.target.value)} placeholder="Fx Kalundborg, København, hele Danmark" />
             </label>
 
             <label>
               Målsætning
-              <select
-                value={form.goal}
-                onChange={(e) => updateField("goal", e.target.value)}
-              >
+              <select value={form.goal} onChange={(e) => updateField("goal", e.target.value)}>
                 <option>Salg</option>
                 <option>Leads</option>
                 <option>Bookinger</option>
@@ -499,7 +468,18 @@ Start med en simpel kampagnestruktur for ${form.product}. Brug problem/løsning,
 
         {result && (
           <div className="card">
-            <h2>Din kampagne</h2>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: "16px", alignItems: "center" }}>
+              <h2>Din kampagne</h2>
+
+              <button
+                className="btn"
+                onClick={() => navigator.clipboard.writeText(result)}
+                style={{ marginTop: 0 }}
+              >
+                Kopiér kampagne
+              </button>
+            </div>
+
             <div className="result">{result}</div>
           </div>
         )}
