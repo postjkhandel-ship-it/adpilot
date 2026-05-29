@@ -842,3 +842,63 @@ a { color: inherit; text-decoration: none; }
 .center {
   justify-content: center;
 }
+.accessPage {
+  min-height: 100vh;
+  background: #f6f8fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+
+.accessBox {
+  width: 100%;
+  max-width: 540px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
+  padding: 44px;
+  box-shadow: 0 24px 70px rgba(15,23,42,.08);
+  text-align: center;
+}
+
+.accessBox h1 {
+  font-size: clamp(38px, 5vw, 56px);
+  line-height: 1;
+  letter-spacing: -2px;
+  margin: 0 0 16px;
+}
+
+.accessBox p {
+  color: #64748b;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.accessBox input {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 16px;
+  font-size: 16px;
+  margin: 18px 0 12px;
+}
+
+.accessBox button {
+  width: 100%;
+  border: 0;
+  background: #2563eb;
+  color: white;
+  padding: 16px;
+  border-radius: 14px;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.accessBox a {
+  display: inline-block;
+  margin-top: 18px;
+  font-weight: 900;
+  color: #2563eb;
+}
