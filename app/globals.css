@@ -640,3 +640,111 @@ a { color: inherit; text-decoration: none; }
     margin-right: 22px;
   }
 }
+.roiSection {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px 22px 90px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 22px;
+}
+
+.roiCard {
+  border-radius: 34px;
+  padding: 42px;
+}
+
+.roiCard.dark {
+  background: #0f172a;
+  color: white;
+  box-shadow: 0 34px 90px rgba(15,23,42,.25);
+}
+
+.roiCard h2 {
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: .98;
+  letter-spacing: -2px;
+  margin: 18px 0;
+}
+
+.roiCard p {
+  color: #cbd5e1;
+  font-size: 19px;
+  line-height: 1.65;
+}
+
+.roiStats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.roiStats div {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  padding: 22px;
+}
+
+.roiStats strong {
+  display: block;
+  font-size: 34px;
+}
+
+.roiStats span {
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+.ctaRow {
+  display: flex;
+  gap: 14px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.roiChecklist {
+  display: grid;
+  gap: 18px;
+}
+
+.checkItem {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 24px;
+  display: flex;
+  gap: 18px;
+  box-shadow: var(--shadow);
+}
+
+.checkItem span {
+  width: 48px;
+  height: 48px;
+  background: #eaf2ff;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+  font-weight: 950;
+  flex-shrink: 0;
+}
+
+.checkItem strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.checkItem p {
+  margin: 0;
+  color: var(--muted);
+}
+
+@media (max-width:950px) {
+  .roiSection,
+  .roiStats {
+    grid-template-columns: 1fr;
+  }
+}
