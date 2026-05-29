@@ -7,7 +7,7 @@
   --line: #e2e8f0;
   --blue: #2563eb;
   --dark: #0b1220;
-  --shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+  --shadow: 0 24px 70px rgba(15,23,42,.08);
 }
 
 body {
@@ -19,29 +19,27 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
-.landing {
+.site {
   background:
-    radial-gradient(circle at 20% 0%, rgba(37, 99, 235, 0.14), transparent 32%),
+    radial-gradient(circle at 20% 0%, rgba(37,99,235,.14), transparent 32%),
     linear-gradient(180deg, #fff 0%, #f6f8fc 100%);
 }
 
-.header, .hero, .industries, .section, .pricing, .contact, .footer,
-.proTrust, .howItWorks, .socialProofBar, .mockupSection, .faqSection,
-.finalCta, .roiSection {
+.nav, .hero, .logoStrip, .problem, .section, .how, .pricing, .roi, .faq, .finalCta, .contact, .footer {
   max-width: 1180px;
   margin: 0 auto;
   padding-left: 22px;
   padding-right: 22px;
 }
 
-.header {
+.nav {
   height: 82px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.brand {
+.logo {
   display: inline-flex;
   gap: 10px;
   align-items: center;
@@ -49,7 +47,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 950;
 }
 
-.brand span {
+.logo span {
   width: 34px;
   height: 34px;
   border-radius: 11px;
@@ -60,7 +58,7 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
 }
 
-.header nav {
+.navLinks {
   display: flex;
   gap: 24px;
   align-items: center;
@@ -68,7 +66,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 800;
 }
 
-.navBtn {
+.navCta {
   background: var(--dark);
   color: white;
   padding: 12px 18px;
@@ -84,7 +82,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
 }
 
-.badge {
+.pill {
   display: inline-flex;
   padding: 9px 14px;
   border-radius: 999px;
@@ -109,7 +107,7 @@ a { color: inherit; text-decoration: none; }
   margin: 0;
 }
 
-.buttons, .ctaRow {
+.heroBtns {
   display: flex;
   gap: 14px;
   margin-top: 34px;
@@ -126,20 +124,23 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   border: 0;
   cursor: pointer;
+  transition: .2s ease;
 }
+
+.btn:hover { transform: translateY(-2px); }
 
 .primary {
   background: var(--blue);
   color: white;
-  box-shadow: 0 18px 42px rgba(37, 99, 235, .28);
+  box-shadow: 0 18px 42px rgba(37,99,235,.28);
 }
 
-.secondary {
-  background: white;
-  border: 1px solid var(--line);
+.dark {
+  background: var(--dark);
+  color: white;
 }
 
-.trustline {
+.trustLine {
   margin-top: 30px;
   display: flex;
   gap: 18px;
@@ -148,7 +149,7 @@ a { color: inherit; text-decoration: none; }
   color: #334155;
 }
 
-.preview, .bigMockup {
+.heroMockup, .bigMockup {
   background: #0f172a;
   color: white;
   border-radius: 32px;
@@ -156,35 +157,45 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 34px 90px rgba(15,23,42,.28);
 }
 
-.preview h3 {
-  font-size: 29px;
-  margin: 0 0 18px;
+.mockHeader span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: #475569;
+  border-radius: 50%;
+  margin-right: 7px;
 }
 
-.statGrid, .mockupStats, .roiStats {
+.mockTitle {
+  font-size: 29px;
+  font-weight: 950;
+  margin: 24px 0 18px;
+}
+
+.mockStats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
 }
 
-.statGrid div, .mockupStats div, .roiStats div {
+.mockStats div {
   background: #111827;
   border: 1px solid #334155;
   border-radius: 18px;
   padding: 16px;
 }
 
-.statGrid b, .mockupStats b, .roiStats strong {
-  font-size: 31px;
+.mockStats b {
   display: block;
+  font-size: 31px;
 }
 
-.statGrid small, .mockupStats small, .roiStats span {
+.mockStats small {
   color: #94a3b8;
   font-weight: 800;
 }
 
-.previewCard, .mockupRow {
+.mockCard {
   background: #1e293b;
   border: 1px solid #334155;
   border-radius: 20px;
@@ -192,17 +203,17 @@ a { color: inherit; text-decoration: none; }
   margin-top: 14px;
 }
 
-.previewCard.blue {
+.mockCard.active {
   background: linear-gradient(135deg, #2563eb, #4f46e5);
   border: 0;
 }
 
-.previewCard p, .mockupRow p {
+.mockCard p {
   color: #d1d5db;
   margin-bottom: 0;
 }
 
-.industries {
+.logoStrip {
   display: flex;
   gap: 12px;
   justify-content: center;
@@ -210,70 +221,57 @@ a { color: inherit; text-decoration: none; }
   padding-bottom: 50px;
 }
 
-.industries span, .card, .priceCard, .contactForm, .trustBox, .stepCard,
-.faqItem, .checkItem {
+.logoStrip span, .problemCard, .card, .steps div, .priceBox, .roiList div, .faqGrid div, .contactForm {
   background: white;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
 }
 
-.industries span {
+.logoStrip span {
   border-radius: 999px;
   padding: 12px 16px;
   font-weight: 900;
   color: #475569;
 }
 
-.proTrust {
-  padding: 20px 22px 70px;
+.problem {
+  padding-top: 20px;
+  padding-bottom: 70px;
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 18px;
 }
 
-.trustBox {
+.problemCard {
   border-radius: 28px;
   padding: 26px;
 }
 
-.trustBox.dark {
+.darkCard {
   background: #0f172a;
   color: white;
 }
 
-.trustBox.dark span {
-  color: #93c5fd;
-  font-weight: 900;
-}
+.darkCard p { color: #cbd5e1; }
 
-.trustBox h2 {
-  font-size: 34px;
-  line-height: 1.05;
-  letter-spacing: -1px;
-  margin: 14px 0;
-}
-
-.trustBox strong, .stepCard span, .checkItem span {
-  display: inline-flex;
+.problemCard b, .steps span, .roiList span {
   width: 42px;
   height: 42px;
   border-radius: 14px;
-  align-items: center;
-  justify-content: center;
   background: #eaf2ff;
   color: var(--blue);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   font-weight: 950;
 }
 
-.trustBox p, .stepCard p, .faqItem p, .checkItem p {
+.problemCard p, .card p, .steps p, .roi p, .faqGrid p {
   color: var(--muted);
   line-height: 1.65;
-  margin: 0;
 }
 
-.trustBox.dark p { color: #cbd5e1; }
-
-.section, .howItWorks, .mockupSection, .faqSection {
+.section, .how, .faq {
   padding-top: 70px;
   padding-bottom: 50px;
 }
@@ -284,72 +282,39 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto 38px;
 }
 
-.sectionHead h2, .priceCard h2, .contact h2, .mockupText h2, .roiCard h2,
-.finalCta h2 {
+.sectionHead h2, .priceBox h2, .roi h2, .finalCta h2, .contact h2 {
   font-size: clamp(36px, 5vw, 58px);
   line-height: 1;
   letter-spacing: -2px;
   margin: 0 0 18px;
 }
 
-.sectionHead p, .priceCard p, .contact p, .mockupText p, .roiCard p,
-.finalCta p {
+.sectionHead p, .priceBox p, .contact p {
   color: var(--muted);
   font-size: 19px;
   line-height: 1.65;
 }
 
-.grid, .stepGrid {
+.featureGrid, .steps, .faqGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }
 
-.stepGrid { grid-template-columns: repeat(3, 1fr); }
+.featureGrid {
+  grid-template-columns: repeat(4, 1fr);
+}
 
-.card, .stepCard, .faqItem {
+.steps {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.faqGrid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card, .steps div, .faqGrid div {
   border-radius: 26px;
   padding: 24px;
-}
-
-.card h3, .stepCard h3, .faqItem h3 { margin-top: 0; }
-
-.card p {
-  color: var(--muted);
-  line-height: 1.6;
-  margin-bottom: 0;
-}
-
-.socialProofBar {
-  padding: 18px 22px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-}
-
-.socialProofBar span {
-  background: #0f172a;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 999px;
-  font-weight: 900;
-}
-
-.mockupSection, .roiSection {
-  display: grid;
-  grid-template-columns: .9fr 1.1fr;
-  gap: 34px;
-  align-items: center;
-}
-
-.mockupTop span {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  background: #475569;
-  border-radius: 50%;
-  margin-right: 7px;
 }
 
 .pricing {
@@ -358,66 +323,50 @@ a { color: inherit; text-decoration: none; }
   padding-bottom: 60px;
 }
 
-.priceCard {
-  border-radius: 26px;
+.priceBox {
+  border-radius: 28px;
   padding: 42px;
   text-align: center;
 }
 
-.priceCard ul {
+.priceBox ul {
   list-style: none;
   padding: 0;
   margin: 28px 0;
   text-align: left;
 }
 
-.priceCard li {
+.priceBox li {
   margin-bottom: 12px;
   font-weight: 850;
 }
 
-.paymentTrust {
+.full { width: 100%; }
+
+.payTrust {
   margin-top: 20px;
   color: #64748b;
   font-weight: 800;
-  line-height: 1.8;
-  text-align: center;
+  line-height: 1.7;
 }
 
-.roiSection {
-  padding: 20px 22px 90px;
-  grid-template-columns: 1.1fr .9fr;
+.roi {
+  padding-top: 20px;
+  padding-bottom: 90px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: center;
 }
 
-.roiCard {
-  border-radius: 34px;
-  padding: 42px;
-}
-
-.roiCard.dark {
-  background: #0f172a;
-  color: white;
-  box-shadow: 0 34px 90px rgba(15,23,42,.25);
-}
-
-.roiCard p, .finalCta p { color: #cbd5e1; }
-
-.roiChecklist {
+.roiList {
   display: grid;
   gap: 18px;
 }
 
-.checkItem {
-  border-radius: 28px;
+.roiList div {
+  border-radius: 26px;
   padding: 24px;
-  display: flex;
-  gap: 18px;
-}
-
-.faqGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
 }
 
 .finalCta {
@@ -433,10 +382,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 34px 90px rgba(15,23,42,.25);
 }
 
-.finalCta .badge {
-  background: rgba(255,255,255,.08);
-  color: #bfdbfe;
-}
+.finalCta p { color: #cbd5e1; }
 
 .contact {
   padding-top: 20px;
@@ -499,13 +445,10 @@ a { color: inherit; text-decoration: none; }
   font-weight: 800;
 }
 
-.full { width: 100%; }
-
 @media (max-width: 950px) {
-  .header nav a:not(.navBtn) { display: none; }
+  .navLinks a:not(.navCta) { display: none; }
 
-  .hero, .grid, .contact, .footer, .proTrust, .stepGrid,
-  .mockupSection, .faqGrid, .finalCta, .roiSection, .roiStats {
+  .hero, .problem, .featureGrid, .steps, .pricing, .roi, .faqGrid, .finalCta, .contact, .footer {
     grid-template-columns: 1fr;
   }
 
