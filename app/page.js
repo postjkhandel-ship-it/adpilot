@@ -65,7 +65,33 @@ export default function Home() {
         <span>Håndværkere</span>
         <span>Restauranter</span>
         <span>Bureauer</span>
-      </section>
+      </section> <section className="proTrust">
+  <div className="trustBox dark">
+    <span>Hvorfor AdPilot?</span>
+    <h2>Bygget til virksomheder der vil lave bedre annoncer hurtigere</h2>
+    <p>
+      Få en professionel kampagnestruktur uden at bruge timer på idéer, hooks og annonceformuleringer.
+    </p>
+  </div>
+
+  <div className="trustBox">
+    <strong>01</strong>
+    <h3>Branche-smart output</h3>
+    <p>Tilpasser tekster til mål, branche, produkt, lokation og budget.</p>
+  </div>
+
+  <div className="trustBox">
+    <strong>02</strong>
+    <h3>Klar til kunder</h3>
+    <p>Perfekt til freelancere og bureauer der skal lave kampagneforslag hurtigt.</p>
+  </div>
+
+  <div className="trustBox">
+    <strong>03</strong>
+    <h3>Copy/paste klar</h3>
+    <p>Outputtet kan bruges direkte som brief, annonceidé eller kampagneoplæg.</p>
+  </div>
+</section>
 
       <section id="features" className="section">
         <div className="sectionHead">
