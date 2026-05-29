@@ -4,12 +4,9 @@ export default function Tak() {
       <div className="thankBox">
         <div className="badge">Besked sendt</div>
         <h1>Tak for din besked</h1>
-        <p>
-          Vi vender tilbage hurtigst muligt. Du kan også prøve AdPilot-demoen
-          med det samme.
-        </p>
+        <p>Vi vender tilbage hurtigst muligt.</p>
 
-        <div className="buttons">
+        <div className="buttons center">
           <a href="/dashboard" className="btn primary">Prøv demo</a>
           <a href="/" className="btn secondary">Til forsiden</a>
         </div>
