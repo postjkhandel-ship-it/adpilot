@@ -1,17 +1,24 @@
 export default function Adgang() {
   return (
-    <main className="thankPage">
-      <div className="thankBox">
-        <div className="badge">Adgang aktiveret</div>
-        <h1>Velkommen til AdPilot Pro</h1>
+    <main className="accessSuccessPage">
+      <div className="accessSuccessBox">
+        <div className="dashBadge">AdPilot Pro aktiveret</div>
+
+        <h1>Din adgang er klar</h1>
+
         <p>
-          Tak for dit køb. Du kan nu gå videre til kampagnegeneratoren.
+          Tak for dit køb. Brug adgangskoden herunder til at åbne AdPilot-dashboardet.
         </p>
+
+        <div className="codeBox">
+          ADPILOTPRO
+        </div>
 
         <div className="buttons center">
           <a href="/dashboard" className="btn primary">
-            Åbn AdPilot
+            Åbn dashboard
           </a>
+
           <a href="/" className="btn secondary">
             Til forsiden
           </a>
