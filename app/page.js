@@ -237,7 +237,80 @@ export default function Home() {
             <li>✓ Hooks og creative idéer</li>
             <li>✓ Virker til alle brancher</li>
           </ul>
+<section className="roiSection">
+  <div className="roiCard dark">
+    <div className="badge">Hvorfor betale 299 kr/md?</div>
 
+    <h2>Hvis AdPilot sparer dig bare få timer — har den betalt sig selv.</h2>
+
+    <p>
+      Stop med at bruge timer på hooks, annoncer, headlines og brainstorms.
+      AdPilot hjælper dig med hurtigere kampagner, bedre struktur og mere
+      professionelt output.
+    </p>
+
+    <div className="roiStats">
+      <div>
+        <strong>10x</strong>
+        <span>hurtigere kampagneidéer</span>
+      </div>
+
+      <div>
+        <strong>5 min</strong>
+        <span>fra brief til kampagne</span>
+      </div>
+
+      <div>
+        <strong>299 kr</strong>
+        <span>pr måned</span>
+      </div>
+    </div>
+
+    <div className="ctaRow">
+      <a href="/dashboard" className="btn primary">
+        Prøv gratis demo
+      </a>
+
+      <a href="#contact" className="btn secondary">
+        Kontakt os
+      </a>
+    </div>
+  </div>
+
+  <div className="roiChecklist">
+    <div className="checkItem">
+      <span>✓</span>
+      <div>
+        <strong>Mere professionelt output</strong>
+        <p>Kampagner der føles mere strukturerede og gennemarbejdede.</p>
+      </div>
+    </div>
+
+    <div className="checkItem">
+      <span>✓</span>
+      <div>
+        <strong>Perfekt til bureauer og freelancere</strong>
+        <p>Lav hurtige oplæg til kunder uden at starte fra nul.</p>
+      </div>
+    </div>
+
+    <div className="checkItem">
+      <span>✓</span>
+      <div>
+        <strong>Spar timer hver uge</strong>
+        <p>Få annoncer, hooks og idéer langt hurtigere.</p>
+      </div>
+    </div>
+
+    <div className="checkItem">
+      <span>✓</span>
+      <div>
+        <strong>Klar til copy/paste</strong>
+        <p>Brug output direkte i Meta Ads eller Google Ads.</p>
+      </div>
+    </div>
+  </div>
+</section>
           <a href="/dashboard" className="btn primary full">Prøv gratis demo</a>
         </div>
       </section>
