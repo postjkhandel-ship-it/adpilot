@@ -41,29 +41,9 @@ Budget: ${budget} kr/dag
 Tilbud: ${offer}
 Mål: ${form.goal}
 
-────────────────────────────
-
-ANBEFALET STRUKTUR
-
-1. Cold kampagne
-- Broad målgruppe
-- 3-5 creatives
-- Problem/løsning-vinkel
-- Budget: ${Math.round(budget * 0.7)} kr/dag
-
-2. Retargeting kampagne
-- Website besøgende sidste 30 dage
-- Klik på annonce
-- Facebook/Instagram engagement
-- Budget: ${Math.round(budget * 0.3)} kr/dag
-
-────────────────────────────
-
 META ADS
 
-ANNONCE 1 — PROBLEM/LØSNING
-
-Primær tekst:
+Annonce 1:
 Har du brug for en nemmere og mere professionel løsning?
 
 Med ${form.product || "løsningen"} hjælper ${form.business || "virksomheden"} ${form.audience || "målgruppen"} med at få et bedre resultat uden besvær.
@@ -76,49 +56,12 @@ Kom i gang med ${form.product || "løsningen"}
 CTA:
 ${cta}
 
-ANNONCE 2 — UGC STYLE
-
-Hook:
-"Jeg skulle bare have prøvet det her noget før."
-
-Primær tekst:
-Hvis du leder efter en løsning, der er nem, hurtig og professionel, er ${form.product || "denne løsning"} fra ${form.business || "virksomheden"} et oplagt valg.
-
-Headline:
-Derfor vælger flere ${form.business || "os"}
-
-CTA:
-${cta}
-
-ANNONCE 3 — RETARGETING
-
-Primær tekst:
-Du har allerede vist interesse for ${form.product || "løsningen"}.
-
-Hvis du stadig overvejer det, er nu et godt tidspunkt at tage næste skridt.
-
-${offer}
-
-Headline:
-Stadig interesseret?
-
-CTA:
-${cta}
-
-────────────────────────────
-
 HOOKS
 
 1. Stop med at udskyde det
 2. En nemmere løsning til ${form.audience || "din målgruppe"}
 3. Få et bedre resultat uden besvær
 4. Derfor vælger flere ${form.business || "os"}
-5. Klar til at tage næste skridt?
-6. ${form.product || "Løsningen"} gjort nemt
-7. Professionel hjælp uden besvær
-8. Kom i gang i dag
-
-────────────────────────────
 
 GOOGLE ADS
 
@@ -126,39 +69,10 @@ Headlines:
 - ${form.product || "Professionel løsning"}
 - ${form.business || "Din virksomhed"}
 - Få Hjælp I Dag
-- Professionel Service
 - Kom I Gang Nu
-- ${offer}
-- Bedre Resultat Nemt
-- ${form.location || "Hele Danmark"}
 
-Descriptions:
-- Få en professionel løsning hos ${form.business || "os"}. Kom nemt i gang i dag.
-- ${form.product || "Løsningen"} til ${form.audience || "din målgruppe"}. Klar til brug.
-- ${offer}. Kontakt os eller bestil direkte i dag.
-
-────────────────────────────
-
-CREATIVE IDÉER
-
-1. UGC-video med ejer eller kunde der forklarer problemet.
-2. Før/efter-annonce med tydelig transformation.
-3. Produkt/service-billede med tydeligt tilbud.
-4. Kundeudtalelse med stjerner.
-5. Lokal annonce med fokus på ${form.location || "lokation"}.
-
-────────────────────────────
-
-TESTPLAN
-
-Dag 1-3:
-Test 3-5 creatives uden at ændre for meget.
-
-Dag 4-7:
-Sluk annoncer med lav CTR og høj CPC.
-
-Efter 7 dage:
-Flyt budget mod vinderen og skalér 20-30%.
+Retargeting:
+Du har allerede vist interesse. Nu er det tid til at tage næste skridt.
 `;
 
     setResult(output);
@@ -171,34 +85,55 @@ Flyt budget mod vinderen og skalér 20-30%.
   }
 
   return (
-    <main className="dashboard">
-      <header className="dashHeader">
-        <a href="/" className="brand dark"><span>A</span>AdPilot</a>
-        <div className="dashActions">
+    <main className="dashPage">
+      <header className="dashNav">
+        <a href="/" className="dashLogo"><span>A</span>AdPilot</a>
+        <div className="dashNavRight">
           <span>Pro demo</span>
-          <a href="/" className="dashBtn">Forside</a>
+          <a href="/">Forside</a>
         </div>
       </header>
 
       <section className="dashHero">
-        <div className="badge">AI Campaign Generator</div>
+        <div className="dashBadge">AI Campaign Generator</div>
         <h1>Generer en komplet annoncepakke</h1>
         <p>Udfyld briefen og få Meta Ads, Google Ads, hooks, retargeting og creative idéer.</p>
       </section>
 
-      <section className="generator">
-        <div className="formPanel">
+      <section className="dashLayout">
+        <div className="dashCard">
           <h2>Kampagnebrief</h2>
           <p>Jo mere præcist du udfylder felterne, jo stærkere bliver outputtet.</p>
 
-          <div className="formGrid">
-            <Field label="Virksomhedsnavn"><input value={form.business} onChange={(e) => update("business", e.target.value)} placeholder="Fx firmanavn" /></Field>
-            <Field label="Branche"><input value={form.industry} onChange={(e) => update("industry", e.target.value)} placeholder="Fx webshop, klinik, håndværker" /></Field>
-            <Field label="Produkt/service"><input value={form.product} onChange={(e) => update("product", e.target.value)} placeholder="Fx service eller produkt" /></Field>
-            <Field label="Målgruppe"><input value={form.audience} onChange={(e) => update("audience", e.target.value)} placeholder="Fx lokale kunder" /></Field>
-            <Field label="Tilbud/pris"><input value={form.offer} onChange={(e) => update("offer", e.target.value)} placeholder="Fx 20% rabat" /></Field>
-            <Field label="Budget pr dag"><input value={form.budget} onChange={(e) => update("budget", e.target.value)} placeholder="Fx 150" /></Field>
-            <Field label="Lokation"><input value={form.location} onChange={(e) => update("location", e.target.value)} placeholder="Fx København" /></Field>
+          <div className="dashFormGrid">
+            <Field label="Virksomhedsnavn">
+              <input value={form.business} onChange={(e) => update("business", e.target.value)} placeholder="Fx firmanavn" />
+            </Field>
+
+            <Field label="Branche">
+              <input value={form.industry} onChange={(e) => update("industry", e.target.value)} placeholder="Fx webshop, klinik, håndværker" />
+            </Field>
+
+            <Field label="Produkt/service">
+              <input value={form.product} onChange={(e) => update("product", e.target.value)} placeholder="Fx service eller produkt" />
+            </Field>
+
+            <Field label="Målgruppe">
+              <input value={form.audience} onChange={(e) => update("audience", e.target.value)} placeholder="Fx lokale kunder" />
+            </Field>
+
+            <Field label="Tilbud/pris">
+              <input value={form.offer} onChange={(e) => update("offer", e.target.value)} placeholder="Fx 20% rabat" />
+            </Field>
+
+            <Field label="Budget pr dag">
+              <input value={form.budget} onChange={(e) => update("budget", e.target.value)} placeholder="Fx 150" />
+            </Field>
+
+            <Field label="Lokation">
+              <input value={form.location} onChange={(e) => update("location", e.target.value)} placeholder="Fx København" />
+            </Field>
+
             <Field label="Målsætning">
               <select value={form.goal} onChange={(e) => update("goal", e.target.value)}>
                 <option>Salg</option>
@@ -209,10 +144,12 @@ Flyt budget mod vinderen og skalér 20-30%.
             </Field>
           </div>
 
-          <button className="generateBtn" onClick={generateCampaign}>Generer kampagne</button>
+          <button className="dashGenerate" onClick={generateCampaign}>
+            Generer kampagne
+          </button>
         </div>
 
-        <aside className="summary">
+        <aside className="dashSummary">
           <h3>Output inkluderer</h3>
           <span>✓ Meta Ads tekster</span>
           <span>✓ Google Ads forslag</span>
@@ -224,18 +161,19 @@ Flyt budget mod vinderen og skalér 20-30%.
       </section>
 
       {result && (
-        <section className="resultPanel">
-          <div className="resultTop">
+        <section className="dashResult">
+          <div className="dashResultTop">
             <div>
-              <div className="badge">Færdig kampagne</div>
+              <div className="dashBadge">Færdig kampagne</div>
               <h2>Din annoncepakke</h2>
             </div>
-            <button className="copyBtn" onClick={copyResult}>
+
+            <button onClick={copyResult}>
               {copied ? "Kopieret ✓" : "Kopiér kampagne"}
             </button>
           </div>
 
-          <pre className="resultBox">{result}</pre>
+          <pre>{result}</pre>
         </section>
       )}
     </main>
@@ -244,7 +182,7 @@ Flyt budget mod vinderen og skalér 20-30%.
 
 function Field({ label, children }) {
   return (
-    <label className="field">
+    <label className="dashField">
       <span>{label}</span>
       {children}
     </label>
