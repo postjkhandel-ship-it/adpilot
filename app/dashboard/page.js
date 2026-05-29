@@ -7,6 +7,7 @@ export default function Dashboard() {
 
   const [accessCode, setAccessCode] = useState("");
   const [hasAccess, setHasAccess] = useState(false);
+  const [checking, setChecking] = useState(false);
   const [result, setResult] = useState("");
   const [copied, setCopied] = useState(false);
 
@@ -23,6 +24,34 @@ export default function Dashboard() {
 
   function update(field, value) {
     setForm({ ...form, [field]: value });
+  }
+
+  async function checkAccessCode() {
+    setChecking(true);
+
+    try {
+      const res = await fetch("/api/check-code", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          code: accessCode.trim(),
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setHasAccess(true);
+      } else {
+        alert("Forkert adgangskode");
+      }
+    } catch {
+      alert("Der opstod en fejl. Prøv igen.");
+    }
+
+    setChecking(false);
   }
 
   function generateCampaign() {
@@ -204,8 +233,7 @@ Flyt budget mod vinderen og skalér 20-30%.
           <h1>Adgang til dashboard</h1>
 
           <p>
-            Indtast din adgangskode for at åbne AdPilot Pro. Har du ikke adgang
-            endnu, kan du starte abonnementet herunder.
+            Indtast din personlige adgangskode for at åbne AdPilot Pro.
           </p>
 
           <input
@@ -214,16 +242,8 @@ Flyt budget mod vinderen og skalér 20-30%.
             placeholder="Indtast adgangskode"
           />
 
-          <button
-            onClick={() => {
-              if (accessCode === "ADPILOTPRO") {
-                setHasAccess(true);
-              } else {
-                alert("Forkert adgangskode");
-              }
-            }}
-          >
-            Åbn dashboard
+          <button onClick={checkAccessCode} disabled={checking}>
+            {checking ? "Tjekker..." : "Åbn dashboard"}
           </button>
 
           <a href={stripeLink} target="_blank" rel="noopener noreferrer">
