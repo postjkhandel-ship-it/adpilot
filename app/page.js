@@ -241,7 +241,18 @@ export default function Home() {
           <a href="/dashboard" className="btn primary full">Prøv gratis demo</a>
         </div>
       </section>
+<section className="finalCta">
+  <div>
+    <div className="badge">Klar til at komme i gang?</div>
+    <h2>Start med at generere bedre kampagner i dag</h2>
+    <p>
+      Brug AdPilot til at lave annoncepakker hurtigere, spare tid og skabe mere
+      professionelle kampagneoplæg.
+    </p>
+  </div>
 
+  <a href="/dashboard" className="btn primary">Prøv gratis demo</a>
+</section>
       <section id="contact" className="contact">
         <div>
           <div className="badge">Kontakt</div>
