@@ -9,7 +9,7 @@ export default function Home() {
           <a href="#features">Funktioner</a>
           <a href="#pricing">Pris</a>
           <a href="#contact">Kontakt</a>
-          <a href={stripeLink} target="_blank" className="navCta">Start Pro</a>
+          <a href={stripeLink} target="_blank" rel="noopener noreferrer" className="navCta">Start Pro</a>
         </div>
       </header>
 
@@ -24,14 +24,24 @@ export default function Home() {
 
           <div className="heroBtns">
             <a href="/dashboard" className="btn primary">Generér din første kampagne</a>
-            <a href={stripeLink} target="_blank" className="btn dark">Start AdPilot Pro</a>
+            <a href={stripeLink} target="_blank" rel="noopener noreferrer" className="btn dark">
+              Start AdPilot Pro
+            </a>
           </div>
 
-          <div className="trustLine">
-            <span>✓ Dansk output</span>
-            <span>✓ Alle brancher</span>
-            <span>✓ Copy/paste klar</span>
-            <span>✓ 299 kr/md</span>
+          <div className="heroProof">
+            <div className="proofCard">
+              <strong>Meta Ads</strong>
+              <small>Hooks, headlines & CTA</small>
+            </div>
+            <div className="proofCard">
+              <strong>Google Ads</strong>
+              <small>Headlines & descriptions</small>
+            </div>
+            <div className="proofCard">
+              <strong>Retargeting</strong>
+              <small>Varme målgrupper klar</small>
+            </div>
           </div>
         </div>
 
@@ -146,7 +156,7 @@ export default function Home() {
             <li>✓ Klar til copy/paste</li>
           </ul>
 
-          <a href={stripeLink} target="_blank" className="btn primary full">
+          <a href={stripeLink} target="_blank" rel="noopener noreferrer" className="btn primary full">
             Start AdPilot Pro – 299 kr/md
           </a>
 
@@ -164,7 +174,9 @@ export default function Home() {
             Få hurtigere kampagneproduktion, bedre struktur og mere
             professionelt output uden at starte fra nul.
           </p>
-          <a href={stripeLink} target="_blank" className="btn primary">Få adgang til AdPilot</a>
+          <a href={stripeLink} target="_blank" rel="noopener noreferrer" className="btn primary">
+            Få adgang til AdPilot
+          </a>
         </div>
 
         <div className="roiList">
@@ -194,7 +206,9 @@ export default function Home() {
           <h2>Generér bedre kampagner allerede i dag.</h2>
           <p>Brug AdPilot til at spare tid og skabe mere professionelle kampagneoplæg.</p>
         </div>
-        <a href={stripeLink} target="_blank" className="btn primary">Start AdPilot Pro</a>
+        <a href={stripeLink} target="_blank" rel="noopener noreferrer" className="btn primary">
+          Start AdPilot Pro
+        </a>
       </section>
 
       <section id="contact" className="contact">
