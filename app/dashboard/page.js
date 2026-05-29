@@ -99,7 +99,20 @@ Du har allerede vist interesse. Nu er det tid til at tage næste skridt.
         <h1>Generer en komplet annoncepakke</h1>
         <p>Udfyld briefen og få Meta Ads, Google Ads, hooks, retargeting og creative idéer.</p>
       </section>
+<section className="demoNotice">
+  <div>
+    <strong>Du bruger demo-versionen</strong>
+    <p>Generér en testkampagne. Fuld adgang kræver AdPilot Pro.</p>
+  </div>
 
+  <a
+    href="https://buy.stripe.com/fZudR1dNoabSaCEeTbebu00"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Opgrader til Pro – 299 kr/md
+  </a>
+</section>
       <section className="dashLayout">
         <div className="dashCard">
           <h2>Kampagnebrief</h2>
