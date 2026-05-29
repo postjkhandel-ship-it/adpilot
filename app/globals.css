@@ -808,3 +808,37 @@ a { color: inherit; text-decoration: none; }
     text-align: center;
   }
 }
+.thankPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+
+.thankBox {
+  max-width: 680px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  padding: 56px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.thankBox h1 {
+  font-size: clamp(42px, 6vw, 64px);
+  line-height: 1;
+  letter-spacing: -2px;
+  margin: 0 0 18px;
+}
+
+.thankBox p {
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.center {
+  justify-content: center;
+}
