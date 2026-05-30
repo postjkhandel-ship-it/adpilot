@@ -7,9 +7,13 @@ export default function Dashboard() {
 
   const [accessCode, setAccessCode] = useState("");
   const [hasAccess, setHasAccess] = useState(false);
+  const [customerEmail, setCustomerEmail] = useState("");
   const [checking, setChecking] = useState(false);
+
   const [result, setResult] = useState("");
   const [copied, setCopied] = useState(false);
+  const [campaigns, setCampaigns] = useState([]);
+  const [loadingCampaigns, setLoadingCampaigns] = useState(false);
 
   const [form, setForm] = useState({
     business: "",
@@ -32,18 +36,16 @@ export default function Dashboard() {
     try {
       const res = await fetch("/api/check-code", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          code: accessCode.trim(),
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: accessCode.trim() }),
       });
 
       const data = await res.json();
 
       if (data.success) {
         setHasAccess(true);
+        setCustomerEmail(data.customer_email);
+        loadCampaigns(data.customer_email);
       } else {
         alert("Forkert adgangskode");
       }
@@ -52,6 +54,48 @@ export default function Dashboard() {
     }
 
     setChecking(false);
+  }
+
+  async function loadCampaigns(email) {
+    setLoadingCampaigns(true);
+
+    try {
+      const res = await fetch("/api/get-campaigns", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setCampaigns(data.campaigns || []);
+      }
+    } catch {
+      console.log("Kunne ikke hente kampagner");
+    }
+
+    setLoadingCampaigns(false);
+  }
+
+  async function saveCampaign(campaignText) {
+    if (!customerEmail) return;
+
+    try {
+      await fetch("/api/save-campaign", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: customerEmail,
+          businessName: form.business || "Kampagne",
+          campaignText,
+        }),
+      });
+
+      loadCampaigns(customerEmail);
+    } catch {
+      console.log("Kunne ikke gemme kampagne");
+    }
   }
 
   function generateCampaign() {
@@ -217,6 +261,7 @@ Flyt budget mod vinderen og skalér 20-30%.
 
     setResult(output);
     setCopied(false);
+    saveCampaign(output);
   }
 
   async function copyResult() {
@@ -232,9 +277,7 @@ Flyt budget mod vinderen og skalér 20-30%.
 
           <h1>Adgang til dashboard</h1>
 
-          <p>
-            Indtast din personlige adgangskode for at åbne AdPilot Pro.
-          </p>
+          <p>Indtast din personlige adgangskode for at åbne AdPilot Pro.</p>
 
           <input
             value={accessCode}
@@ -262,7 +305,7 @@ Flyt budget mod vinderen og skalér 20-30%.
         </a>
 
         <div className="dashNavRight">
-          <span>Pro adgang</span>
+          <span>{customerEmail}</span>
           <a href="/">Forside</a>
         </div>
       </header>
@@ -357,13 +400,26 @@ Flyt budget mod vinderen og skalér 20-30%.
         </div>
 
         <aside className="dashSummary">
-          <h3>Output inkluderer</h3>
-          <span>✓ Meta Ads tekster</span>
-          <span>✓ Google Ads forslag</span>
-          <span>✓ Hooks</span>
-          <span>✓ Retargeting strategi</span>
-          <span>✓ Creative idéer</span>
-          <span>✓ Budgetfordeling</span>
+          <h3>Mine kampagner</h3>
+
+          {loadingCampaigns && <p>Henter kampagner...</p>}
+
+          {!loadingCampaigns && campaigns.length === 0 && (
+            <p>Du har ingen gemte kampagner endnu.</p>
+          )}
+
+          {campaigns.map((campaign) => (
+            <button
+              key={campaign.id}
+              className="savedCampaignBtn"
+              onClick={() => setResult(campaign.campaign_text)}
+            >
+              <strong>{campaign.business_name || "Kampagne"}</strong>
+              <small>
+                {new Date(campaign.created_at).toLocaleDateString("da-DK")}
+              </small>
+            </button>
+          ))}
         </aside>
       </section>
 
