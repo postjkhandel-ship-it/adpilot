@@ -1,40 +1,38 @@
-import { createClient } from "@supabase/supabase-js";
+"use client";
 
-export const dynamic = "force-dynamic";
+import { useState } from "react";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+export default function Adgang() {
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [loading, setLoading] = useState(false);
 
-function makeCode() {
-  const random = Math.random().toString(36).substring(2, 8).toUpperCase();
-  return `ADP-${random}-PRO`;
-}
+  async function createCode() {
+    setLoading(true);
 
-export default async function Adgang({ searchParams }) {
-  const sessionId = searchParams?.session_id;
-
-  let code = null;
-
-  if (sessionId) {
-    const existing = await supabase
-      .from("access_codes")
-      .select("code")
-      .eq("stripe_session_id", sessionId)
-      .single();
-
-    if (existing.data?.code) {
-      code = existing.data.code;
-    } else {
-      code = makeCode();
-
-      await supabase.from("access_codes").insert({
-        code,
-        stripe_session_id: sessionId,
-        status: "active",
+    try {
+      const res = await fetch("/api/create-code", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+        }),
       });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setCode(data.code);
+      } else {
+        alert("Kunne ikke oprette adgangskode");
+      }
+    } catch {
+      alert("Der skete en fejl");
     }
+
+    setLoading(false);
   }
 
   return (
@@ -42,26 +40,46 @@ export default async function Adgang({ searchParams }) {
       <div className="accessSuccessBox">
         <div className="dashBadge">AdPilot Pro aktiveret</div>
 
-        <h1>Din adgang er klar</h1>
+        <h1>Opret din adgangskode</h1>
 
         <p>
-          Tak for dit køb. Brug din personlige adgangskode herunder til at åbne
-          AdPilot-dashboardet.
+          Indtast den email du brugte ved betaling. Så opretter vi din
+          personlige AdPilot-kode.
         </p>
 
-        <div className="codeBox">
-          {code || "Ingen betalingssession fundet"}
-        </div>
+        {!code && (
+          <>
+            <input
+              className="accessEmailInput"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Din email"
+              type="email"
+            />
 
-        <div className="buttons center">
-          <a href="/dashboard" className="btn primary">
-            Åbn dashboard
-          </a>
+            <button className="accessCreateBtn" onClick={createCode}>
+              {loading ? "Opretter..." : "Opret adgangskode"}
+            </button>
+          </>
+        )}
 
-          <a href="/" className="btn secondary">
-            Til forsiden
-          </a>
-        </div>
+        {code && (
+          <>
+            <p>Din personlige adgangskode:</p>
+
+            <div className="codeBox">{code}</div>
+
+            <div className="buttons center">
+              <a href="/dashboard" className="btn primary">
+                Åbn dashboard
+              </a>
+
+              <a href="/" className="btn secondary">
+                Til forsiden
+              </a>
+            </div>
+          </>
+        )}
       </div>
     </main>
   );
