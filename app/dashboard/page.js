@@ -98,6 +98,34 @@ export default function Dashboard() {
     }
   }
 
+  async function deleteCampaign(id) {
+    const confirmed = confirm("Vil du slette denne kampagne?");
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch("/api/delete-campaign", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, email: customerEmail }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setCampaigns((prev) => prev.filter((item) => item.id !== id));
+      } else {
+        alert("Kunne ikke slette kampagnen");
+      }
+    } catch {
+      alert("Der opstod en fejl");
+    }
+  }
+
+  async function copyCampaignText(text) {
+    await navigator.clipboard.writeText(text);
+    alert("Kampagne kopieret");
+  }
+
   function generateCampaign() {
     const budget = Number(form.budget) || 150;
     const offer = form.offer || "Aktuelt tilbud";
@@ -409,16 +437,30 @@ Flyt budget mod vinderen og skalér 20-30%.
           )}
 
           {campaigns.map((campaign) => (
-            <button
-              key={campaign.id}
-              className="savedCampaignBtn"
-              onClick={() => setResult(campaign.campaign_text)}
-            >
-              <strong>{campaign.business_name || "Kampagne"}</strong>
-              <small>
-                {new Date(campaign.created_at).toLocaleDateString("da-DK")}
-              </small>
-            </button>
+            <div key={campaign.id} className="savedCampaignItem">
+              <button
+                className="savedCampaignBtn"
+                onClick={() => setResult(campaign.campaign_text)}
+              >
+                <strong>{campaign.business_name || "Kampagne"}</strong>
+                <small>
+                  {new Date(campaign.created_at).toLocaleDateString("da-DK")}
+                </small>
+              </button>
+
+              <div className="savedCampaignActions">
+                <button onClick={() => copyCampaignText(campaign.campaign_text)}>
+                  Kopiér
+                </button>
+
+                <button
+                  className="danger"
+                  onClick={() => deleteCampaign(campaign.id)}
+                >
+                  Slet
+                </button>
+              </div>
+            </div>
           ))}
         </aside>
       </section>
