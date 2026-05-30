@@ -129,6 +129,11 @@ export default function Dashboard() {
   function generateCampaign() {
     const budget = Number(form.budget) || 150;
     const offer = form.offer || "Aktuelt tilbud";
+    const business = form.business || "virksomheden";
+    const product = form.product || "produktet/servicen";
+    const audience = form.audience || "målgruppen";
+    const industry = form.industry || "branchen";
+    const location = form.location || "Danmark";
 
     const cta =
       form.goal === "Leads"
@@ -140,52 +145,67 @@ export default function Dashboard() {
         : "Køb nu";
 
     const output = `
-KAMPAGNEPAKKE FOR ${form.business || "DIN VIRKSOMHED"}
+KAMPAGNEPAKKE FOR ${business.toUpperCase()}
 
-Branche: ${form.industry || "Ikke angivet"}
-Produkt/service: ${form.product || "Ikke angivet"}
-Målgruppe: ${form.audience || "Ikke angivet"}
-Lokation: ${form.location || "Ikke angivet"}
+Branche: ${industry}
+Produkt/service: ${product}
+Målgruppe: ${audience}
+Lokation: ${location}
 Budget: ${budget} kr/dag
 Tilbud: ${offer}
 Mål: ${form.goal}
 
 ────────────────────────────
 
-ANBEFALET STRUKTUR
+ANBEFALET KAMPAGNESTRUKTUR
 
-1. Cold kampagne
+1. COLD AUDIENCE
 - Broad målgruppe
-- 3-5 creatives
-- Problem/løsning-vinkel
+- 4-6 creatives
+- Test problem/løsning, UGC, trust og direkte tilbud
 - Budget: ${Math.round(budget * 0.7)} kr/dag
 
-2. Retargeting kampagne
-- Website besøgende sidste 30 dage
-- Klik på annonce
-- Facebook/Instagram engagement
+2. RETARGETING
+- Website besøgende 30 dage
+- Klik på annonce 30 dage
+- Facebook/Instagram engagement 365 dage
+- Add to cart / formularstart hvis relevant
 - Budget: ${Math.round(budget * 0.3)} kr/dag
+
+3. CREATIVE TEST
+- 2 UGC-vinkler
+- 1 trust-annonce
+- 1 tilbudsannonce
+- 1 retargeting-annonce
 
 ────────────────────────────
 
-META ADS
+META ADS TEKSTER
 
-ANNONCE 1 — PROBLEM/LØSNING
+ANNONCE 1 — STÆRK PROBLEM/LØSNING
+
+Hook:
+Stop med at udskyde det, når løsningen er enkel.
 
 Primær tekst:
-Har du brug for en nemmere og mere professionel løsning?
+Mange ${audience} venter for længe med at få styr på ${product}, fordi de tror det er besværligt, dyrt eller tidskrævende.
 
-Med ${form.product || "løsningen"} hjælper ${
-      form.business || "virksomheden"
-    } ${form.audience || "målgruppen"} med at få et bedre resultat uden besvær.
+Men hos ${business} får du en nem og professionel løsning, der hjælper dig med at få et bedre resultat uden unødvendigt besvær.
 
 ${offer}
 
+Hvis du vil gøre det nemt at komme i gang, er det her et godt tidspunkt at tage næste skridt.
+
 Headline:
-Kom i gang med ${form.product || "løsningen"}
+Få en nemmere løsning i dag
+
+Beskrivelse:
+Professionel løsning til ${audience}.
 
 CTA:
 ${cta}
+
+────────────────────────────
 
 ANNONCE 2 — UGC STYLE
 
@@ -193,98 +213,253 @@ Hook:
 "Jeg skulle bare have prøvet det her noget før."
 
 Primær tekst:
-Hvis du leder efter en løsning, der er nem, hurtig og professionel, er ${
-      form.product || "denne løsning"
-    } fra ${form.business || "virksomheden"} et oplagt valg.
+Hvis du har overvejet ${product}, men ikke har fået gjort noget ved det endnu, så er det her dit tegn.
+
+${business} gør det nemt for ${audience} at komme i gang med en løsning, der føles tryg, enkel og professionel.
+
+${offer}
+
+Det behøver ikke være kompliceret at få et bedre resultat.
 
 Headline:
-Derfor vælger flere ${form.business || "os"}
+Derfor vælger flere ${business}
+
+Beskrivelse:
+Nemt, trygt og professionelt.
 
 CTA:
 ${cta}
 
-ANNONCE 3 — TRUST
+────────────────────────────
+
+ANNONCE 3 — TRUST / OBJECTION
+
+Hook:
+Usikker på om det er noget for dig?
 
 Primær tekst:
-Flere vælger ${form.business || "os"}, fordi de vil have en løsning der føles tryg, nem og professionel.
+Det forstår vi godt. Når man vælger ${product}, vil man gerne være sikker på, at det giver mening.
+
+Derfor fokuserer ${business} på en enkel proces, tydelig kommunikation og et professionelt resultat.
+
+Uanset om du er klar nu eller stadig overvejer det, kan du nemt tage næste skridt.
+
+${offer}
 
 Headline:
-Tryg og professionel løsning
+Trygt valg for ${audience}
+
+Beskrivelse:
+Få en løsning der gør det nemt at komme i gang.
 
 CTA:
 ${cta}
 
-ANNONCE 4 — RETARGETING
+────────────────────────────
+
+ANNONCE 4 — DIREKTE SALG
+
+Hook:
+Klar til at tage næste skridt?
 
 Primær tekst:
-Du har allerede vist interesse for ${form.product || "løsningen"}.
+Med ${product} fra ${business} får ${audience} en nemmere vej til et bedre resultat.
+
+${offer}
+
+Det tager kun få minutter at komme i gang — og du slipper for at gøre det mere besværligt end nødvendigt.
+
+Headline:
+Kom i gang med ${product}
+
+Beskrivelse:
+En professionel løsning uden besvær.
+
+CTA:
+${cta}
+
+────────────────────────────
+
+ANNONCE 5 — RETARGETING
+
+Hook:
+Du kiggede — men nåede ikke videre.
+
+Primær tekst:
+Du har allerede vist interesse for ${product}.
 
 Hvis du stadig overvejer det, er nu et godt tidspunkt at tage næste skridt.
+
+${business} hjælper ${audience} med en nem og professionel løsning.
 
 ${offer}
 
 Headline:
 Stadig interesseret?
 
+Beskrivelse:
+Tag næste skridt i dag.
+
 CTA:
 ${cta}
 
 ────────────────────────────
 
-HOOKS
+ANNONCE 6 — LOKAL / BRANCHEVINKEL
+
+Hook:
+Leder du efter en løsning i ${location}?
+
+Primær tekst:
+Hvis du søger en professionel løsning inden for ${industry}, kan ${business} hjælpe dig godt videre.
+
+Med ${product} får ${audience} en enkel og tryg måde at komme i gang på.
+
+${offer}
+
+Headline:
+${product} i ${location}
+
+Beskrivelse:
+Professionel hjælp gjort enkelt.
+
+CTA:
+${cta}
+
+────────────────────────────
+
+10 STÆRKE HOOKS
 
 1. Stop med at udskyde det
-2. En nemmere løsning til ${form.audience || "din målgruppe"}
-3. Få et bedre resultat uden besvær
-4. Derfor vælger flere ${form.business || "os"}
+2. Du behøver ikke gøre det mere besværligt
+3. En nemmere løsning til ${audience}
+4. Derfor vælger flere ${business}
 5. Klar til at tage næste skridt?
-6. ${form.product || "Løsningen"} gjort nemt
-7. Professionel hjælp uden besvær
-8. Kom i gang i dag
+6. ${product} gjort enkelt
+7. Få et bedre resultat uden besvær
+8. Det her gør processen nemmere
+9. Usikker? Så start her
+10. Professionel hjælp uden at starte fra nul
 
 ────────────────────────────
 
 GOOGLE ADS
 
 Headlines:
-- ${form.product || "Professionel løsning"}
-- ${form.business || "Din virksomhed"}
-- Få Hjælp I Dag
-- Professionel Service
-- Kom I Gang Nu
+- ${product}
+- ${business}
+- ${product} ${location}
+- Professionel Løsning
+- Kom I Gang I Dag
 - ${offer}
-- Bedre Resultat Nemt
-- ${form.location || "Hele Danmark"}
+- Få Hjælp Nu
+- Nemt Og Professionelt
+- Bedre Resultat Uden Besvær
+- Til ${audience}
+- Få Et Tilbud
+- Book I Dag
+- Se Mulighederne
+- Tryg Og Enkel Proces
+- Start Nu
 
 Descriptions:
-- Få en professionel løsning hos ${form.business || "os"}. Kom nemt i gang i dag.
-- ${form.product || "Løsningen"} til ${
-      form.audience || "din målgruppe"
-    }. Klar til brug.
+- Få en professionel løsning hos ${business}. Kom nemt i gang i dag.
+- ${product} til ${audience}. En enkel løsning med fokus på resultat.
 - ${offer}. Kontakt os eller bestil direkte i dag.
+- Gør det nemt at tage næste skridt med ${business}.
+
+Sitelinks:
+1. Se priser
+2. Kontakt os
+3. Sådan virker det
+4. Kundeanmeldelser
+
+────────────────────────────
+
+RETARGETING STRATEGI
+
+Målgrupper:
+- Website besøgende sidste 30 dage
+- Klik på annoncer sidste 30 dage
+- Facebook/Instagram engagement 365 dage
+- Add to cart / formularstart hvis relevant
+
+Retargeting tekst:
+Du har allerede vist interesse for ${product}.
+
+Hvis du stadig overvejer det, kan ${business} hjælpe dig videre med en nem og professionel løsning.
+
+${offer}
+
+CTA:
+${cta}
 
 ────────────────────────────
 
 CREATIVE IDÉER
 
-1. UGC-video med ejer eller kunde der forklarer problemet
-2. Før/efter-annonce med tydelig transformation
-3. Produkt/service-billede med tydeligt tilbud
-4. Kundeudtalelse med stjerner
-5. Lokal annonce med fokus på ${form.location || "lokation"}
+1. UGC video:
+Person taler direkte til kameraet:
+"Jeg havde overvejet ${product}, men fik det aldrig gjort. Det viste sig at være meget nemmere end jeg troede."
+
+2. Før/efter:
+Vis problemet før og resultatet efter. Brug kort tekst og tydelig CTA.
+
+3. Trust annonce:
+Brug kundeudtalelse, stjerner og kort forklaring af hvorfor ${business} er et trygt valg.
+
+4. Tilbudsannonce:
+Vis ${offer} tydeligt sammen med ${product}.
+
+5. Lokal annonce:
+Fokusér på ${location} og gør annoncen relevant for lokale kunder.
 
 ────────────────────────────
 
 TESTPLAN
 
 Dag 1-3:
-Test 3-5 creatives uden at ændre for meget.
+Test 4-6 creatives. Rør ikke for meget i kampagnen.
 
 Dag 4-7:
 Sluk annoncer med lav CTR og høj CPC.
 
 Efter 7 dage:
-Flyt budget mod vinderen og skalér 20-30%.
+Flyt mere budget til den bedste annonce.
+
+Skalering:
+Hvis en annonce performer stabilt, øg budgettet med 20-30%.
+
+────────────────────────────
+
+KPI MÅL
+
+Meta Ads:
+- CTR: over 1,5%
+- CPC: under 4-8 kr.
+- Frekvens: under 3 på cold audience
+- ROAS: over 2,5x hvis webshop
+
+Leads:
+- Leadpris: 30-150 kr. afhængigt af branche
+- CTR: over 1,2%
+
+────────────────────────────
+
+KONKLUSION
+
+Start simpelt:
+1 cold kampagne + 1 retargeting kampagne.
+
+Fokusér på:
+- stærk problem/løsning
+- troværdighed
+- klart tilbud
+- nem CTA
+- flere kreative vinkler
+
+Den vigtigste annonce at teste først er:
+UGC + problem/løsning + ${offer}.
 `;
 
     setResult(output);
@@ -354,66 +529,35 @@ Flyt budget mod vinderen og skalér 20-30%.
 
           <div className="dashFormGrid">
             <Field label="Virksomhedsnavn">
-              <input
-                value={form.business}
-                onChange={(e) => update("business", e.target.value)}
-                placeholder="Fx firmanavn"
-              />
+              <input value={form.business} onChange={(e) => update("business", e.target.value)} placeholder="Fx firmanavn" />
             </Field>
 
             <Field label="Branche">
-              <input
-                value={form.industry}
-                onChange={(e) => update("industry", e.target.value)}
-                placeholder="Fx webshop, klinik, håndværker"
-              />
+              <input value={form.industry} onChange={(e) => update("industry", e.target.value)} placeholder="Fx webshop, klinik, håndværker" />
             </Field>
 
             <Field label="Produkt/service">
-              <input
-                value={form.product}
-                onChange={(e) => update("product", e.target.value)}
-                placeholder="Fx service eller produkt"
-              />
+              <input value={form.product} onChange={(e) => update("product", e.target.value)} placeholder="Fx service eller produkt" />
             </Field>
 
             <Field label="Målgruppe">
-              <input
-                value={form.audience}
-                onChange={(e) => update("audience", e.target.value)}
-                placeholder="Fx lokale kunder"
-              />
+              <input value={form.audience} onChange={(e) => update("audience", e.target.value)} placeholder="Fx lokale kunder" />
             </Field>
 
             <Field label="Tilbud/pris">
-              <input
-                value={form.offer}
-                onChange={(e) => update("offer", e.target.value)}
-                placeholder="Fx 20% rabat"
-              />
+              <input value={form.offer} onChange={(e) => update("offer", e.target.value)} placeholder="Fx 20% rabat" />
             </Field>
 
             <Field label="Budget pr dag">
-              <input
-                value={form.budget}
-                onChange={(e) => update("budget", e.target.value)}
-                placeholder="Fx 150"
-              />
+              <input value={form.budget} onChange={(e) => update("budget", e.target.value)} placeholder="Fx 150" />
             </Field>
 
             <Field label="Lokation">
-              <input
-                value={form.location}
-                onChange={(e) => update("location", e.target.value)}
-                placeholder="Fx København"
-              />
+              <input value={form.location} onChange={(e) => update("location", e.target.value)} placeholder="Fx København" />
             </Field>
 
             <Field label="Målsætning">
-              <select
-                value={form.goal}
-                onChange={(e) => update("goal", e.target.value)}
-              >
+              <select value={form.goal} onChange={(e) => update("goal", e.target.value)}>
                 <option>Salg</option>
                 <option>Leads</option>
                 <option>Bookinger</option>
@@ -438,14 +582,9 @@ Flyt budget mod vinderen og skalér 20-30%.
 
           {campaigns.map((campaign) => (
             <div key={campaign.id} className="savedCampaignItem">
-              <button
-                className="savedCampaignBtn"
-                onClick={() => setResult(campaign.campaign_text)}
-              >
+              <button className="savedCampaignBtn" onClick={() => setResult(campaign.campaign_text)}>
                 <strong>{campaign.business_name || "Kampagne"}</strong>
-                <small>
-                  {new Date(campaign.created_at).toLocaleDateString("da-DK")}
-                </small>
+                <small>{new Date(campaign.created_at).toLocaleDateString("da-DK")}</small>
               </button>
 
               <div className="savedCampaignActions">
@@ -453,10 +592,7 @@ Flyt budget mod vinderen og skalér 20-30%.
                   Kopiér
                 </button>
 
-                <button
-                  className="danger"
-                  onClick={() => deleteCampaign(campaign.id)}
-                >
+                <button className="danger" onClick={() => deleteCampaign(campaign.id)}>
                   Slet
                 </button>
               </div>
