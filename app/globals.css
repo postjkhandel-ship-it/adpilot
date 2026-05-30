@@ -985,3 +985,50 @@ a { color: inherit; text-decoration: none; }
 .savedCampaignBtn small {
   color: #cbd5e1;
 }
+.savedCampaignItem {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.savedCampaignBtn {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: white;
+  padding: 0;
+  cursor: pointer;
+}
+
+.savedCampaignBtn strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.savedCampaignBtn small {
+  color: #cbd5e1;
+}
+
+.savedCampaignActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.savedCampaignActions button {
+  flex: 1;
+  border: 0;
+  background: rgba(255,255,255,.12);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.savedCampaignActions .danger {
+  background: rgba(239,68,68,.9);
+}
