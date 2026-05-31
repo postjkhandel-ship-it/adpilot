@@ -24,6 +24,7 @@ export default function Dashboard() {
     goal: "Salg",
     location: "",
     outputType: "Komplet kampagne",
+    angle: "Problem/løsning",
   });
 
   function update(field, value) {
@@ -37,6 +38,25 @@ export default function Dashboard() {
     return "Kom i gang";
   }
 
+  function angleFocus() {
+    if (form.angle === "UGC style") {
+      return "Skriv naturligt, personligt og som om en kunde eller ejer taler direkte til kameraet.";
+    }
+    if (form.angle === "Trust") {
+      return "Fokusér på tryghed, kvalitet, proces, erfaring og hvorfor kunden kan stole på virksomheden.";
+    }
+    if (form.angle === "Direkte salg") {
+      return "Gør teksten kort, konkret og handlingsorienteret med tydelig CTA.";
+    }
+    if (form.angle === "Tilbud") {
+      return "Fremhæv tilbud, pris, urgency og hvorfor kunden bør handle nu.";
+    }
+    if (form.angle === "Retargeting") {
+      return "Fokusér på kunder der allerede har vist interesse, men ikke har taget næste skridt.";
+    }
+    return "Start med kundens problem, vis konsekvensen, og præsenter løsningen tydeligt.";
+  }
+
   function createAdStrategy() {
     const business = form.business || "virksomheden";
     const industry = form.industry || "branchen";
@@ -46,17 +66,7 @@ export default function Dashboard() {
     const offer = form.offer ? `Fra ${form.offer} kr.` : "Aktuelt tilbud.";
     const budget = Number(form.budget) || 150;
     const cta = getCTA(form.goal);
-
-    const base = {
-      business,
-      industry,
-      product,
-      audience,
-      location,
-      offer,
-      budget,
-      cta,
-    };
+    const focus = angleFocus();
 
     const hooks = `
 20 PROFESSIONELLE HOOKS
@@ -91,6 +101,10 @@ Produkt/service: ${product}
 Målgruppe: ${audience}
 Lokation: ${location}
 Tilbud: ${offer}
+Valgt annoncevinkel: ${form.angle}
+
+Anbefalet fokus:
+${focus}
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -117,30 +131,30 @@ ${cta}
 
 ━━━━━━━━━━━━━━━━━━━━
 
-ANNONCE 2 — RESULTAT / ØNSKE
+ANNONCE 2 — UGC STYLE
 
 Hook:
-Få et bedre resultat uden at gøre det kompliceret.
+"Jeg skulle bare have gjort det her noget før."
 
 Primær tekst:
-Når du vælger ${product}, handler det ikke kun om selve løsningen — det handler om resultatet bagefter.
+Hvis du har overvejet ${product}, men ikke har fået gjort noget ved det endnu, så er det her dit tegn.
 
-${business} hjælper ${audience} med en tryg, enkel og professionel løsning inden for ${industry}.
+${business} gør det nemt for ${audience} at komme i gang med en løsning, der føles tryg, enkel og professionel fra start.
 
 ${offer}
 
 Headline:
-Få hjælp fra ${business}
+Derfor vælger flere ${business}
 
 Beskrivelse:
-En nemmere vej til et bedre resultat.
+En enkel vej til et bedre resultat.
 
 CTA:
 ${cta}
 
 ━━━━━━━━━━━━━━━━━━━━
 
-ANNONCE 3 — TRUST / TRYGHED
+ANNONCE 3 — TRUST
 
 Hook:
 Vælg en løsning der føles tryg fra start.
@@ -337,7 +351,7 @@ KPI mål:
 - Fokus: stærk hook + tydeligt tilbud + klar CTA
 `;
 
-    return { ...base, hooks, metaAds, googleAds, retargeting, ugc, structure };
+    return { business, hooks, metaAds, googleAds, retargeting, ugc, structure };
   }
 
   async function checkAccessCode() {
@@ -490,7 +504,7 @@ ${strategy.structure}
       <section className="dashHero">
         <div className="dashBadge">AI Campaign Generator</div>
         <h1>Generer professionelle annoncetekster</h1>
-        <p>Universelt output til alle brancher — baseret på virksomhed, produkt, målgruppe og tilbud.</p>
+        <p>Universelt output til alle brancher — baseret på virksomhed, produkt, målgruppe, annoncevinkel og tilbud.</p>
       </section>
 
       <section className="dashLayout">
@@ -544,6 +558,17 @@ ${strategy.structure}
                 <option>Kun Hooks</option>
                 <option>Retargeting</option>
                 <option>UGC scripts</option>
+              </select>
+            </Field>
+
+            <Field label="Annoncevinkel">
+              <select value={form.angle} onChange={(e) => update("angle", e.target.value)}>
+                <option>Problem/løsning</option>
+                <option>UGC style</option>
+                <option>Trust</option>
+                <option>Direkte salg</option>
+                <option>Tilbud</option>
+                <option>Retargeting</option>
               </select>
             </Field>
           </div>
