@@ -7,8 +7,7 @@ const supabase = createClient(
 
 export async function POST(req) {
   try {
-    const body = await req.json();
-    const { id, email } = body;
+    const { id, email } = await req.json();
 
     if (!id || !email) {
       return Response.json({ success: false }, { status: 400 });
