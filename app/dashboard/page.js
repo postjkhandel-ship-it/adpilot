@@ -24,6 +24,7 @@ export default function Dashboard() {
     budget: "",
     goal: "Salg",
     location: "",
+    outputType: "Komplet kampagne",
   });
 
   function update(field, value) {
@@ -87,7 +88,7 @@ export default function Dashboard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: customerEmail,
-          businessName: form.business || "Kampagne",
+          businessName: form.business || form.outputType || "Kampagne",
           campaignText,
         }),
       });
@@ -144,43 +145,241 @@ export default function Dashboard() {
         ? "Læs mere"
         : "Køb nu";
 
-    const output = `
-KAMPAGNEPAKKE FOR ${business.toUpperCase()}
+    let output = "";
 
-Branche: ${industry}
-Produkt/service: ${product}
-Målgruppe: ${audience}
-Lokation: ${location}
-Budget: ${budget} kr/dag
-Tilbud: ${offer}
-Mål: ${form.goal}
+    if (form.outputType === "Kun Hooks") {
+      output = `
+HOOKS FOR ${business.toUpperCase()}
 
-────────────────────────────
+Produkt/service:
+${product}
 
-ANBEFALET KAMPAGNESTRUKTUR
+Målgruppe:
+${audience}
 
-1. COLD AUDIENCE
-- Broad målgruppe
-- 4-6 creatives
-- Test problem/løsning, UGC, trust og direkte tilbud
-- Budget: ${Math.round(budget * 0.7)} kr/dag
+Tilbud:
+${offer}
 
-2. RETARGETING
-- Website besøgende 30 dage
-- Klik på annonce 30 dage
+1. Stop med at udskyde det
+2. Du behøver ikke gøre det mere besværligt
+3. En nemmere løsning til ${audience}
+4. Derfor vælger flere ${business}
+5. Klar til at tage næste skridt?
+6. ${product} gjort enkelt
+7. Få et bedre resultat uden besvær
+8. Det her gør processen nemmere
+9. Usikker? Så start her
+10. Professionel hjælp uden at starte fra nul
+11. Leder du efter ${product} i ${location}?
+12. Det her er løsningen mange venter for længe med
+13. Gør det nemt at komme i gang
+14. Få mere ud af ${product}
+15. Se hvorfor ${audience} vælger ${business}
+16. Prøv en løsning der faktisk gør det nemt
+17. Få styr på ${product} uden besvær
+18. Det behøver ikke være dyrt eller kompliceret
+19. En hurtigere vej til et bedre resultat
+20. Tag næste skridt i dag
+`;
+    }
+
+    if (form.outputType === "Kun Google Ads") {
+      output = `
+GOOGLE ADS FOR ${business.toUpperCase()}
+
+Branche:
+${industry}
+
+Produkt/service:
+${product}
+
+Målgruppe:
+${audience}
+
+Headlines:
+- ${product}
+- ${business}
+- ${product} ${location}
+- Professionel løsning
+- Kom i gang i dag
+- ${offer}
+- Få hjælp nu
+- Nemt og professionelt
+- Bedre resultat uden besvær
+- Til ${audience}
+- Få et tilbud
+- Book i dag
+- Se mulighederne
+- Tryg og enkel proces
+- Start nu
+
+Descriptions:
+- Få en professionel løsning hos ${business}. Kom nemt i gang i dag.
+- ${product} til ${audience}. En enkel løsning med fokus på resultat.
+- ${offer}. Kontakt os eller bestil direkte i dag.
+- Gør det nemt at tage næste skridt med ${business}.
+
+Sitelinks:
+1. Se priser
+2. Kontakt os
+3. Sådan virker det
+4. Kundeanmeldelser
+
+Google Ads strategi:
+- Brug keywords omkring ${product}, ${industry} og ${location}
+- Test 2 annoncegrupper: én bred og én lokal
+- Brug stærk CTA i alle annoncer
+- Send trafik til den mest relevante landingsside
+`;
+    }
+
+    if (form.outputType === "Retargeting") {
+      output = `
+RETARGETING KAMPAGNE FOR ${business.toUpperCase()}
+
+Målgrupper:
+- Website besøgende sidste 30 dage
+- Klik på annoncer sidste 30 dage
 - Facebook/Instagram engagement 365 dage
 - Add to cart / formularstart hvis relevant
-- Budget: ${Math.round(budget * 0.3)} kr/dag
+- Tidligere kunder hvis relevant
 
-3. CREATIVE TEST
-- 2 UGC-vinkler
-- 1 trust-annonce
-- 1 tilbudsannonce
-- 1 retargeting-annonce
+Budget:
+${Math.round(budget * 0.3)} kr/dag
+
+ANNONCE 1 — VARM INTERESSE
+
+Hook:
+Du kiggede — men nåede ikke videre.
+
+Primær tekst:
+Du har allerede vist interesse for ${product}.
+
+Hvis du stadig overvejer det, er nu et godt tidspunkt at tage næste skridt.
+
+${business} hjælper ${audience} med en nem og professionel løsning.
+
+${offer}
+
+Headline:
+Stadig interesseret?
+
+CTA:
+${cta}
 
 ────────────────────────────
 
-META ADS TEKSTER
+ANNONCE 2 — TVIVL / OBJECTION
+
+Hook:
+Er du stadig i tvivl?
+
+Primær tekst:
+Det er helt normalt at overveje tingene en ekstra gang.
+
+Men hvis du gerne vil have en nemmere og mere professionel løsning, kan ${business} hjælpe dig videre.
+
+${offer}
+
+Headline:
+Tag næste skridt
+
+CTA:
+${cta}
+
+────────────────────────────
+
+ANNONCE 3 — TILBUD
+
+Hook:
+Sidste chance for at få ${offer}
+
+Primær tekst:
+Hvis du stadig overvejer ${product}, er det her et godt tidspunkt at handle.
+
+${business} gør det nemt for ${audience} at komme i gang.
+
+Headline:
+Få ${offer}
+
+CTA:
+${cta}
+`;
+    }
+
+    if (form.outputType === "UGC scripts") {
+      output = `
+UGC SCRIPTS FOR ${business.toUpperCase()}
+
+SCRIPT 1 — PROBLEM/LØSNING
+
+Hook:
+"Jeg havde overvejet ${product}, men fik det aldrig gjort."
+
+Body:
+"Jeg troede det ville være besværligt, men ${business} gjorde det faktisk ret nemt. Hvis du også har udskudt det, så er det her et godt sted at starte."
+
+CTA:
+"${cta}"
+
+────────────────────────────
+
+SCRIPT 2 — TRUST
+
+Hook:
+"Jeg var lidt i tvivl i starten."
+
+Body:
+"Når man vælger ${product}, vil man gerne være sikker på, at det føles trygt og professionelt. Det var præcis det jeg oplevede her."
+
+CTA:
+"${cta}"
+
+────────────────────────────
+
+SCRIPT 3 — DIREKTE TILBUD
+
+Hook:
+"Hvis du har ventet på et godt tidspunkt, så er det nu."
+
+Body:
+"${offer}. ${business} hjælper ${audience} med en nem og professionel løsning."
+
+CTA:
+"${cta}"
+
+────────────────────────────
+
+SCRIPT 4 — FØR/EFTER
+
+Hook:
+"Forskellen før og efter overraskede mig."
+
+Body:
+"Jeg havde ikke regnet med at ${product} kunne gøre processen så meget nemmere. Det føles mere enkelt, mere professionelt og langt mindre besværligt."
+
+CTA:
+"${cta}"
+`;
+    }
+
+    if (form.outputType === "Kun Meta Ads" || form.outputType === "Komplet kampagne") {
+      output = `
+META ADS FOR ${business.toUpperCase()}
+
+Branche:
+${industry}
+
+Produkt/service:
+${product}
+
+Målgruppe:
+${audience}
+
+Tilbud:
+${offer}
+
+────────────────────────────
 
 ANNONCE 1 — STÆRK PROBLEM/LØSNING
 
@@ -193,8 +392,6 @@ Mange ${audience} venter for længe med at få styr på ${product}, fordi de tro
 Men hos ${business} får du en nem og professionel løsning, der hjælper dig med at få et bedre resultat uden unødvendigt besvær.
 
 ${offer}
-
-Hvis du vil gøre det nemt at komme i gang, er det her et godt tidspunkt at tage næste skridt.
 
 Headline:
 Få en nemmere løsning i dag
@@ -219,8 +416,6 @@ ${business} gør det nemt for ${audience} at komme i gang med en løsning, der f
 
 ${offer}
 
-Det behøver ikke være kompliceret at få et bedre resultat.
-
 Headline:
 Derfor vælger flere ${business}
 
@@ -242,15 +437,10 @@ Det forstår vi godt. Når man vælger ${product}, vil man gerne være sikker p�
 
 Derfor fokuserer ${business} på en enkel proces, tydelig kommunikation og et professionelt resultat.
 
-Uanset om du er klar nu eller stadig overvejer det, kan du nemt tage næste skridt.
-
 ${offer}
 
 Headline:
 Trygt valg for ${audience}
-
-Beskrivelse:
-Få en løsning der gør det nemt at komme i gang.
 
 CTA:
 ${cta}
@@ -272,74 +462,30 @@ Det tager kun få minutter at komme i gang — og du slipper for at gøre det me
 Headline:
 Kom i gang med ${product}
 
-Beskrivelse:
-En professionel løsning uden besvær.
-
 CTA:
 ${cta}
+`;
+    }
+
+    if (form.outputType === "Komplet kampagne") {
+      output += `
 
 ────────────────────────────
 
-ANNONCE 5 — RETARGETING
+ANBEFALET KAMPAGNESTRUKTUR
 
-Hook:
-Du kiggede — men nåede ikke videre.
+1. COLD AUDIENCE
+- Broad målgruppe
+- 4-6 creatives
+- Test problem/løsning, UGC, trust og direkte tilbud
+- Budget: ${Math.round(budget * 0.7)} kr/dag
 
-Primær tekst:
-Du har allerede vist interesse for ${product}.
-
-Hvis du stadig overvejer det, er nu et godt tidspunkt at tage næste skridt.
-
-${business} hjælper ${audience} med en nem og professionel løsning.
-
-${offer}
-
-Headline:
-Stadig interesseret?
-
-Beskrivelse:
-Tag næste skridt i dag.
-
-CTA:
-${cta}
-
-────────────────────────────
-
-ANNONCE 6 — LOKAL / BRANCHEVINKEL
-
-Hook:
-Leder du efter en løsning i ${location}?
-
-Primær tekst:
-Hvis du søger en professionel løsning inden for ${industry}, kan ${business} hjælpe dig godt videre.
-
-Med ${product} får ${audience} en enkel og tryg måde at komme i gang på.
-
-${offer}
-
-Headline:
-${product} i ${location}
-
-Beskrivelse:
-Professionel hjælp gjort enkelt.
-
-CTA:
-${cta}
-
-────────────────────────────
-
-10 STÆRKE HOOKS
-
-1. Stop med at udskyde det
-2. Du behøver ikke gøre det mere besværligt
-3. En nemmere løsning til ${audience}
-4. Derfor vælger flere ${business}
-5. Klar til at tage næste skridt?
-6. ${product} gjort enkelt
-7. Få et bedre resultat uden besvær
-8. Det her gør processen nemmere
-9. Usikker? Så start her
-10. Professionel hjælp uden at starte fra nul
+2. RETARGETING
+- Website besøgende 30 dage
+- Klik på annonce 30 dage
+- Facebook/Instagram engagement 365 dage
+- Add to cart / formularstart hvis relevant
+- Budget: ${Math.round(budget * 0.3)} kr/dag
 
 ────────────────────────────
 
@@ -349,45 +495,27 @@ Headlines:
 - ${product}
 - ${business}
 - ${product} ${location}
-- Professionel Løsning
-- Kom I Gang I Dag
+- Professionel løsning
+- Kom i gang i dag
 - ${offer}
-- Få Hjælp Nu
-- Nemt Og Professionelt
-- Bedre Resultat Uden Besvær
+- Få hjælp nu
+- Nemt og professionelt
 - Til ${audience}
-- Få Et Tilbud
-- Book I Dag
-- Se Mulighederne
-- Tryg Og Enkel Proces
-- Start Nu
+- Start nu
 
 Descriptions:
 - Få en professionel løsning hos ${business}. Kom nemt i gang i dag.
 - ${product} til ${audience}. En enkel løsning med fokus på resultat.
 - ${offer}. Kontakt os eller bestil direkte i dag.
-- Gør det nemt at tage næste skridt med ${business}.
-
-Sitelinks:
-1. Se priser
-2. Kontakt os
-3. Sådan virker det
-4. Kundeanmeldelser
 
 ────────────────────────────
 
-RETARGETING STRATEGI
+RETARGETING
 
-Målgrupper:
-- Website besøgende sidste 30 dage
-- Klik på annoncer sidste 30 dage
-- Facebook/Instagram engagement 365 dage
-- Add to cart / formularstart hvis relevant
-
-Retargeting tekst:
+Primær tekst:
 Du har allerede vist interesse for ${product}.
 
-Hvis du stadig overvejer det, kan ${business} hjælpe dig videre med en nem og professionel løsning.
+Hvis du stadig overvejer det, er nu et godt tidspunkt at tage næste skridt.
 
 ${offer}
 
@@ -398,21 +526,11 @@ ${cta}
 
 CREATIVE IDÉER
 
-1. UGC video:
-Person taler direkte til kameraet:
-"Jeg havde overvejet ${product}, men fik det aldrig gjort. Det viste sig at være meget nemmere end jeg troede."
-
-2. Før/efter:
-Vis problemet før og resultatet efter. Brug kort tekst og tydelig CTA.
-
-3. Trust annonce:
-Brug kundeudtalelse, stjerner og kort forklaring af hvorfor ${business} er et trygt valg.
-
-4. Tilbudsannonce:
-Vis ${offer} tydeligt sammen med ${product}.
-
-5. Lokal annonce:
-Fokusér på ${location} og gør annoncen relevant for lokale kunder.
+1. UGC-video med ejer eller kunde der forklarer problemet
+2. Før/efter-annonce med tydelig transformation
+3. Trust-annonce med kundeudtalelse
+4. Tilbudsannonce med ${offer}
+5. Lokal annonce med fokus på ${location}
 
 ────────────────────────────
 
@@ -461,6 +579,7 @@ Fokusér på:
 Den vigtigste annonce at teste først er:
 UGC + problem/løsning + ${offer}.
 `;
+    }
 
     setResult(output);
     setCopied(false);
@@ -517,8 +636,8 @@ UGC + problem/løsning + ${offer}.
         <div className="dashBadge">AI Campaign Generator</div>
         <h1>Generer en komplet annoncepakke</h1>
         <p>
-          Udfyld briefen og få Meta Ads, Google Ads, hooks, retargeting og
-          creative idéer.
+          Vælg output-type og få kampagnestruktur, Meta Ads, Google Ads, hooks,
+          retargeting eller UGC scripts.
         </p>
       </section>
 
@@ -564,10 +683,24 @@ UGC + problem/løsning + ${offer}.
                 <option>Trafik</option>
               </select>
             </Field>
+
+            <Field label="Output type">
+              <select
+                value={form.outputType}
+                onChange={(e) => update("outputType", e.target.value)}
+              >
+                <option>Komplet kampagne</option>
+                <option>Kun Meta Ads</option>
+                <option>Kun Google Ads</option>
+                <option>Kun Hooks</option>
+                <option>Retargeting</option>
+                <option>UGC scripts</option>
+              </select>
+            </Field>
           </div>
 
           <button className="dashGenerate" onClick={generateCampaign}>
-            Generer kampagne
+            Generer {form.outputType}
           </button>
         </div>
 
@@ -606,11 +739,11 @@ UGC + problem/løsning + ${offer}.
           <div className="dashResultTop">
             <div>
               <div className="dashBadge">Færdig kampagne</div>
-              <h2>Din annoncepakke</h2>
+              <h2>Dit output</h2>
             </div>
 
             <button onClick={copyResult}>
-              {copied ? "Kopieret ✓" : "Kopiér kampagne"}
+              {copied ? "Kopieret ✓" : "Kopiér output"}
             </button>
           </div>
 
