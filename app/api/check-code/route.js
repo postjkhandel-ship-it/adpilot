@@ -7,8 +7,7 @@ const supabase = createClient(
 
 export async function POST(req) {
   try {
-    const body = await req.json();
-    const code = body.code;
+    const { code } = await req.json();
 
     if (!code) {
       return Response.json({ success: false }, { status: 400 });
@@ -17,7 +16,7 @@ export async function POST(req) {
     const { data, error } = await supabase
       .from("access_codes")
       .select("*")
-      .eq("code", code)
+      .eq("code", code.trim())
       .eq("status", "active")
       .single();
 
