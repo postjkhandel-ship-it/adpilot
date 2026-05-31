@@ -14,34 +14,25 @@ function makeCode() {
 }
 
 async function sendAccessEmail(email, code) {
+  if (!process.env.RESEND_API_KEY) return;
+
   await resend.emails.send({
     from: "AdPilot <onboarding@resend.dev>",
     to: email,
     subject: "Din AdPilot Pro adgangskode",
     html: `
-      <div style="font-family: Arial, sans-serif; background:#f6f8fc; padding:30px;">
-        <div style="max-width:600px; margin:0 auto; background:white; border-radius:20px; padding:30px;">
+      <div style="font-family:Arial,sans-serif;background:#f6f8fc;padding:30px;">
+        <div style="max-width:600px;margin:0 auto;background:white;border-radius:20px;padding:30px;">
           <h1 style="color:#0f172a;">Velkommen til AdPilot Pro</h1>
-
-          <p style="color:#475569; font-size:16px; line-height:1.6;">
+          <p style="color:#475569;font-size:16px;line-height:1.6;">
             Tak for dit køb. Her er din personlige adgangskode til AdPilot-dashboardet.
           </p>
-
-          <div style="background:#0f172a; color:white; padding:18px; border-radius:14px; font-size:24px; font-weight:900; text-align:center; letter-spacing:1px; margin:24px 0;">
+          <div style="background:#0f172a;color:white;padding:18px;border-radius:14px;font-size:24px;font-weight:900;text-align:center;letter-spacing:1px;margin:24px 0;">
             ${code}
           </div>
-
-          <p style="color:#475569; font-size:16px;">
-            Åbn dashboardet her:
-          </p>
-
-          <a href="https://adpilot.dk/dashboard" style="display:inline-block; background:#2563eb; color:white; padding:14px 20px; border-radius:12px; text-decoration:none; font-weight:900;">
+          <a href="https://adpilot.dk/dashboard" style="display:inline-block;background:#2563eb;color:white;padding:14px 20px;border-radius:12px;text-decoration:none;font-weight:900;">
             Åbn AdPilot
           </a>
-
-          <p style="color:#94a3b8; font-size:13px; margin-top:28px;">
-            Hvis du ikke har købt AdPilot Pro, kan du ignorere denne email.
-          </p>
         </div>
       </div>
     `,
@@ -50,22 +41,23 @@ async function sendAccessEmail(email, code) {
 
 export async function POST(req) {
   try {
-    const body = await req.json();
-    const email = body.email;
+    const { email } = await req.json();
 
     if (!email) {
       return Response.json({ success: false }, { status: 400 });
     }
 
+    const cleanEmail = email.trim().toLowerCase();
+
     const existing = await supabase
       .from("access_codes")
       .select("code")
-      .eq("customer_email", email)
+      .eq("customer_email", cleanEmail)
       .eq("status", "active")
       .single();
 
     if (existing.data?.code) {
-      await sendAccessEmail(email, existing.data.code);
+      await sendAccessEmail(cleanEmail, existing.data.code);
 
       return Response.json({
         success: true,
@@ -77,7 +69,7 @@ export async function POST(req) {
 
     const { error } = await supabase.from("access_codes").insert({
       code,
-      customer_email: email,
+      customer_email: cleanEmail,
       status: "active",
     });
 
@@ -85,7 +77,7 @@ export async function POST(req) {
       return Response.json({ success: false }, { status: 500 });
     }
 
-    await sendAccessEmail(email, code);
+    await sendAccessEmail(cleanEmail, code);
 
     return Response.json({
       success: true,
