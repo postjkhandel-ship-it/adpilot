@@ -7,32 +7,24 @@ const supabase = createClient(
 
 export async function POST(req) {
   try {
-    const body = await req.json();
+    const { email, businessName, campaignText } = await req.json();
 
-    const { email, businessName, campaignText } = body;
-
-    const { error } = await supabase
-      .from("campaigns")
-      .insert({
-        customer_email: email,
-        business_name: businessName,
-        campaign_text: campaignText,
-      });
-
-    if (error) {
-      return Response.json(
-        { success: false },
-        { status: 500 }
-      );
+    if (!email || !campaignText) {
+      return Response.json({ success: false }, { status: 400 });
     }
 
-    return Response.json({
-      success: true,
+    const { error } = await supabase.from("campaigns").insert({
+      customer_email: email,
+      business_name: businessName || "Kampagne",
+      campaign_text: campaignText,
     });
+
+    if (error) {
+      return Response.json({ success: false }, { status: 500 });
+    }
+
+    return Response.json({ success: true });
   } catch {
-    return Response.json(
-      { success: false },
-      { status: 500 }
-    );
+    return Response.json({ success: false }, { status: 500 });
   }
 }
