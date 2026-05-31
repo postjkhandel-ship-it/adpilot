@@ -80,7 +80,7 @@ export default function Dashboard() {
   }
 
   async function saveCampaign(campaignText) {
-    if (!customerEmail) return;
+    if (!customerEmail || !campaignText) return;
 
     try {
       await fetch("/api/save-campaign", {
@@ -122,9 +122,15 @@ export default function Dashboard() {
     }
   }
 
-  async function copyCampaignText(text) {
+  async function copyText(text) {
     await navigator.clipboard.writeText(text);
-    alert("Kampagne kopieret");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1600);
+  }
+
+  function clearOutput() {
+    setResult("");
+    setCopied(false);
   }
 
   function generateCampaign() {
@@ -175,26 +181,12 @@ ${offer}
 13. Gør det nemt at komme i gang
 14. Få mere ud af ${product}
 15. Se hvorfor ${audience} vælger ${business}
-16. Prøv en løsning der faktisk gør det nemt
-17. Få styr på ${product} uden besvær
-18. Det behøver ikke være dyrt eller kompliceret
-19. En hurtigere vej til et bedre resultat
-20. Tag næste skridt i dag
 `;
     }
 
     if (form.outputType === "Kun Google Ads") {
       output = `
 GOOGLE ADS FOR ${business.toUpperCase()}
-
-Branche:
-${industry}
-
-Produkt/service:
-${product}
-
-Målgruppe:
-${audience}
 
 Headlines:
 - ${product}
@@ -217,19 +209,12 @@ Descriptions:
 - Få en professionel løsning hos ${business}. Kom nemt i gang i dag.
 - ${product} til ${audience}. En enkel løsning med fokus på resultat.
 - ${offer}. Kontakt os eller bestil direkte i dag.
-- Gør det nemt at tage næste skridt med ${business}.
 
 Sitelinks:
 1. Se priser
 2. Kontakt os
 3. Sådan virker det
 4. Kundeanmeldelser
-
-Google Ads strategi:
-- Brug keywords omkring ${product}, ${industry} og ${location}
-- Test 2 annoncegrupper: én bred og én lokal
-- Brug stærk CTA i alle annoncer
-- Send trafik til den mest relevante landingsside
 `;
     }
 
@@ -242,12 +227,8 @@ Målgrupper:
 - Klik på annoncer sidste 30 dage
 - Facebook/Instagram engagement 365 dage
 - Add to cart / formularstart hvis relevant
-- Tidligere kunder hvis relevant
 
-Budget:
-${Math.round(budget * 0.3)} kr/dag
-
-ANNONCE 1 — VARM INTERESSE
+ANNONCE 1
 
 Hook:
 Du kiggede — men nåede ikke videre.
@@ -267,9 +248,7 @@ Stadig interesseret?
 CTA:
 ${cta}
 
-────────────────────────────
-
-ANNONCE 2 — TVIVL / OBJECTION
+ANNONCE 2
 
 Hook:
 Er du stadig i tvivl?
@@ -279,28 +258,8 @@ Det er helt normalt at overveje tingene en ekstra gang.
 
 Men hvis du gerne vil have en nemmere og mere professionel løsning, kan ${business} hjælpe dig videre.
 
-${offer}
-
 Headline:
 Tag næste skridt
-
-CTA:
-${cta}
-
-────────────────────────────
-
-ANNONCE 3 — TILBUD
-
-Hook:
-Sidste chance for at få ${offer}
-
-Primær tekst:
-Hvis du stadig overvejer ${product}, er det her et godt tidspunkt at handle.
-
-${business} gør det nemt for ${audience} at komme i gang.
-
-Headline:
-Få ${offer}
 
 CTA:
 ${cta}
@@ -322,8 +281,6 @@ Body:
 CTA:
 "${cta}"
 
-────────────────────────────
-
 SCRIPT 2 — TRUST
 
 Hook:
@@ -335,8 +292,6 @@ Body:
 CTA:
 "${cta}"
 
-────────────────────────────
-
 SCRIPT 3 — DIREKTE TILBUD
 
 Hook:
@@ -344,19 +299,6 @@ Hook:
 
 Body:
 "${offer}. ${business} hjælper ${audience} med en nem og professionel løsning."
-
-CTA:
-"${cta}"
-
-────────────────────────────
-
-SCRIPT 4 — FØR/EFTER
-
-Hook:
-"Forskellen før og efter overraskede mig."
-
-Body:
-"Jeg havde ikke regnet med at ${product} kunne gøre processen så meget nemmere. Det føles mere enkelt, mere professionelt og langt mindre besværligt."
 
 CTA:
 "${cta}"
@@ -379,9 +321,7 @@ ${audience}
 Tilbud:
 ${offer}
 
-────────────────────────────
-
-ANNONCE 1 — STÆRK PROBLEM/LØSNING
+ANNONCE 1 — PROBLEM/LØSNING
 
 Hook:
 Stop med at udskyde det, når løsningen er enkel.
@@ -396,13 +336,8 @@ ${offer}
 Headline:
 Få en nemmere løsning i dag
 
-Beskrivelse:
-Professionel løsning til ${audience}.
-
 CTA:
 ${cta}
-
-────────────────────────────
 
 ANNONCE 2 — UGC STYLE
 
@@ -419,15 +354,10 @@ ${offer}
 Headline:
 Derfor vælger flere ${business}
 
-Beskrivelse:
-Nemt, trygt og professionelt.
-
 CTA:
 ${cta}
 
-────────────────────────────
-
-ANNONCE 3 — TRUST / OBJECTION
+ANNONCE 3 — TRUST
 
 Hook:
 Usikker på om det er noget for dig?
@@ -444,26 +374,6 @@ Trygt valg for ${audience}
 
 CTA:
 ${cta}
-
-────────────────────────────
-
-ANNONCE 4 — DIREKTE SALG
-
-Hook:
-Klar til at tage næste skridt?
-
-Primær tekst:
-Med ${product} fra ${business} får ${audience} en nemmere vej til et bedre resultat.
-
-${offer}
-
-Det tager kun få minutter at komme i gang — og du slipper for at gøre det mere besværligt end nødvendigt.
-
-Headline:
-Kom i gang med ${product}
-
-CTA:
-${cta}
 `;
     }
 
@@ -472,19 +382,16 @@ ${cta}
 
 ────────────────────────────
 
-ANBEFALET KAMPAGNESTRUKTUR
+KAMPAGNESTRUKTUR
 
-1. COLD AUDIENCE
+Cold kampagne:
 - Broad målgruppe
 - 4-6 creatives
-- Test problem/løsning, UGC, trust og direkte tilbud
 - Budget: ${Math.round(budget * 0.7)} kr/dag
 
-2. RETARGETING
+Retargeting:
 - Website besøgende 30 dage
-- Klik på annonce 30 dage
-- Facebook/Instagram engagement 365 dage
-- Add to cart / formularstart hvis relevant
+- Engagement 365 dage
 - Budget: ${Math.round(budget * 0.3)} kr/dag
 
 ────────────────────────────
@@ -499,9 +406,7 @@ Headlines:
 - Kom i gang i dag
 - ${offer}
 - Få hjælp nu
-- Nemt og professionelt
 - Til ${audience}
-- Start nu
 
 Descriptions:
 - Få en professionel løsning hos ${business}. Kom nemt i gang i dag.
@@ -510,24 +415,10 @@ Descriptions:
 
 ────────────────────────────
 
-RETARGETING
-
-Primær tekst:
-Du har allerede vist interesse for ${product}.
-
-Hvis du stadig overvejer det, er nu et godt tidspunkt at tage næste skridt.
-
-${offer}
-
-CTA:
-${cta}
-
-────────────────────────────
-
 CREATIVE IDÉER
 
-1. UGC-video med ejer eller kunde der forklarer problemet
-2. Før/efter-annonce med tydelig transformation
+1. UGC-video med ejer eller kunde
+2. Før/efter-annonce
 3. Trust-annonce med kundeudtalelse
 4. Tilbudsannonce med ${offer}
 5. Lokal annonce med fokus på ${location}
@@ -537,47 +428,13 @@ CREATIVE IDÉER
 TESTPLAN
 
 Dag 1-3:
-Test 4-6 creatives. Rør ikke for meget i kampagnen.
+Test 4-6 creatives.
 
 Dag 4-7:
 Sluk annoncer med lav CTR og høj CPC.
 
 Efter 7 dage:
-Flyt mere budget til den bedste annonce.
-
-Skalering:
-Hvis en annonce performer stabilt, øg budgettet med 20-30%.
-
-────────────────────────────
-
-KPI MÅL
-
-Meta Ads:
-- CTR: over 1,5%
-- CPC: under 4-8 kr.
-- Frekvens: under 3 på cold audience
-- ROAS: over 2,5x hvis webshop
-
-Leads:
-- Leadpris: 30-150 kr. afhængigt af branche
-- CTR: over 1,2%
-
-────────────────────────────
-
-KONKLUSION
-
-Start simpelt:
-1 cold kampagne + 1 retargeting kampagne.
-
-Fokusér på:
-- stærk problem/løsning
-- troværdighed
-- klart tilbud
-- nem CTA
-- flere kreative vinkler
-
-Den vigtigste annonce at teste først er:
-UGC + problem/løsning + ${offer}.
+Flyt budget mod vinderen og skalér 20-30%.
 `;
     }
 
@@ -586,19 +443,12 @@ UGC + problem/løsning + ${offer}.
     saveCampaign(output);
   }
 
-  async function copyResult() {
-    await navigator.clipboard.writeText(result);
-    setCopied(true);
-  }
-
   if (!hasAccess) {
     return (
       <main className="accessPage">
         <div className="accessBox">
           <div className="dashBadge">AdPilot Pro</div>
-
           <h1>Adgang til dashboard</h1>
-
           <p>Indtast din personlige adgangskode for at åbne AdPilot Pro.</p>
 
           <input
@@ -636,8 +486,8 @@ UGC + problem/løsning + ${offer}.
         <div className="dashBadge">AI Campaign Generator</div>
         <h1>Generer en komplet annoncepakke</h1>
         <p>
-          Vælg output-type og få kampagnestruktur, Meta Ads, Google Ads, hooks,
-          retargeting eller UGC scripts.
+          Vælg output-type og få Meta Ads, Google Ads, hooks, retargeting eller
+          UGC scripts.
         </p>
       </section>
 
@@ -685,10 +535,7 @@ UGC + problem/løsning + ${offer}.
             </Field>
 
             <Field label="Output type">
-              <select
-                value={form.outputType}
-                onChange={(e) => update("outputType", e.target.value)}
-              >
+              <select value={form.outputType} onChange={(e) => update("outputType", e.target.value)}>
                 <option>Komplet kampagne</option>
                 <option>Kun Meta Ads</option>
                 <option>Kun Google Ads</option>
@@ -721,13 +568,8 @@ UGC + problem/løsning + ${offer}.
               </button>
 
               <div className="savedCampaignActions">
-                <button onClick={() => copyCampaignText(campaign.campaign_text)}>
-                  Kopiér
-                </button>
-
-                <button className="danger" onClick={() => deleteCampaign(campaign.id)}>
-                  Slet
-                </button>
+                <button onClick={() => copyText(campaign.campaign_text)}>Kopiér</button>
+                <button className="danger" onClick={() => deleteCampaign(campaign.id)}>Slet</button>
               </div>
             </div>
           ))}
@@ -738,13 +580,17 @@ UGC + problem/løsning + ${offer}.
         <section className="dashResult">
           <div className="dashResultTop">
             <div>
-              <div className="dashBadge">Færdig kampagne</div>
+              <div className="dashBadge">Færdig output</div>
               <h2>Dit output</h2>
             </div>
 
-            <button onClick={copyResult}>
-              {copied ? "Kopieret ✓" : "Kopiér output"}
-            </button>
+            <div className="outputToolbar">
+              <button onClick={() => copyText(result)}>
+                {copied ? "Kopieret ✓" : "Kopiér"}
+              </button>
+              <button onClick={() => saveCampaign(result)}>Gem igen</button>
+              <button className="dangerLight" onClick={clearOutput}>Ryd</button>
+            </div>
           </div>
 
           <pre>{result}</pre>
