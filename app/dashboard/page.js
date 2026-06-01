@@ -89,7 +89,9 @@ export default function Dashboard() {
     } catch {
       alert("Der opstod en fejl. Prøv igen.");
     }
-
+const offer = form.offer
+  ? "Fra " + form.offer + " kr."
+  : "Aktuelt tilbud.";
     setChecking(false);
   }
 
