@@ -87,10 +87,9 @@ export default function Dashboard() {
     const location =
       form.location || "Danmark";
 
-    const offer = form.offer
-      ? `Fra ${form.offer} kr.`
-      : "Aktuelt tilbud.";
-
+   const offer = form.offer
+  ? "Fra " + form.offer + " kr."
+  : "Aktuelt tilbud.";
     const budget =
       Number(form.budget) || 150;
 
