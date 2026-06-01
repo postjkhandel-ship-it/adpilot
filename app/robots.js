@@ -2,8 +2,8 @@ export default function robots() {
   return {
     rules: {
       userAgent: "*",
-      allow: "/"
+      allow: "/",
     },
-    sitemap: "https://adpilot.dk/sitemap.xml"
+    sitemap: "https://adpilot.dk/sitemap.xml",
   };
 }
