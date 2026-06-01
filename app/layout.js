@@ -1,7 +1,10 @@
+```js
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata = {
-  title: "AdPilot – AI annoncegenerator til Meta Ads & Google Ads",
+  title:
+    "AdPilot – AI annoncegenerator til Meta Ads & Google Ads",
   description:
     "Lav professionelle Meta Ads, Google Ads, hooks, retargeting og kampagner på få minutter. AdPilot hjælper virksomheder, freelancere og bureauer med hurtigere annonceproduktion.",
   keywords: [
@@ -29,7 +32,24 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="da">
-      <body>{children}</body>
+      <body>
+        {children}
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-7NYJFY4FCD"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-7NYJFY4FCD');
+          `}
+        </Script>
+      </body>
     </html>
   );
 }
+```
