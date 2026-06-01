@@ -1,11 +1,9 @@
-```jsx
 "use client";
 
 import { useState } from "react";
 
 export default function Dashboard() {
-  const stripeLink =
-    "https://buy.stripe.com/fZudR1dNoabSaCEeTbebu00";
+  const stripeLink = "https://buy.stripe.com/fZudR1dNoabSaCEeTbebu00";
 
   const [accessCode, setAccessCode] = useState("");
   const [hasAccess, setHasAccess] = useState(false);
@@ -14,10 +12,6 @@ export default function Dashboard() {
 
   const [result, setResult] = useState("");
   const [copied, setCopied] = useState(false);
-
-  const [campaigns, setCampaigns] = useState([]);
-  const [loadingCampaigns, setLoadingCampaigns] =
-    useState(false);
 
   const [form, setForm] = useState({
     business: "",
@@ -43,315 +37,60 @@ export default function Dashboard() {
     if (goal === "Leads") return "Få tilbud";
     if (goal === "Bookinger") return "Book tid";
     if (goal === "Trafik") return "Læs mere";
-
     return "Kom i gang";
   }
 
-  function angleFocus() {
-    if (form.angle === "UGC style") {
-      return "Skriv naturligt, personligt og som om en kunde eller ejer taler direkte til kameraet.";
+  function getFocus(angle) {
+    if (angle === "UGC style") {
+      return "Skriv naturligt og personligt, som om en kunde eller ejer taler direkte til kameraet.";
     }
 
-    if (form.angle === "Trust") {
-      return "Fokusér på tryghed, kvalitet, proces, erfaring og hvorfor kunden kan stole på virksomheden.";
+    if (angle === "Trust") {
+      return "Fokusér på tryghed, kvalitet, erfaring, proces og hvorfor kunden kan stole på virksomheden.";
     }
 
-    if (form.angle === "Direkte salg") {
-      return "Gør teksten kort, konkret og handlingsorienteret med tydelig CTA.";
+    if (angle === "Direkte salg") {
+      return "Gør teksten kort, tydelig og handlingsorienteret med en stærk CTA.";
     }
 
-    if (form.angle === "Tilbud") {
-      return "Fremhæv tilbud, pris, urgency og hvorfor kunden bør handle nu.";
+    if (angle === "Tilbud") {
+      return "Fremhæv pris, tilbud, urgency og hvorfor kunden bør handle nu.";
     }
 
-    if (form.angle === "Retargeting") {
+    if (angle === "Retargeting") {
       return "Fokusér på kunder der allerede har vist interesse, men ikke har taget næste skridt.";
     }
 
     return "Start med kundens problem, vis konsekvensen og præsenter løsningen tydeligt.";
   }
 
-  function createAdStrategy() {
-    const business =
-      form.business || "virksomheden";
-
-    const industry =
-      form.industry || "branchen";
-
-    const product =
-      form.product || "produkt/service";
-
-    const audience =
-      form.audience || "målgruppen";
-
-    const location =
-      form.location || "Danmark";
-
-   const offer = form.offer
-  ? "Fra " + form.offer + " kr."
-  : "Aktuelt tilbud.";
-    const budget =
-      Number(form.budget) || 150;
-
-    const cta = getCTA(form.goal);
-
-    const focus = angleFocus();
-
-    const hooks = `
-20 PROFESSIONELLE HOOKS
-
-1. Har du brug for en bedre løsning til ${product}?
-2. Få professionel hjælp uden at gøre processen besværlig.
-3. Derfor vælger flere ${business}.
-4. Gør det nemmere at komme i gang med ${product}.
-5. En tryg løsning til ${audience}.
-6. Få et bedre resultat uden unødvendigt besvær.
-7. Leder du efter ${product} i ${location}?
-8. Stop med at udskyde det.
-9. Få hjælp fra nogen der ved hvad de laver.
-10. Det her gør valget nemmere.
-11. Klar til at tage næste skridt?
-12. Professionel løsning inden for ${industry}.
-13. Få styr på ${product} på en enkel måde.
-14. En bedre løsning starter her.
-15. Gør det nemt at vælge rigtigt.
-16. Til dig der vil have et professionelt resultat.
-17. Få en løsning der passer til dit behov.
-18. Se hvordan ${business} kan hjælpe.
-19. En enklere vej til et bedre resultat.
-20. Kom godt i gang i dag.
-`;
-
-    const metaAds = `
-META ADS FOR ${business.toUpperCase()}
-
-Branche: ${industry}
-Produkt/service: ${product}
-Målgruppe: ${audience}
-Lokation: ${location}
-Tilbud: ${offer}
-Valgt annoncevinkel: ${form.angle}
-
-Anbefalet fokus:
-${focus}
-`;
-```
-```jsx
-    const fullMetaAds = `
-━━━━━━━━━━━━━━━━━━━━
-
-ANNONCE 1 — PROBLEM / LØSNING
-
-Hook:
-Har du brug for en bedre løsning til ${product}?
-
-Primær tekst:
-Mange ${audience} har et behov inden for ${product}, men får det ikke løst, fordi det virker uoverskueligt, tidskrævende eller svært at vælge den rigtige løsning.
-
-Hos ${business} får du en enkel og professionel løsning, der hjælper dig med at komme videre uden unødvendigt besvær.
-
-${offer}
-
-Headline:
-Professionel løsning til ${audience}
-
-Beskrivelse:
-Få hjælp til ${product} i ${location}
-
-CTA:
-${cta}
-
-━━━━━━━━━━━━━━━━━━━━
-
-ANNONCE 2 — UGC STYLE
-
-Hook:
-"Jeg skulle bare have gjort det her noget før."
-
-Primær tekst:
-Hvis du har overvejet ${product}, men ikke har fået gjort noget ved det endnu, så er det her dit tegn.
-
-${business} gør det nemt for ${audience} at komme i gang med en løsning, der føles tryg, enkel og professionel fra start.
-
-${offer}
-
-Headline:
-Derfor vælger flere ${business}
-
-Beskrivelse:
-En enkel vej til et bedre resultat.
-
-CTA:
-${cta}
-
-━━━━━━━━━━━━━━━━━━━━
-
-ANNONCE 3 — TRUST
-
-Hook:
-Vælg en løsning der føles tryg fra start.
-
-Primær tekst:
-Når du skal vælge en løsning inden for ${industry}, vil du gerne føle dig sikker på, at det bliver gjort ordentligt.
-
-Hos ${business} får du tydelig kommunikation, professionel hjælp og fokus på det resultat, du ønsker.
-
-${offer}
-
-Headline:
-Trygt valg inden for ${industry}
-
-Beskrivelse:
-Professionel hjælp fra start til slut.
-
-CTA:
-${cta}
-
-━━━━━━━━━━━━━━━━━━━━
-
-ANNONCE 4 — DIREKTE SALG
-
-Hook:
-Klar til at tage næste skridt?
-
-Primær tekst:
-Med ${product} fra ${business} får ${audience} en nemmere vej til et professionelt resultat.
-
-Hvis du har overvejet det, er nu et godt tidspunkt at komme i gang.
-
-${offer}
-
-Headline:
-Kom i gang med ${product}
-
-Beskrivelse:
-Kontakt ${business} i dag.
-
-CTA:
-${cta}
-
-━━━━━━━━━━━━━━━━━━━━
-
-ANNONCE 5 — RETARGETING
-
-Hook:
-Du kiggede — men nåede ikke videre.
-
-Primær tekst:
-Du har allerede vist interesse for ${product}.
-
-Hvis du stadig overvejer det, kan ${business} hjælpe dig videre med en professionel løsning.
-
-${offer}
-
-Headline:
-Stadig interesseret?
-
-Beskrivelse:
-Tag næste skridt i dag.
-
-CTA:
-${cta}
-`;
-
-    const googleAds = `
-GOOGLE ADS FOR ${business.toUpperCase()}
-
-Headlines:
-- ${product}
-- ${business}
-- ${product} ${location}
-- Professionel løsning
-- Kom i gang i dag
-- ${offer}
-- Få hjælp nu
-- Nemt og professionelt
-- Til ${audience}
-- Få et tilbud
-- Book i dag
-- Tryg proces
-- God service
-- Start nu
-- ${industry}
-
-Descriptions:
-- Få professionel hjælp til ${product} hos ${business}. Kom nemt i gang i dag.
-- Leder du efter ${product} i ${location}? ${business} hjælper dig videre.
-- ${offer} En enkel løsning med fokus på resultat og tryghed.
-- Professionel service til ${audience}. Kontakt ${business} i dag.
-
-Sitelinks:
-1. Se priser
-2. Kontakt os
-3. Sådan virker det
-4. Kundeanmeldelser
-`;
-```
-```jsx id="x7m2kp"
-    const retargeting = `
-RETARGETING FOR ${business.toUpperCase()}
-
-Målgrupper:
-- Website besøgende sidste 30 dage
-- Klik på annoncer sidste 30 dage
-- Facebook/Instagram engagement
-- Formularstart hvis relevant
-
-Annonce 1:
-Du har allerede vist interesse for ${product}.
-
-Hvis du stadig overvejer det, kan ${business} hjælpe dig videre med en enkel og professionel løsning.
-
-${offer}
-
-CTA:
-${cta}
-
-Annonce 2:
-Stadig i tvivl?
-
-Det er helt normalt at overveje tingene en ekstra gang. Hos ${business} får du en tryg proces og professionel hjælp fra start.
-
-CTA:
-${cta}
-`;
-
-    const ugc = `
-UGC SCRIPTS FOR ${business.toUpperCase()}
-
-SCRIPT 1 — PROBLEM/LØSNING
-
-Hook:
-"Jeg havde overvejet ${product}, men fik det aldrig gjort."
-
-Body:
-"Jeg troede det ville være besværligt, men ${business} gjorde processen meget nemmere. Hvis du også har udskudt det, så er det her et godt sted at starte."
-
-CTA:
-"${cta}"
-
-━━━━━━━━━━━━━━━━━━━━
-
-SCRIPT 2 — TRUST
-
-Hook:
-"Jeg ville bare gerne vælge nogen, der virkede professionelle."
-
-Body:
-"Når man skal vælge ${product}, vil man gerne føle sig tryg. Hos ${business} var processen tydelig, enkel og professionel fra start."
-
-CTA:
-"${cta}"
-`;
-
-    return {
-      business,
-      hooks,
-      metaAds: metaAds + fullMetaAds,
-      googleAds,
-      retargeting,
-      ugc,
-    };
+  async function checkAccessCode() {
+    setChecking(true);
+
+    try {
+      const res = await fetch("/api/check-code", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          code: accessCode.trim(),
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setHasAccess(true);
+        setCustomerEmail(data.customer_email || "");
+      } else {
+        alert("Forkert adgangskode");
+      }
+    } catch {
+      alert("Der opstod en fejl. Prøv igen.");
+    }
+
+    setChecking(false);
   }
 
   async function copyText(text) {
@@ -364,64 +103,405 @@ CTA:
   }
 
   function generateCampaign() {
-    const strategy = createAdStrategy();
+    const business = form.business || "virksomheden";
+    const industry = form.industry || "branchen";
+    const product = form.product || "produktet/servicen";
+    const audience = form.audience || "målgruppen";
+    const location = form.location || "Danmark";
+    const offer = form.offer
+      ? "Fra " + form.offer + " kr."
+      : "Aktuelt tilbud.";
+    const budget = Number(form.budget) || 150;
+    const cta = getCTA(form.goal);
+    const focus = getFocus(form.angle);
+
+    const metaAds =
+      "META ADS FOR " +
+      business.toUpperCase() +
+      "\\n\\n" +
+      "Branche: " +
+      industry +
+      "\\n" +
+      "Produkt/service: " +
+      product +
+      "\\n" +
+      "Målgruppe: " +
+      audience +
+      "\\n" +
+      "Lokation: " +
+      location +
+      "\\n" +
+      "Tilbud: " +
+      offer +
+      "\\n" +
+      "Annoncevinkel: " +
+      form.angle +
+      "\\n\\n" +
+      "Anbefalet fokus:\\n" +
+      focus +
+      "\\n\\n" +
+      "━━━━━━━━━━━━━━━━━━━━\\n\\n" +
+      "ANNONCE 1 — PROBLEM / LØSNING\\n\\n" +
+      "Hook:\\n" +
+      "Har du brug for en bedre løsning til " +
+      product +
+      "?\\n\\n" +
+      "Primær tekst:\\n" +
+      "Mange " +
+      audience +
+      " har et behov inden for " +
+      product +
+      ", men får det ikke løst, fordi det virker uoverskueligt, tidskrævende eller svært at vælge den rigtige løsning.\\n\\n" +
+      "Hos " +
+      business +
+      " får du en enkel og professionel løsning, der hjælper dig med at komme videre uden unødvendigt besvær.\\n\\n" +
+      offer +
+      "\\n\\n" +
+      "Headline:\\n" +
+      "Professionel løsning til " +
+      audience +
+      "\\n\\n" +
+      "CTA:\\n" +
+      cta +
+      "\\n\\n" +
+      "━━━━━━━━━━━━━━━━━━━━\\n\\n" +
+      "ANNONCE 2 — UGC STYLE\\n\\n" +
+      "Hook:\\n" +
+      '"Jeg skulle bare have gjort det her noget før."\\n\\n' +
+      "Primær tekst:\\n" +
+      "Hvis du har overvejet " +
+      product +
+      ", men ikke har fået gjort noget ved det endnu, så er det her dit tegn.\\n\\n" +
+      business +
+      " gør det nemt for " +
+      audience +
+      " at komme i gang med en løsning, der føles tryg, enkel og professionel fra start.\\n\\n" +
+      offer +
+      "\\n\\n" +
+      "Headline:\\n" +
+      "Derfor vælger flere " +
+      business +
+      "\\n\\n" +
+      "CTA:\\n" +
+      cta +
+      "\\n\\n" +
+      "━━━━━━━━━━━━━━━━━━━━\\n\\n" +
+      "ANNONCE 3 — TRUST\\n\\n" +
+      "Hook:\\n" +
+      "Vælg en løsning der føles tryg fra start.\\n\\n" +
+      "Primær tekst:\\n" +
+      "Når du skal vælge en løsning inden for " +
+      industry +
+      ", vil du gerne føle dig sikker på, at det bliver gjort ordentligt.\\n\\n" +
+      "Hos " +
+      business +
+      " får du tydelig kommunikation, professionel hjælp og fokus på det resultat, du ønsker.\\n\\n" +
+      offer +
+      "\\n\\n" +
+      "Headline:\\n" +
+      "Trygt valg inden for " +
+      industry +
+      "\\n\\n" +
+      "CTA:\\n" +
+      cta +
+      "\\n\\n" +
+      "━━━━━━━━━━━━━━━━━━━━\\n\\n" +
+      "ANNONCE 4 — DIREKTE SALG\\n\\n" +
+      "Hook:\\n" +
+      "Klar til at tage næste skridt?\\n\\n" +
+      "Primær tekst:\\n" +
+      "Med " +
+      product +
+      " fra " +
+      business +
+      " får " +
+      audience +
+      " en nemmere vej til et professionelt resultat.\\n\\n" +
+      "Hvis du har overvejet det, er nu et godt tidspunkt at komme i gang.\\n\\n" +
+      offer +
+      "\\n\\n" +
+      "Headline:\\n" +
+      "Kom i gang med " +
+      product +
+      "\\n\\n" +
+      "CTA:\\n" +
+      cta;
+
+    const hooks =
+      "20 PROFESSIONELLE HOOKS\\n\\n" +
+      "1. Har du brug for en bedre løsning til " +
+      product +
+      "?\\n" +
+      "2. Få professionel hjælp uden at gøre processen besværlig.\\n" +
+      "3. Derfor vælger flere " +
+      business +
+      ".\\n" +
+      "4. Gør det nemmere at komme i gang med " +
+      product +
+      ".\\n" +
+      "5. En tryg løsning til " +
+      audience +
+      ".\\n" +
+      "6. Få et bedre resultat uden unødvendigt besvær.\\n" +
+      "7. Leder du efter " +
+      product +
+      " i " +
+      location +
+      "?\\n" +
+      "8. Stop med at udskyde det.\\n" +
+      "9. Få hjælp fra nogen der ved hvad de laver.\\n" +
+      "10. Klar til at tage næste skridt?\\n" +
+      "11. Professionel løsning inden for " +
+      industry +
+      ".\\n" +
+      "12. Få styr på " +
+      product +
+      " på en enkel måde.\\n" +
+      "13. En bedre løsning starter her.\\n" +
+      "14. Gør det nemt at vælge rigtigt.\\n" +
+      "15. Se hvordan " +
+      business +
+      " kan hjælpe.\\n" +
+      "16. En enklere vej til et bedre resultat.\\n" +
+      "17. Kom godt i gang i dag.\\n" +
+      "18. Det her gør valget nemmere.\\n" +
+      "19. Til dig der vil have et professionelt resultat.\\n" +
+      "20. Få en løsning der passer til dit behov.";
+
+    const googleAds =
+      "GOOGLE ADS FOR " +
+      business.toUpperCase() +
+      "\\n\\n" +
+      "Headlines:\\n" +
+      "- " +
+      product +
+      "\\n" +
+      "- " +
+      business +
+      "\\n" +
+      "- " +
+      product +
+      " " +
+      location +
+      "\\n" +
+      "- Professionel løsning\\n" +
+      "- Kom i gang i dag\\n" +
+      "- " +
+      offer +
+      "\\n" +
+      "- Få hjælp nu\\n" +
+      "- Nemt og professionelt\\n" +
+      "- Til " +
+      audience +
+      "\\n" +
+      "- Få et tilbud\\n" +
+      "- Book i dag\\n" +
+      "- Tryg proces\\n" +
+      "- God service\\n" +
+      "- Start nu\\n" +
+      "- " +
+      industry +
+      "\\n\\n" +
+      "Descriptions:\\n" +
+      "- Få professionel hjælp til " +
+      product +
+      " hos " +
+      business +
+      ". Kom nemt i gang i dag.\\n" +
+      "- Leder du efter " +
+      product +
+      " i " +
+      location +
+      "? " +
+      business +
+      " hjælper dig videre.\\n" +
+      "- " +
+      offer +
+      " En enkel løsning med fokus på resultat og tryghed.\\n" +
+      "- Professionel service til " +
+      audience +
+      ". Kontakt " +
+      business +
+      " i dag.\\n\\n" +
+      "Sitelinks:\\n" +
+      "1. Se priser\\n" +
+      "2. Kontakt os\\n" +
+      "3. Sådan virker det\\n" +
+      "4. Kundeanmeldelser";
+
+    const retargeting =
+      "RETARGETING FOR " +
+      business.toUpperCase() +
+      "\\n\\n" +
+      "Målgrupper:\\n" +
+      "- Website besøgende sidste 30 dage\\n" +
+      "- Klik på annoncer sidste 30 dage\\n" +
+      "- Facebook/Instagram engagement\\n" +
+      "- Formularstart hvis relevant\\n\\n" +
+      "Annonce 1:\\n" +
+      "Du har allerede vist interesse for " +
+      product +
+      ".\\n\\n" +
+      "Hvis du stadig overvejer det, kan " +
+      business +
+      " hjælpe dig videre med en enkel og professionel løsning.\\n\\n" +
+      offer +
+      "\\n\\n" +
+      "CTA:\\n" +
+      cta +
+      "\\n\\n" +
+      "Annonce 2:\\n" +
+      "Stadig i tvivl?\\n\\n" +
+      "Det er helt normalt at overveje tingene en ekstra gang. Hos " +
+      business +
+      " får du en tryg proces og professionel hjælp fra start.\\n\\n" +
+      "CTA:\\n" +
+      cta;
+
+    const ugc =
+      "UGC SCRIPTS FOR " +
+      business.toUpperCase() +
+      "\\n\\n" +
+      "SCRIPT 1 — PROBLEM/LØSNING\\n\\n" +
+      "Hook:\\n" +
+      '"Jeg havde overvejet ' +
+      product +
+      ', men fik det aldrig gjort."\\n\\n' +
+      "Body:\\n" +
+      '"Jeg troede det ville være besværligt, men ' +
+      business +
+      ' gjorde processen meget nemmere. Hvis du også har udskudt det, så er det her et godt sted at starte."\\n\\n' +
+      "CTA:\\n" +
+      '"' +
+      cta +
+      '"\\n\\n' +
+      "━━━━━━━━━━━━━━━━━━━━\\n\\n" +
+      "SCRIPT 2 — TRUST\\n\\n" +
+      "Hook:\\n" +
+      '"Jeg ville bare gerne vælge nogen, der virkede professionelle."\\n\\n' +
+      "Body:\\n" +
+      '"Når man skal vælge ' +
+      product +
+      ", vil man gerne føle sig tryg. Hos " +
+      business +
+      ' var processen tydelig, enkel og professionel fra start."\\n\\n' +
+      "CTA:\\n" +
+      '"' +
+      cta +
+      '"';
 
     let output = "";
 
     if (form.outputType === "Kun Meta Ads") {
-      output = strategy.metaAds;
+      output = metaAds;
     }
 
     if (form.outputType === "Kun Google Ads") {
-      output = strategy.googleAds;
+      output = googleAds;
     }
 
     if (form.outputType === "Kun Hooks") {
-      output = strategy.hooks;
+      output = hooks;
     }
 
     if (form.outputType === "Retargeting") {
-      output = strategy.retargeting;
+      output = retargeting;
     }
 
     if (form.outputType === "UGC scripts") {
-      output = strategy.ugc;
+      output = ugc;
     }
 
     if (form.outputType === "Komplet kampagne") {
-      output = `
-KOMPLET KAMPAGNE FOR ${strategy.business.toUpperCase()}
-
-${strategy.metaAds}
-
-${strategy.hooks}
-
-${strategy.googleAds}
-
-${strategy.retargeting}
-
-${strategy.ugc}
-`;
+      output =
+        "KOMPLET KAMPAGNE FOR " +
+        business.toUpperCase() +
+        "\\n\\n" +
+        metaAds +
+        "\\n\\n" +
+        hooks +
+        "\\n\\n" +
+        googleAds +
+        "\\n\\n" +
+        retargeting +
+        "\\n\\n" +
+        ugc +
+        "\\n\\n" +
+        "KAMPAGNESTRUKTUR\\n\\n" +
+        "Cold kampagne:\\n" +
+        "- Broad målgruppe\\n" +
+        "- 4-6 creatives\\n" +
+        "- Test problem/løsning, trust, direkte salg og UGC\\n" +
+        "- Budget: " +
+        Math.round(budget * 0.7) +
+        " kr/dag\\n\\n" +
+        "Retargeting:\\n" +
+        "- Website besøgende 30 dage\\n" +
+        "- Engagement 365 dage\\n" +
+        "- Budget: " +
+        Math.round(budget * 0.3) +
+        " kr/dag\\n\\n" +
+        "Testplan:\\n" +
+        "Dag 1-3: Test 4-6 creatives.\\n" +
+        "Dag 4-7: Sluk svage annoncer.\\n" +
+        "Efter 7 dage: Skaler vinderen 20-30%.";
     }
 
     setResult(output);
+    setCopied(false);
+  }
+
+  if (!hasAccess) {
+    return (
+      <main className="accessPage">
+        <div className="accessBox">
+          <div className="dashBadge">AdPilot Pro</div>
+
+          <h1>Adgang til dashboard</h1>
+
+          <p>
+            Indtast din personlige adgangskode for at åbne AdPilot Pro.
+          </p>
+
+          <input
+            value={accessCode}
+            onChange={(e) => setAccessCode(e.target.value)}
+            placeholder="Indtast adgangskode"
+          />
+
+          <button onClick={checkAccessCode} disabled={checking}>
+            {checking ? "Tjekker..." : "Åbn dashboard"}
+          </button>
+
+          <a href={stripeLink} target="_blank" rel="noopener noreferrer">
+            Start AdPilot Pro – 299 kr/md
+          </a>
+        </div>
+      </main>
+    );
   }
 
   return (
     <main className="dashPage">
-      <section className="dashHero">
-        <div className="dashBadge">
-          AI Campaign Generator
-        </div>
+      <header className="dashNav">
+        <a href="/" className="dashLogo">
+          <span>A</span>AdPilot
+        </a>
 
-        <h1>
-          Generer professionelle annoncetekster
-        </h1>
+        <div className="dashNavRight">
+          <span>{customerEmail}</span>
+          <a href="/">Forside</a>
+        </div>
+      </header>
+
+      <section className="dashHero">
+        <div className="dashBadge">AI Campaign Generator</div>
+
+        <h1>Generer professionelle annoncetekster</h1>
 
         <p>
-          Universelt output til alle brancher —
-          baseret på virksomhed, produkt,
-          målgruppe, annoncevinkel og tilbud.
+          Universelt output til alle brancher — baseret på virksomhed,
+          produkt, målgruppe, annoncevinkel og tilbud.
         </p>
       </section>
 
@@ -429,14 +509,16 @@ ${strategy.ugc}
         <div className="dashCard">
           <h2>Kampagnebrief</h2>
 
-          <div className="dashFormGrid">
+          <p>
+            Udfyld felterne præcist. Generatoren tilpasser teksten til
+            det firma, du skriver.
+          </p>
 
+          <div className="dashFormGrid">
             <Field label="Virksomhedsnavn">
               <input
                 value={form.business}
-                onChange={(e) =>
-                  update("business", e.target.value)
-                }
+                onChange={(e) => update("business", e.target.value)}
                 placeholder="Fx Klinik Nord"
               />
             </Field>
@@ -444,54 +526,55 @@ ${strategy.ugc}
             <Field label="Branche">
               <input
                 value={form.industry}
-                onChange={(e) =>
-                  update("industry", e.target.value)
-                }
+                onChange={(e) => update("industry", e.target.value)}
+                placeholder="Fx kosmetisk klinik"
               />
             </Field>
 
             <Field label="Produkt/service">
               <input
                 value={form.product}
-                onChange={(e) =>
-                  update("product", e.target.value)
-                }
+                onChange={(e) => update("product", e.target.value)}
+                placeholder="Fx ansigtsbehandling"
               />
             </Field>
 
             <Field label="Målgruppe">
               <input
                 value={form.audience}
-                onChange={(e) =>
-                  update("audience", e.target.value)
-                }
+                onChange={(e) => update("audience", e.target.value)}
+                placeholder="Fx kvinder 25-55"
               />
             </Field>
 
             <Field label="Tilbud/pris">
               <input
                 value={form.offer}
-                onChange={(e) =>
-                  update("offer", e.target.value)
-                }
+                onChange={(e) => update("offer", e.target.value)}
+                placeholder="Fx 499"
+              />
+            </Field>
+
+            <Field label="Budget pr dag">
+              <input
+                value={form.budget}
+                onChange={(e) => update("budget", e.target.value)}
+                placeholder="Fx 150"
               />
             </Field>
 
             <Field label="Lokation">
               <input
                 value={form.location}
-                onChange={(e) =>
-                  update("location", e.target.value)
-                }
+                onChange={(e) => update("location", e.target.value)}
+                placeholder="Fx København"
               />
             </Field>
 
             <Field label="Målsætning">
               <select
                 value={form.goal}
-                onChange={(e) =>
-                  update("goal", e.target.value)
-                }
+                onChange={(e) => update("goal", e.target.value)}
               >
                 <option>Salg</option>
                 <option>Leads</option>
@@ -503,12 +586,7 @@ ${strategy.ugc}
             <Field label="Output type">
               <select
                 value={form.outputType}
-                onChange={(e) =>
-                  update(
-                    "outputType",
-                    e.target.value
-                  )
-                }
+                onChange={(e) => update("outputType", e.target.value)}
               >
                 <option>Komplet kampagne</option>
                 <option>Kun Meta Ads</option>
@@ -522,97 +600,65 @@ ${strategy.ugc}
             <Field label="Annoncevinkel">
               <select
                 value={form.angle}
-                onChange={(e) =>
-                  update("angle", e.target.value)
-                }
+                onChange={(e) => update("angle", e.target.value)}
               >
-                <option>
-                  Problem/løsning
-                </option>
+                <option>Problem/løsning</option>
                 <option>UGC style</option>
                 <option>Trust</option>
-                <option>
-                  Direkte salg
-                </option>
+                <option>Direkte salg</option>
                 <option>Tilbud</option>
-                <option>
-                  Retargeting
-                </option>
+                <option>Retargeting</option>
               </select>
             </Field>
           </div>
 
-          <button
-            className="dashGenerate"
-            onClick={generateCampaign}
-          >
-            Generer kampagne
+          <button className="dashGenerate" onClick={generateCampaign}>
+            Generer {form.outputType}
           </button>
         </div>
       </section>
 
       {result && (
-        <section className="dashResult">
+        <section className="dashResult lightOutput">
           <div className="dashResultTop">
-            <h2>Dine annoncetekster</h2>
+            <div>
+              <div className="dashBadge">Færdigt output</div>
+              <h2>Dine annoncetekster</h2>
+            </div>
 
-            <button
-              onClick={() => copyText(result)}
-            >
-              {copied
-                ? "Kopieret ✓"
-                : "Kopiér"}
-            </button>
+            <div className="outputToolbar">
+              <button onClick={() => copyText(result)}>
+                {copied ? "Kopieret ✓" : "Kopiér"}
+              </button>
+
+              <button className="dangerLight" onClick={() => setResult("")}>
+                Ryd
+              </button>
+            </div>
           </div>
 
           <div className="prettyOutput">
-            {result
-              .split("\n")
-              .map((line, index) => {
-                const clean =
-                  line.trim();
+            {result.split("\\n").map((line, index) => {
+              const clean = line.trim();
 
-                if (!clean)
-                  return (
-                    <br key={index} />
-                  );
+              if (!clean) {
+                return <br key={index} />;
+              }
 
-                if (
-                  clean.includes("━━")
-                ) {
-                  return (
-                    <hr key={index} />
-                  );
-                }
+              if (clean.includes("━━")) {
+                return <hr key={index} />;
+              }
 
-                if (
-                  clean ===
-                    clean.toUpperCase() &&
-                  clean.length > 4
-                ) {
-                  return (
-                    <h3 key={index}>
-                      {clean}
-                    </h3>
-                  );
-                }
+              if (clean === clean.toUpperCase() && clean.length > 4) {
+                return <h3 key={index}>{clean}</h3>;
+              }
 
-                if (
-                  clean.endsWith(":")
-                ) {
-                  return (
-                    <h4 key={index}>
-                      {clean}
-                    </h4>
-                  );
-                }
+              if (clean.endsWith(":")) {
+                return <h4 key={index}>{clean}</h4>;
+              }
 
-                return (
-                  <p key={index}>
-                    {clean}
-                  </p>
-                );
-              })}
+              return <p key={index}>{clean}</p>;
+            })}
           </div>
         </section>
       )}
@@ -620,10 +666,7 @@ ${strategy.ugc}
   );
 }
 
-function Field({
-  label,
-  children,
-}) {
+function Field({ label, children }) {
   return (
     <label className="dashField">
       <span>{label}</span>
@@ -631,4 +674,3 @@ function Field({
     </label>
   );
 }
-```
