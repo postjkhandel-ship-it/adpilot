@@ -1,3 +1,4 @@
+```js
 import "./globals.css";
 
 export const metadata = {
@@ -9,7 +10,26 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="da">
+      <head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-7NYJFY4FCD"
+        />
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-7NYJFY4FCD');
+            `,
+          }}
+        />
+      </head>
+
       <body>{children}</body>
     </html>
   );
 }
+```
