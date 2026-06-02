@@ -1,4 +1,5 @@
 import "./globals.css";
+import MetaPixel from "./MetaPixel";
 
 export const metadata = {
   title: "AdPilot – AI annoncegenerator til Meta Ads & Google Ads",
@@ -9,7 +10,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="da">
-      <body>{children}</body>
+      <body>
+        {children}
+        <MetaPixel />
+      </body>
     </html>
   );
 }
