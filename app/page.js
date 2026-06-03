@@ -1,6 +1,10 @@
 export default function Home() {
   const stripeLink = "https://buy.stripe.com/fZudR1dNoabSaCEeTbebu00";
-
+const trackCheckout = () => {
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "InitiateCheckout");
+  }
+};
   return (
     <main className="site">
       <header className="nav">
@@ -39,13 +43,14 @@ export default function Home() {
 
           <div className="heroBtns">
             <a
-              href={stripeLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn primary"
-            >
-              Start AdPilot Pro – 299 kr/md
-            </a>
+  href={stripeLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="btn primary"
+  onClick={trackCheckout}
+>
+  Start AdPilot Pro – 299 kr/md
+</a>
 
             <a href="#demo" className="btn dark">
               Se eksempel
@@ -306,13 +311,14 @@ export default function Home() {
           </ul>
 
           <a
-            href={stripeLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn primary full"
-          >
-            Start AdPilot Pro – 299 kr/md
-          </a>
+  href={stripeLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="btn primary full"
+  onClick={trackCheckout}
+>
+  Start AdPilot Pro – 299 kr/md
+</a>
 
           <div className="payTrust">
             ✓ Sikker betaling med Stripe · ✓ Ingen binding · ✓ Opsig når som
@@ -374,14 +380,15 @@ export default function Home() {
           </p>
         </div>
 
-        <a
-          href={stripeLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn primary"
-        >
-          Start AdPilot Pro
-        </a>
+       <a
+  href={stripeLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="btn primary"
+  onClick={trackCheckout}
+>
+  Start AdPilot Pro
+</a>
       </section>
 
       <section id="contact" className="contact">
