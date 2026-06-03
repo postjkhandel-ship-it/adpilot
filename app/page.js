@@ -1,10 +1,6 @@
 export default function Home() {
   const stripeLink = "https://buy.stripe.com/fZudR1dNoabSaCEeTbebu00";
-const trackCheckout = () => {
-  if (typeof window !== "undefined" && window.fbq) {
-    window.fbq("track", "InitiateCheckout");
-  }
-};
+
   return (
     <main className="site">
       <header className="nav">
@@ -32,9 +28,7 @@ const trackCheckout = () => {
         <div className="heroCopy">
           <div className="pill">AI annoncegenerator til danske virksomheder</div>
 
-          <h1>
-            Lav komplette Meta Ads & Google Ads på få minutter.
-          </h1>
+          <h1>Lav komplette Meta Ads & Google Ads på få minutter.</h1>
 
           <p>
             AdPilot genererer hooks, annoncetekster, retargeting, Google Ads,
@@ -43,14 +37,13 @@ const trackCheckout = () => {
 
           <div className="heroBtns">
             <a
-  href={stripeLink}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="btn primary"
-  onClick={trackCheckout}
->
-  Start AdPilot Pro – 299 kr/md
-</a>
+              href={stripeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn primary"
+            >
+              Start AdPilot Pro – 299 kr/md
+            </a>
 
             <a href="#demo" className="btn dark">
               Se eksempel
@@ -182,9 +175,7 @@ const trackCheckout = () => {
         <div className="sectionHead">
           <div className="pill">Demo-output</div>
           <h2>Sådan kan et output se ud</h2>
-          <p>
-            Brug det direkte som annonce, kundeoplæg eller kampagnebrief.
-          </p>
+          <p>Brug det direkte som annonce, kundeoplæg eller kampagnebrief.</p>
         </div>
 
         <div className="demoOutput">
@@ -311,14 +302,13 @@ const trackCheckout = () => {
           </ul>
 
           <a
-  href={stripeLink}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="btn primary full"
-  onClick={trackCheckout}
->
-  Start AdPilot Pro – 299 kr/md
-</a>
+            href={stripeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn primary full"
+          >
+            Start AdPilot Pro – 299 kr/md
+          </a>
 
           <div className="payTrust">
             ✓ Sikker betaling med Stripe · ✓ Ingen binding · ✓ Opsig når som
@@ -345,8 +335,8 @@ const trackCheckout = () => {
           <div>
             <h3>Skal jeg være god til marketing?</h3>
             <p>
-              Nej. Du udfylder en kort brief, og AdPilot laver struktur,
-              hooks og annonceidéer.
+              Nej. Du udfylder en kort brief, og AdPilot laver struktur, hooks
+              og annonceidéer.
             </p>
           </div>
 
@@ -380,15 +370,14 @@ const trackCheckout = () => {
           </p>
         </div>
 
-       <a
-  href={stripeLink}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="btn primary"
-  onClick={trackCheckout}
->
-  Start AdPilot Pro
-</a>
+        <a
+          href={stripeLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn primary"
+        >
+          Start AdPilot Pro
+        </a>
       </section>
 
       <section id="contact" className="contact">
