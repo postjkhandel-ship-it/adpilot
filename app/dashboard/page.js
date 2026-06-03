@@ -391,7 +391,12 @@ const offer = form.offer
       '"' +
       cta +
       '"';
-
+const staticAds =
+  "STATIC ANNONCER FOR " +
+  business.toUpperCase() +
+  "\\n\\n" +
+  "STATIC 1 — PROBLEM / LØSNING\\n\\n" +
+  "Overskrift på billedet:\\n"
     let output = "";
 
     if (form.outputType === "Kun Meta Ads") {
