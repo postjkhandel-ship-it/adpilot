@@ -509,6 +509,14 @@ export default function Home() {
           <span>4400 Kalundborg</span>      
           <span>Danmark</span>
         </div>
+         <a
+  href="https://dk.trustpilot.com/review/adpilot.dk"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="trustpilotLink"
+>
+  ⭐ Trustpilot Anmeldelser
+</a>       
       </footer>
     </main>
   );
