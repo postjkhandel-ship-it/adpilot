@@ -596,6 +596,7 @@ const offer = form.offer
                 <option>Kun Hooks</option>
                 <option>Retargeting</option>
                 <option>UGC scripts</option>
+                <option>Static annoncer</option>  
               </select>
             </Field>
 
