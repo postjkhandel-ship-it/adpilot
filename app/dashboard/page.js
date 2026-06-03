@@ -397,6 +397,85 @@ const staticAds =
   "\\n\\n" +
   "STATIC 1 — PROBLEM / LØSNING\\n\\n" +
   "Overskrift på billedet:\\n"
+    const landingPage =
+  "LANDING PAGE TEKSTER FOR " +
+  business.toUpperCase() +
+  "\\n\\n" +
+  "HERO SEKTION\\n\\n" +
+  "Overskrift:\\n" +
+  "Få en professionel løsning til " +
+  product +
+  "\\n\\n" +
+  "Underoverskrift:\\n" +
+  business +
+  " hjælper " +
+  audience +
+  " med " +
+  product +
+  " på en enkel, tryg og professionel måde.\\n\\n" +
+  "CTA-knap:\\n" +
+  cta +
+  "\\n\\n" +
+  "━━━━━━━━━━━━━━━━━━━━\\n\\n" +
+  "USP SEKTION\\n\\n" +
+  "USP 1:\\n" +
+  "En nemmere måde at komme i gang med " +
+  product +
+  ".\\n\\n" +
+  "USP 2:\\n" +
+  "Professionel hjælp fra start til slut.\\n\\n" +
+  "USP 3:\\n" +
+  "Tydelig proces, stærkere resultat og mindre besvær.\\n\\n" +
+  "━━━━━━━━━━━━━━━━━━━━\\n\\n" +
+  "PROBLEM / LØSNING\\n\\n" +
+  "Problem:\\n" +
+  "Mange " +
+  audience +
+  " udskyder " +
+  product +
+  ", fordi det virker uoverskueligt eller svært at vælge den rigtige løsning.\\n\\n" +
+  "Løsning:\\n" +
+  business +
+  " gør processen nemmere og hjælper dig trygt videre med en løsning, der passer til dit behov.\\n\\n" +
+  "━━━━━━━━━━━━━━━━━━━━\\n\\n" +
+  "SOCIAL PROOF\\n\\n" +
+  "Tekst:\\n" +
+  "Flere vælger " +
+  business +
+  ", fordi de vil have en løsning der er enkel, professionel og tryg fra start.\\n\\n" +
+  "━━━━━━━━━━━━━━━━━━━━\\n\\n" +
+  "FAQ\\n\\n" +
+  "Spørgsmål 1:\\n" +
+  "Hvordan kommer jeg i gang?\\n\\n" +
+  "Svar:\\n" +
+  "Du kontakter " +
+  business +
+  ", og så hjælper vi dig videre med næste skridt.\\n\\n" +
+  "Spørgsmål 2:\\n" +
+  "Hvem passer løsningen til?\\n\\n" +
+  "Svar:\\n" +
+  "Den passer til " +
+  audience +
+  ", der ønsker en mere professionel løsning til " +
+  product +
+  ".\\n\\n" +
+  "Spørgsmål 3:\\n" +
+  "Hvad koster det?\\n\\n" +
+  "Svar:\\n" +
+  offer +
+  "\\n\\n" +
+  "━━━━━━━━━━━━━━━━━━━━\\n\\n" +
+  "AFSLUTTENDE CTA\\n\\n" +
+  "Overskrift:\\n" +
+  "Klar til at tage næste skridt?\\n\\n" +
+  "Tekst:\\n" +
+  "Kom i gang med " +
+  product +
+  " hos " +
+  business +
+  " i dag.\\n\\n" +
+  "CTA:\\n" +
+  cta;
     let output = "";
 
     if (form.outputType === "Kun Meta Ads") {
@@ -418,7 +497,13 @@ const staticAds =
     if (form.outputType === "UGC scripts") {
       output = ugc;
     }
+    if (form.outputType === "Static annoncer") {
+  output = staticAds;
+    }
 
+    if (form.outputType === "Landing Page") {
+  output = landingPage;
+    } 
     if (form.outputType === "Komplet kampagne") {
       output =
         "KOMPLET KAMPAGNE FOR " +
@@ -601,7 +686,8 @@ const staticAds =
                 <option>Kun Hooks</option>
                 <option>Retargeting</option>
                 <option>UGC scripts</option>
-                <option>Static annoncer</option>  
+                <option>Static annoncer</option>
+                <option>Landing Page</option>  
               </select>
             </Field>
 
