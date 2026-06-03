@@ -504,6 +504,7 @@ export default function Home() {
         <div>
           <h4>Kontakt</h4>
           <a href="mailto:kontakt@adpilot.dk">kontakt@adpilot.dk</a>
+          <span>CVR: 41329548</span>      
           <span>Danmark</span>
         </div>
       </footer>
