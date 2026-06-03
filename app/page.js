@@ -9,7 +9,7 @@ export default function Home() {
         </a>
 
         <div className="navLinks">
-          <a href="#features">Funktioner</a>
+          <a href="#tools">Værktøjer</a>
           <a href="#demo">Demo</a>
           <a href="#pricing">Pris</a>
           <a href="#faq">FAQ</a>
@@ -26,13 +26,15 @@ export default function Home() {
 
       <section className="hero">
         <div className="heroCopy">
-          <div className="pill">AI annoncegenerator til danske virksomheder</div>
+          <div className="pill">AI marketingværktøj til danske virksomheder</div>
 
-          <h1>Lav komplette Meta Ads & Google Ads på få minutter.</h1>
+          <h1>
+            Lav Meta Ads, Google Ads, Landing Pages og annoncekreativer på få minutter.
+          </h1>
 
           <p>
-            AdPilot genererer hooks, annoncetekster, retargeting, Google Ads,
-            UGC-idéer og kampagnestruktur — uden at du skal starte fra nul.
+            Generér Meta Ads, Google Ads, hooks, UGC scripts, static annoncer,
+            landing pages og retargeting — klar til copy/paste.
           </p>
 
           <div className="heroBtns">
@@ -52,8 +54,8 @@ export default function Home() {
 
           <div className="heroProof">
             <div className="proofCard">
-              <strong>Spar tid</strong>
-              <small>Fra blank side til kampagne på minutter</small>
+              <strong>Alt samlet</strong>
+              <small>Ads, hooks, statics, UGC og landing pages</small>
             </div>
 
             <div className="proofCard">
@@ -63,7 +65,7 @@ export default function Home() {
 
             <div className="proofCard">
               <strong>Klar til brug</strong>
-              <small>Copy/paste direkte i Ads Manager</small>
+              <small>Copy/paste direkte i dit marketingarbejde</small>
             </div>
           </div>
         </div>
@@ -75,68 +77,133 @@ export default function Home() {
             <span></span>
           </div>
 
-          <div className="mockTitle">Kampagne genereret</div>
+          <div className="mockTitle">Marketing genereret</div>
 
           <div className="mockStats">
             <div>
-              <b>5</b>
-              <small>Meta Ads</small>
+              <b>8</b>
+              <small>Værktøjer</small>
             </div>
 
             <div>
-              <b>20</b>
+              <b>20+</b>
               <small>Hooks</small>
             </div>
 
             <div>
-              <b>6</b>
-              <small>Output-typer</small>
+              <b>2 min</b>
+              <small>Fra brief til output</small>
             </div>
           </div>
 
           <div className="mockCard active">
-            <strong>Meta Ads</strong>
-            <p>Problem/løsning, UGC, trust og retargeting-annoncer.</p>
+            <strong>Komplet kampagne</strong>
+            <p>Meta Ads, Google Ads, hooks, UGC, statics og retargeting.</p>
           </div>
 
           <div className="mockCard">
-            <strong>Google Ads</strong>
-            <p>Headlines, descriptions og sitelinks klar til brug.</p>
+            <strong>Landing Page tekster</strong>
+            <p>Hero, USP’er, FAQ, CTA’er og salgstekster.</p>
           </div>
 
           <div className="mockCard">
-            <strong>UGC scripts</strong>
-            <p>Videoidéer og scripts til Reels, TikTok og Facebook.</p>
+            <strong>Static annoncer</strong>
+            <p>Kreative briefs, billedtekster og Canva prompts.</p>
           </div>
+        </div>
+      </section>
+
+      <section id="tools" className="marketingSuite">
+        <div className="sectionHead">
+          <div className="pill">Alt i én platform</div>
+          <h2>AdPilot kan bruges til hele din marketing</h2>
+          <p>
+            Ikke kun annoncetekster. AdPilot hjælper med kampagner, kreativer,
+            landing pages og retargeting.
+          </p>
+        </div>
+
+        <div className="toolGrid">
+          <div className="toolCard">
+            <span>📢</span>
+            <h3>Meta Ads</h3>
+            <p>Primære tekster, headlines, CTA’er og annoncevinkler.</p>
+          </div>
+
+          <div className="toolCard">
+            <span>🔎</span>
+            <h3>Google Ads</h3>
+            <p>Headlines, descriptions og sitelinks til søgekampagner.</p>
+          </div>
+
+          <div className="toolCard">
+            <span>🎯</span>
+            <h3>Hooks</h3>
+            <p>Scroll-stoppende hooks til annoncer, videoer og opslag.</p>
+          </div>
+
+          <div className="toolCard">
+            <span>🔁</span>
+            <h3>Retargeting</h3>
+            <p>Annoncetekster til varme besøgende og næsten-kunder.</p>
+          </div>
+
+          <div className="toolCard">
+            <span>🎥</span>
+            <h3>UGC Scripts</h3>
+            <p>Video scripts til Reels, TikTok, Facebook og Instagram.</p>
+          </div>
+
+          <div className="toolCard">
+            <span>🖼️</span>
+            <h3>Static Annoncer</h3>
+            <p>Billedidéer, layout, annoncetekst og Canva prompts.</p>
+          </div>
+
+          <div className="toolCard">
+            <span>🌐</span>
+            <h3>Landing Pages</h3>
+            <p>Hero, USP’er, problem/løsning, FAQ og CTA-sektioner.</p>
+          </div>
+
+          <div className="toolCard highlight">
+            <span>⚡</span>
+            <h3>Komplet Kampagne</h3>
+            <p>Alt samlet i én kampagnepakke klar til copy/paste.</p>
+          </div>
+        </div>
+
+        <div className="suiteNote">
+          Over 100 kombinationer af marketingindhold genereret på få minutter.
         </div>
       </section>
 
       <section className="valueStack">
         <div className="sectionHead">
           <div className="pill">Værdi for 299 kr/md</div>
-          <h2>Alt det her får du i én platform</h2>
+          <h2>Mindre end prisen på én annonce</h2>
           <p>
-            Mindre end prisen på én annonce — men nok til at spare dig timer
-            hver måned.
+            AdPilot kan spare dig timer hver uge og give et mere professionelt
+            udgangspunkt for dine kampagner.
           </p>
         </div>
 
         <div className="valueGrid">
-          <div>✓ Meta Ads generator</div>
-          <div>✓ Google Ads generator</div>
-          <div>✓ Hooks & headlines</div>
-          <div>✓ Retargeting kampagner</div>
-          <div>✓ UGC scripts</div>
-          <div>✓ Kampagnestruktur</div>
-          <div>✓ Dansk output</div>
-          <div>✓ Klar til copy/paste</div>
+          <div>✓ Meta Ads</div>
+          <div>✓ Google Ads</div>
+          <div>✓ Hooks</div>
+          <div>✓ Retargeting</div>
+          <div>✓ UGC Scripts</div>
+          <div>✓ Static Annoncer</div>
+          <div>✓ Landing Pages</div>
+          <div>✓ Ubegrænset generering</div>
         </div>
       </section>
 
       <section className="beforeAfter">
         <div className="sectionHead">
           <div className="pill">Før / efter</div>
-          <h2>Fra blank side til klar kampagne</h2>
+          <h2>Fra blank side til klar marketing</h2>
         </div>
 
         <div className="compareGrid">
@@ -146,7 +213,7 @@ export default function Home() {
             <p>❌ Du mangler hooks</p>
             <p>❌ Annoncer tager for lang tid</p>
             <p>❌ Svært at finde nye vinkler</p>
-            <p>❌ Retargeting bliver glemt</p>
+            <p>❌ Landing pages bliver ikke skrevet</p>
           </div>
 
           <div className="compareCard good">
@@ -154,8 +221,8 @@ export default function Home() {
             <p>✅ Kampagne klar på minutter</p>
             <p>✅ Hooks og headlines genereres</p>
             <p>✅ Meta Ads + Google Ads samlet</p>
-            <p>✅ Flere annoncevinkler</p>
-            <p>✅ Retargeting klar til brug</p>
+            <p>✅ Static annonceidéer klar</p>
+            <p>✅ Landing page tekster klar</p>
           </div>
         </div>
       </section>
@@ -198,15 +265,16 @@ export default function Home() {
           </p>
 
           <p>
-            <strong>Headline:</strong>
+            <strong>Static annonceidé:</strong>
             <br />
-            Book din behandling i dag
+            Clean billede med klinik, trust badges, kort hook og tydelig CTA:
+            “Book tid”.
           </p>
 
           <p>
-            <strong>CTA:</strong>
+            <strong>Landing Page hero:</strong>
             <br />
-            Book tid
+            Få en behandling der føles tryg fra start.
           </p>
         </div>
       </section>
@@ -214,7 +282,7 @@ export default function Home() {
       <section id="features" className="section">
         <div className="sectionHead">
           <div className="pill">Funktioner</div>
-          <h2>Bygget til hurtigere annonceproduktion</h2>
+          <h2>Bygget til hurtigere marketingproduktion</h2>
           <p>
             AdPilot samler de vigtigste kampagneelementer i ét simpelt
             dashboard.
@@ -223,23 +291,23 @@ export default function Home() {
 
         <div className="featureGrid">
           <div className="card">
-            <h3>Meta Ads</h3>
-            <p>Primær tekst, hooks, headlines, CTA’er og beskrivelser.</p>
+            <h3>Annoncegenerator</h3>
+            <p>Lav Meta Ads, Google Ads, hooks og retargeting.</p>
           </div>
 
           <div className="card">
-            <h3>Google Ads</h3>
-            <p>Headlines, descriptions og sitelinks til søgekampagner.</p>
+            <h3>Creative generator</h3>
+            <p>Få static annonceidéer, UGC scripts og Canva prompts.</p>
           </div>
 
           <div className="card">
-            <h3>Retargeting</h3>
-            <p>Tekster til besøgende, klik og varme kunder.</p>
+            <h3>Landing Page generator</h3>
+            <p>Få hero, USP’er, FAQ, CTA’er og salgstekster.</p>
           </div>
 
           <div className="card">
-            <h3>UGC scripts</h3>
-            <p>Videoidéer og scripts til Reels, TikTok og annoncer.</p>
+            <h3>Komplet kampagne</h3>
+            <p>Få hele kampagnepakken samlet på få minutter.</p>
           </div>
         </div>
       </section>
@@ -247,7 +315,7 @@ export default function Home() {
       <section className="how">
         <div className="sectionHead">
           <div className="pill">Sådan virker det</div>
-          <h2>Fra kort brief til kampagne på 3 trin</h2>
+          <h2>Fra kort brief til færdig marketing på 3 trin</h2>
         </div>
 
         <div className="steps">
@@ -264,8 +332,8 @@ export default function Home() {
             <span>02</span>
             <h3>Vælg output</h3>
             <p>
-              Vælg komplet kampagne, Meta Ads, Google Ads, hooks, retargeting
-              eller UGC scripts.
+              Vælg Meta Ads, Google Ads, hooks, statics, landing page eller
+              komplet kampagne.
             </p>
           </div>
 
@@ -273,7 +341,7 @@ export default function Home() {
             <span>03</span>
             <h3>Kopiér og brug</h3>
             <p>
-              Brug output direkte i Ads Manager, Google Ads eller som
+              Brug output direkte i Ads Manager, Google Ads, Canva eller som
               kundeoplæg.
             </p>
           </div>
@@ -287,18 +355,19 @@ export default function Home() {
           <h2>299 kr/md</h2>
 
           <p>
-            Ubegrænset kampagnegenerering til virksomheder, freelancere og
+            Ubegrænset marketinggenerering til virksomheder, freelancere og
             bureauer.
           </p>
 
           <ul>
             <li>✓ Ubegrænset kampagnegenerering</li>
             <li>✓ Meta Ads + Google Ads forslag</li>
+            <li>✓ Hooks og headlines</li>
             <li>✓ Retargeting strategier</li>
-            <li>✓ Hooks, headlines og UGC scripts</li>
-            <li>✓ Dansk output</li>
-            <li>✓ Klar til copy/paste</li>
-            <li>✓ Personlig adgangskode</li>
+            <li>✓ UGC scripts</li>
+            <li>✓ Static annoncer + Canva prompts</li>
+            <li>✓ Landing Page tekster</li>
+            <li>✓ Dansk output klar til copy/paste</li>
           </ul>
 
           <a
@@ -333,26 +402,26 @@ export default function Home() {
           </div>
 
           <div>
-            <h3>Skal jeg være god til marketing?</h3>
+            <h3>Kan den også lave kreativer?</h3>
             <p>
-              Nej. Du udfylder en kort brief, og AdPilot laver struktur, hooks
-              og annonceidéer.
+              Ja. AdPilot kan generere static annoncekoncepter, billedtekster,
+              layoutidéer og Canva prompts.
+            </p>
+          </div>
+
+          <div>
+            <h3>Kan den lave landing pages?</h3>
+            <p>
+              Ja. AdPilot kan generere hero, USP’er, problem/løsning, FAQ og
+              CTA-tekster til landing pages.
             </p>
           </div>
 
           <div>
             <h3>Er teksterne klar til brug?</h3>
             <p>
-              Ja. Du kan kopiere output direkte til Meta Ads, Google Ads eller
-              bruge det som kundeoplæg.
-            </p>
-          </div>
-
-          <div>
-            <h3>Hvorfor koster det 299 kr/md?</h3>
-            <p>
-              Fordi det kan spare timer hver måned og give et professionelt
-              udgangspunkt for dine kampagner.
+              Ja. Du kan kopiere output direkte til annoncer, Canva, Google Ads
+              eller som kundeoplæg.
             </p>
           </div>
         </div>
@@ -362,11 +431,11 @@ export default function Home() {
         <div>
           <div className="pill">Klar til at komme i gang?</div>
 
-          <h2>Stop med at starte dine annoncer fra nul.</h2>
+          <h2>Stop med at starte din marketing fra nul.</h2>
 
           <p>
             Brug AdPilot til at spare tid og skabe mere professionelle
-            kampagneoplæg.
+            kampagner, kreativer og landing pages.
           </p>
         </div>
 
@@ -422,7 +491,7 @@ export default function Home() {
       <footer className="footer">
         <div>
           <strong>AdPilot</strong>
-          <p>AI annoncegenerator til virksomheder og bureauer.</p>
+          <p>AI marketingværktøj til virksomheder og bureauer.</p>
         </div>
 
         <div>
