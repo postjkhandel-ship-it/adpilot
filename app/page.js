@@ -509,23 +509,14 @@ export default function Home() {
           <span>4400 Kalundborg</span>      
           <span>Danmark</span>
         </div>
-    <div
-  className="trustpilot-widget"
-  data-locale="da-DK"
-  data-template-id="56278e9abfbbba0bdcd568bc"
-  data-businessunit-id="6a1db254d38a4b4aab12bee2"
-  data-style-height="52px"
-  data-style-width="100%"
-  data-token="ff46853b-95a6-410c-8b6a-9a691257a674"
+<a
+  href="https://dk.trustpilot.com/review/adpilot.dk"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="trustpilotLink"
 >
-  <a
-    href="https://dk.trustpilot.com/review/adpilot.dk"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Trustpilot
-  </a>
-</div>
+  ⭐ Trustpilot anmeldelser
+</a>
 </a>       
       </footer>
     </main>
