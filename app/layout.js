@@ -10,6 +10,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="da">
+    <Script
+  src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+  strategy="afterInteractive"
+/>
       <body>
         {children}
         <MetaPixel />
