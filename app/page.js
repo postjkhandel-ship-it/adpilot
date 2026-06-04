@@ -515,8 +515,7 @@ export default function Home() {
   className="trustpilotLink"
 >
   ⭐ Trustpilot anmeldelser
-</a>
-</a>       
+</a>      
       </footer>
     </main>
   );
