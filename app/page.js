@@ -38,10 +38,14 @@ export default function Home() {
           </p>
 
           <div className="heroBtns">
-            <a href="#contact" className="btn primary">
-  Få gratis demo
+         <a
+  href={stripeLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="btn primary"
+>
+  Start AdPilot Pro – 299 kr/md
 </a>
-
             <a href="#demo" className="btn dark">
               Se eksempel
             </a>
