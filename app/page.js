@@ -486,11 +486,11 @@ export default function Home() {
 
           <label>
             Besked
-            <textarea name="besked" placeholder="Få gratis demo" required />
+            <textarea name="besked" placeholder="skriv din besked" required />
           </label>
 
           <button className="btn primary full" type="submit">
-            Send besked
+            Få gratis demo
           </button>
         </form>
       </section>
