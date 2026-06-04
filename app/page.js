@@ -456,8 +456,11 @@ export default function Home() {
       <section id="contact" className="contact">
         <div>
           <div className="pill">Kontakt</div>
-          <h2>Vil du høre mere?</h2>
-          <p>Send en besked om demo, spørgsmål eller samarbejde.</p>
+          <h2>Få en gratis AdPilot-demo</h2>
+          <p>
+  Skriv din virksomhed og branche — så viser vi hvordan AdPilot kan lave annoncer,
+  static annoncer og landing page tekster til dig.
+</p>
         </div>
 
         <form className="contactForm" action="/tak" method="get">
@@ -483,7 +486,7 @@ export default function Home() {
 
           <label>
             Besked
-            <textarea name="besked" placeholder="Skriv din besked" required />
+            <textarea name="besked" placeholder="Få gratis demo" required />
           </label>
 
           <button className="btn primary full" type="submit">
