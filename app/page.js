@@ -38,12 +38,9 @@ export default function Home() {
           </p>
 
           <div className="heroBtns">
-            <a
-              href="#contact"
-              className="btn primary"
-            >
-              Få gratis demo
-            </a>
+            <a href="#contact" className="btn primary">
+  Få gratis demo
+</a>
 
             <a href="#demo" className="btn dark">
               Se eksempel
