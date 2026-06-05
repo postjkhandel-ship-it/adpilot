@@ -1462,3 +1462,12 @@ a { color: inherit; text-decoration: none; }
     grid-template-columns: 1fr;
   }
 }
+.footerCredit {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: #94a3b8;
+  font-size: 14px;
+}
