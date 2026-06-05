@@ -523,7 +523,10 @@ export default function Home() {
   className="trustpilotLink"
 >
   ⭐ Trustpilot anmeldelser
-</a>      
+</a>  
+    <div className="footerCredit">
+  Udviklet af Lunds Media
+</div>
       </footer>
     </main>
   );
