@@ -463,11 +463,16 @@ export default function Home() {
 </p>
         </div>
 
-        <form
+    <form
   className="contactForm"
   action="https://formspree.io/f/xjgdglgn"
   method="POST"
 >
+  <input
+    type="hidden"
+    name="_next"
+    value="https://adpilot.dk/tak"
+  />
           <label>
             Navn
             <input name="navn" placeholder="Dit navn" required />
