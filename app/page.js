@@ -507,7 +507,10 @@ async function handleContactSubmit(e) {
             Virksomhed
             <input name="virksomhed" placeholder="Firmanavn" />
           </label>
-
+<label>
+  Branche
+  <input name="branche" placeholder="Fx tømrer, webshop, klinik..." />
+</label>
           <label>
             Besked
             <textarea name="besked" placeholder="skriv din besked" required />
