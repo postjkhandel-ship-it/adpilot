@@ -467,6 +467,7 @@ export default function Home() {
   className="contactForm"
   action="https://formspree.io/f/xjgdglgn"
   method="POST"
+  target="_blank"  
 >
   <input
     type="hidden"
