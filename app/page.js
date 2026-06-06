@@ -512,31 +512,7 @@ async function handleContactSubmit(e) {
             Besked
             <textarea name="besked" placeholder="skriv din besked" required />
           </label>
-          <label>
-            Navn
-            <input name="navn" placeholder="Dit navn" required />
-          </label>
-
-          <label>
-            Email
-            <input
-              name="email"
-              type="email"
-              placeholder="din@email.dk"
-              required
-            />
-          </label>
-
-          <label>
-            Virksomhed
-            <input name="virksomhed" placeholder="Firmanavn" />
-          </label>
-
-          <label>
-            Besked
-            <textarea name="besked" placeholder="skriv din besked" required />
-          </label>
-
+        
           <button className="btn primary full" type="submit">
             Få gratis demo
           </button>
