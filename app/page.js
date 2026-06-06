@@ -463,7 +463,11 @@ export default function Home() {
 </p>
         </div>
 
-        <form className="contactForm" action="/tak" method="get">
+        <form
+  className="contactForm"
+  action="https://formspree.io/f/xjgdglgn"
+  method="POST"
+>
           <label>
             Navn
             <input name="navn" placeholder="Dit navn" required />
