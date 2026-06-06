@@ -1,6 +1,25 @@
+"use client";
+
+import { useState } from "react";
 export default function Home() {
   const stripeLink = "https://buy.stripe.com/fZudR1dNoabSaCEeTbebu00";
+const [formSent, setFormSent] = useState(false);
 
+async function handleContactSubmit(e) {
+  e.preventDefault();
+
+  const formData = new FormData(e.currentTarget);
+
+  await fetch("https://formspree.io/f/xjgdglgn", {
+    method: "POST",
+    body: formData,
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  setFormSent(true);
+}
   return (
     <main className="site">
       <header className="nav">
@@ -463,17 +482,36 @@ export default function Home() {
 </p>
         </div>
 
-    <form
-  className="contactForm"
-  action="https://formspree.io/f/xjgdglgn"
-  method="POST"
-  target="_blank"  
->
-  <input
-    type="hidden"
-    name="_next"
-    value="https://adpilot.dk/tak"
-  />
+    <form className="contactForm" onSubmit={handleContactSubmit}>
+      {formSent && (
+  <div className="successBox">
+    ✅ Tak! Vi har modtaget din forespørgsel og vender tilbage hurtigst muligt.
+  </div>
+)}
+<label>
+            Navn
+            <input name="navn" placeholder="Dit navn" required />
+          </label>
+
+          <label>
+            Email
+            <input
+              name="email"
+              type="email"
+              placeholder="din@email.dk"
+              required
+            />
+          </label>
+
+          <label>
+            Virksomhed
+            <input name="virksomhed" placeholder="Firmanavn" />
+          </label>
+
+          <label>
+            Besked
+            <textarea name="besked" placeholder="skriv din besked" required />
+          </label>
           <label>
             Navn
             <input name="navn" placeholder="Dit navn" required />
